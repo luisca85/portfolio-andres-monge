@@ -20,6 +20,9 @@ o cualquier servidor estático. Para volver a ver la intro (se muestra una vez p
 - `styles.css`: estilos. Los valores ajustables están como variables en `:root`, al principio.
 - `script.js`: intro, entrada del hero, player y video de fondo, oficios que se escriben, superposición de años al hacer scroll, entradas al hacer scroll.
 - `assets/`: imágenes y SVG exportados de Figma. `assets/intro/` tiene los de la intro.
+- [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md): colores, tipografía, espaciado, efectos, estados, componentes y assets.
+- [animaciones.md](animaciones.md): cada animación, sus tiempos y cómo está hecha.
+- [CONTENIDO.md](CONTENIDO.md): textos, premios y links de la home, con su origen y lo que falta pedir.
 
 ## Secuencia de la home
 
