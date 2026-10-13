@@ -1,0 +1,973 @@
+/* Tokens tomados de los estilos del Figma (Home v1, 321:2316).
+   Reemplazar por tokens.css cuando esté en la carpeta. */
+:root {
+  --color-orange: #f2994a;          /* Orange · película, bordes y botones */
+  --color-writing: #2f80ed;         /* eyebrow escrito */
+  --color-campaign: #d1ab5e;        /* eyebrow campaña (provisorio, palette/gold/400) */
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-muted: #a1a1aa;
+  --color-strip: #121212;
+  --color-footer: #050505;
+  --color-headshot: #2c2c2c;
+
+  /* Estados hover */
+  --button-hover-bg: rgba(51, 51, 51, .3);     /* Figma: button, state=hover */
+  --card-hover-bg: rgba(0, 0, 0, .72);
+  --card-hover-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+
+  --font-display: "Lexend", system-ui, sans-serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+  --font-mono: "Courier Prime", ui-monospace, monospace;
+
+  --ease: cubic-bezier(.77, 0, .18, 1);
+  --page-w: 1440px;
+  --nav-h: 97px;
+
+  /* Oscurecimiento del fondo de cada año (Figma: .62 con imagen, .25 con degradé) */
+  --year-overlay: .78;
+  --year-overlay-gradient: .45;
+  /* Padding vertical de cada año (Figma: 32px) */
+  --year-pad-y: 80px;
+  /* Sombra superior de cada bloque de la timeline (corta y marcada + difusa) */
+  --year-shadow: 0 -4px 10px rgba(0, 0, 0, .35), 0 -28px 60px rgba(0, 0, 0, .425);
+
+  /* Sombra de los textos del hero: da legibilidad sin oscurecer la película */
+  --hero-text-shadow: 0 1px 14px rgba(0, 0, 0, .55);
+  --hero-name-shadow: 0 2px 28px rgba(0, 0, 0, .35);
+  /* Texto de identidad ("Bilingual writer…"): sombra más marcada */
+  --hero-identity-shadow: 0 1px 3px rgba(0, 0, 0, .6), 0 2px 22px rgba(0, 0, 0, .8);
+
+  /* Degradé negro desde la base del hero */
+  --hero-fade-h: 50%;
+  --hero-fade-opacity: 1;
+
+  /* Grano de película sobre fondos y video */
+  --grain-opacity: .14;
+  --grain-size: 160px;
+  --hero-grain-opacity: .75;       /* grano del hero, más fuerte */
+  --hero-grain-size: 120px;         /* más fino que el de los años */
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+:focus-visible { outline: 1px solid var(--color-orange); outline-offset: 4px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Logotype (178:2686) ---------- */
+.logotype {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 161px;
+  height: 49px;
+  flex: none;
+}
+.logotype__mark { display: grid; flex: none; }
+.logotype__mark img { grid-area: 1 / 1; }
+.logotype__mark-a { margin: 0.68px 0 0 23px; }
+.logotype__words {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 91px;
+  height: 100%;
+}
+
+/* ---------- Nav (83:452) ---------- */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px max(16px, calc((100% - var(--page-w)) / 2 + 202px));
+  background: rgba(0, 0, 0, .7);
+  backdrop-filter: blur(11.35px);
+  -webkit-backdrop-filter: blur(11.35px);
+}
+.nav__links {
+  display: flex;
+  gap: 24px;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: .943;
+  white-space: nowrap;
+}
+.nav__links a { transition: color .2s; }
+.nav__links a:hover { color: var(--color-orange); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  height: 823px;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-bg);
+}
+/* Cada mitad recorta la imagen completa del hero: el media mide el doble
+   de la mitad y se ancla a su borde exterior. */
+.hero__half {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  will-change: transform;
+}
+.hero__half--left { left: 0; }
+.hero__half--right { right: 0; }
+.hero__media { position: absolute; top: 0; bottom: 0; width: 200%; container-type: size; }
+
+/* Video de fondo (YouTube o mp4), sin sonido. Se muestra recién cuando
+   las dos mitades están reproduciendo; mientras tanto se ve el still. */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .8s var(--ease);
+}
+.hero.is-video .hero__video { opacity: 1; }
+.hero__video iframe,
+.hero__video video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, 177.78cqh);    /* cover 16:9 */
+  height: max(100cqh, 56.25cqw);
+  border: 0;
+  object-fit: cover;
+  /* Escala leve para ocultar los bordes y la marca de YouTube */
+  transform: translate(-50%, -50%) scale(1.15);
+}
+.hero__half--left .hero__media { left: 0; }
+.hero__half--right .hero__media { right: 0; }
+.hero__bg {
+  position: absolute;
+  top: 0;
+  left: -34.75%;
+  width: 137.4%;
+  height: auto;
+  min-height: 127.8%;               /* 1051.75 / 823 */
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .9s var(--ease);
+}
+.hero__bg.is-active { opacity: 1; }
+/* Rectangle 2: mitad izquierda en modo Difference */
+.hero__difference {
+  position: absolute;
+  inset: 0;
+  background: #d9d9d9;
+  mix-blend-mode: difference;
+  transition: opacity 1.4s var(--ease);
+}
+/* Cuando la película empieza a reproducirse, el negativo se disuelve y
+   el hero queda con la película entera en sus colores (ver script.js). */
+.hero.is-unified .hero__difference { opacity: 0; }
+
+/* Degradé inferior: negro a transparente, por debajo de textos y player */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  height: var(--hero-fade-h);
+  background: linear-gradient(to top, rgba(0, 0, 0, var(--hero-fade-opacity)), transparent);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;                       /* por encima del degradé inferior */
+  height: 100%;
+  max-width: var(--page-w);
+  margin: 0 auto;
+}
+.hero__name {
+  position: absolute;
+  top: 187.22px;
+  font-weight: 400;
+  font-size: 100px;
+  line-height: 1.245;
+  letter-spacing: -5px;
+  /* El Figma usa mix-blend-mode: difference; se quitó porque el nombre
+     se fundía con la película. Blanco sólido con sombra suave. */
+  color: var(--color-text);
+  text-shadow: var(--hero-name-shadow);
+  overflow: hidden;                 /* máscara de la entrada del nombre */
+  padding: 0 32px;                  /* margen para que la máscara no corte la sombra */
+  margin: 0 -32px;
+}
+.hero__name-text { display: block; }
+.hero__name--left { left: 200px; }
+.hero__name--right { right: 195.3px; text-align: right; }
+
+/* ---------- Entrada del hero ----------
+   Mitades 1.1 s; nombres +0.75 s; oficios +1.35 s; texto y player +1.6 s.
+   El estado inicial solo aplica con JS (.js) y se libera con .hero.is-in. */
+.hero__half { transition: transform 1.1s var(--ease); }
+.hero__name-text { transition: transform .9s var(--ease) .75s; }
+.hero__roles { transition: opacity .6s ease 1.35s, transform .6s ease 1.35s; }
+.hero__identity,
+.player { transition: opacity .7s ease 1.6s, transform .7s ease 1.6s; }
+.hero__roles,
+.hero__identity,
+.player { text-shadow: var(--hero-text-shadow); }
+.hero__identity { text-shadow: var(--hero-identity-shadow); }
+
+.js .hero:not(.is-in) .hero__half--left { transform: translateY(100%); }
+.js .hero:not(.is-in) .hero__half--right { transform: translateY(-100%); }
+.js .hero:not(.is-in) .hero__name--left .hero__name-text { transform: translateY(110%); }
+.js .hero:not(.is-in) .hero__name--right .hero__name-text { transform: translateY(-110%); }
+.js .hero:not(.is-in) .hero__roles { opacity: 0; transform: translateY(12px); }
+.js .hero:not(.is-in) :is(.hero__identity, .player) { opacity: 0; transform: translateY(16px); }
+
+.hero__roles {
+  position: absolute;
+  top: 317.47px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 1.245;
+  letter-spacing: -1.2px;
+}
+.hero__roles--left { left: 200px; width: 179px; }
+.hero__roles--right { right: 199px; width: 191.07px; text-align: right; }
+.hero__roles li { min-height: 1.245em; white-space: nowrap; }
+/* Cursor mientras se escribe/desescribe un oficio */
+.hero__roles li.is-typing::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: .9em;
+  margin-left: 3px;
+  vertical-align: -.08em;
+  background: currentColor;
+  animation: caret .5s steps(1) infinite;
+}
+@keyframes caret { 50% { opacity: 0; } }
+
+.hero__identity {
+  position: absolute;
+  top: 576.2px;
+  right: 206px;
+  width: 413px;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 1.245;
+  text-align: right;
+}
+
+/* Player (Frame 17, 321:2401) */
+.player {
+  position: absolute;
+  top: 618.94px;
+  left: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 356px;
+}
+.player__count {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.245;
+}
+.player__divider { max-width: 100%; }
+.player__list {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  font-size: 15px;
+  line-height: 1.245;
+}
+.player__item {
+  font-weight: 200;
+  line-height: inherit;
+  text-align: left;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, .5);
+  transition: color .3s;
+}
+.player__item--narrow { width: 94.358px; white-space: normal; }
+.player__item:hover { color: var(--color-text); }
+.player__item.is-active { font-weight: 400; color: var(--color-text); }
+
+/* ---------- Awards ---------- */
+.awards-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 156px;
+  padding: 24px max(16px, calc((100% - var(--page-w)) / 2 + 189px));
+  background: var(--color-strip);
+  opacity: .95;
+}
+.award {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: var(--award-w, 96px);
+  flex: none;
+}
+.award img { width: 39.95px; height: 39.95px; object-fit: cover; }
+.award p {
+  width: 100%;
+  min-height: 40.5px;
+  font-weight: 300;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+.awards { display: flex; align-items: flex-start; gap: var(--awards-gap, 8px); }
+.awards .award { height: 110px; }
+
+/* ---------- Texto compartido ---------- */
+/* Heading/H4: Lexend ExtraLight 20 / 0.943 */
+.eyebrow {
+  font-weight: 200;
+  font-size: 20px;
+  line-height: .943;
+  min-height: 32.19px;
+  color: var(--color-orange);
+}
+
+/* ---------- My Story (321:2324) ---------- */
+.my-story {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 16px;
+}
+.my-story__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--page-w);
+  text-align: center;
+  overflow-wrap: break-word;
+}
+.my-story__statement {
+  max-width: 693px;
+  font-size: 40px;
+  line-height: 1.245;
+  letter-spacing: -2px;
+  font-weight: 200;
+  mix-blend-mode: difference;
+}
+.w-extralight { font-weight: 200; }
+.w-regular { font-weight: 400; }
+
+/* Heading/H1: Lexend Regular 36 / 1.245, tracking -5% */
+.my-story__chapter-title {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.245;
+  letter-spacing: -1.8px;
+  mix-blend-mode: difference;
+}
+/* Body/Large: Lexend ExtraLight 16 / 1.245 */
+.my-story__body {
+  max-width: 495px;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.245;
+}
+
+/* Línea con flecha: vector horizontal de 70px rotado 90° */
+.my-story__connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 70px;
+}
+.my-story__connector-line {
+  position: relative;
+  flex: none;
+  width: 70px;
+  height: 0;
+  transform: rotate(90deg);
+}
+.my-story__connector-line img {
+  position: absolute;
+  top: -2.887px;
+  left: 0;
+  max-width: none;
+}
+
+/* ---------- Timeline ---------- */
+.year {
+  position: sticky;                 /* superposición por scroll; JS ajusta top */
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Las alturas fijas del Figma (--year-h) suman el padding extra para que
+     el aire nuevo se vea también en 2022 y 2025 */
+  min-height: calc(var(--year-h, 0px) + 2 * (var(--year-pad-y) - 32px));
+  padding: var(--year-pad-y) 0;
+  overflow: hidden;
+  background: var(--color-bg);
+  /* Sombra hacia arriba: marca el borde cuando el año sube sobre el anterior */
+  box-shadow: var(--year-shadow);
+}
+.year__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Oscurecimiento para que resalten play box y cards. Equivale a una capa
+     negra con opacidad --year-overlay, sin aislar el blend de los títulos. */
+  filter: brightness(calc(1 - var(--year-overlay)));
+}
+.year--gradient {
+  background: linear-gradient(var(--grad-angle, 150deg), #4a3a2a 0%, #241b14 39.286%, #0a0806 71.429%);
+}
+.year--gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, var(--year-overlay-gradient));
+}
+
+/* Row: Col 570 | Spine 120 | Col 570 */
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 570px) 120px minmax(0, 570px);
+  justify-content: center;
+  min-height: var(--row-h, auto);
+  padding: 0 90px;
+}
+.row--end { align-items: end; }
+.row--center { align-items: center; }
+.row--grow { flex: 1 0 auto; }
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--col-h, 0);
+  min-width: 0;
+}
+.col--left { align-items: flex-end; }
+.col--right { align-items: flex-start; }
+.col--center { justify-content: center; }
+.col--stack { gap: 16px; justify-content: flex-end; }
+.col--stack.col--center { justify-content: center; }
+
+.spine {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.spine__year {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: .945;
+  white-space: nowrap;
+}
+/* La línea se dibuja con el SVG del Figma en su tamaño original, rotado 90° */
+.spine__line {
+  position: relative;
+  flex: 1 0 auto;
+  width: 0;
+}
+.spine__line--fixed { flex: none; height: 503.778px; }
+.spine__line img {
+  position: absolute;
+  top: calc(var(--cap, 2.667px) * -1);
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  transform: rotate(90deg) translateY(-50%);
+}
+
+/* time-box (83:702) */
+.time-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  width: var(--box-w, 363px);
+  max-width: 100%;
+  padding: 32px;
+  background: rgba(0, 0, 0, .5);
+  border: 1px solid var(--color-orange);
+  --type-color: var(--color-orange);
+}
+.time-box--writing { --type-color: var(--color-writing); }
+.time-box--campaign { --type-color: var(--color-campaign); }
+.time-box__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+.time-box__eyebrow {
+  font-size: 13px;
+  line-height: 1.245;
+  color: var(--type-color);
+}
+.time-box__title {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: .945;
+  mix-blend-mode: difference;
+}
+.time-box__eyebrow + .time-box__title { margin-top: -4px; }   /* gap 4 entre eyebrow y título */
+.time-box__desc {
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 1.245;
+}
+.time-box__desc p + p { margin-top: 1.245em; }
+
+/* Hover de la card (no está en el Figma: propuesta). Toda la card es
+   clickeable: el botón se estira sobre ella con ::after. La card sube 6 px,
+   oscurece el fondo y proyecta sombra; el botón toma su estado hover. */
+.time-box { position: relative; }
+.time-box,
+.js .time-box[data-reveal] {
+  transition:
+    opacity .8s var(--ease),
+    transform .8s var(--ease),
+    translate .4s var(--ease),
+    background-color .3s ease,
+    box-shadow .4s var(--ease);
+}
+.time-box .button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.time-box:hover,
+.time-box:focus-within {
+  translate: 0 -6px;
+  background: var(--card-hover-bg);
+  box-shadow: var(--card-hover-shadow);
+}
+.time-box:hover .button,
+.time-box:focus-within .button { background: var(--button-hover-bg); }
+
+/* button (83:744): estado hover del Figma = fondo rgba(51,51,51,.3) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px;
+  font-size: 18px;
+  line-height: 1.245;
+  color: var(--color-orange);
+  white-space: nowrap;
+  transition: background-color .25s ease;
+}
+.button:hover,
+.button:focus-visible { background: var(--button-hover-bg); }
+.button--secondary { color: var(--color-text); }
+
+/* Play box (83:618) */
+.playbox {
+  position: relative;
+  display: block;
+  width: var(--box-w);
+  height: var(--box-h);
+  max-width: 100%;
+  overflow: hidden;
+}
+.playbox__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--img-w);
+  height: var(--img-h);
+  max-width: none;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  transition: transform .6s var(--ease);
+}
+.playbox__img--bottom { top: auto; bottom: 0; transform: translate(-50%, 0); }
+.playbox__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform .3s var(--ease);
+}
+.playbox:hover .playbox__img { transform: translate(-50%, -50%) scale(1.04); }
+.playbox:hover .playbox__img--bottom { transform: translate(-50%, 0) scale(1.04); }
+.playbox:hover .playbox__icon { transform: translate(-50%, -50%) scale(1.1); }
+
+/* ---------- About / Contact (321:2379) ---------- */
+.about {
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--year-shadow);   /* también sube sobre el último año */
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  min-height: 650px;
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: 80px 193px;
+  background: var(--color-bg);
+}
+.about__headshot {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 380px;
+  height: 480px;
+  flex: none;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--color-headshot);
+  overflow: hidden;
+}
+.about__headshot-label { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
+.about__headshot-name { font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--color-campaign); }
+.about__headshot-role { font-size: 14px; }
+
+.about__info { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 1; min-width: 0; }
+.about__overline { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--color-campaign); }
+.about__name { font-weight: 600; font-size: 56px; line-height: normal; }
+.about__bio { display: flex; flex-direction: column; gap: 20px; }
+.about__lead { font-size: 20px; }
+.about__detail { font-size: 15px; line-height: 1.245; color: var(--color-muted); }
+.about__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* ---------- Footer (83:513) ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 80px max(16px, calc((100% - var(--page-w)) / 2 + 199px)) 64px;
+  background: var(--color-footer);
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  font-family: var(--font-ui);
+  font-weight: 200;
+}
+.footer__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
+.footer__brand { display: flex; flex-direction: column; gap: 24px; width: 450px; }
+.footer__tagline { font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, .5); }
+.footer__cols { display: flex; gap: 80px; white-space: nowrap; }
+.footer__col { display: flex; flex-direction: column; gap: 16px; }
+.footer__col--inquiries { width: 220px; }
+.footer__col--directory { width: 160px; }
+.footer__label {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .3);
+}
+.footer__email { display: flex; flex-direction: column; gap: 6px; }
+.footer__email a { font-size: 16px; line-height: 1.5; }
+.footer__email p { font-size: 12px; color: rgba(255, 255, 255, .5); }
+.footer__social { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.footer a { transition: color .2s; }
+.footer a:hover { color: var(--color-orange); }
+.footer__line { max-width: 100%; }
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .3);
+}
+.footer__status { display: flex; align-items: center; gap: 24px; color: rgba(255, 255, 255, .5); }
+
+/* ---------- Grano de película ----------
+   Ruido SVG en escala de grises, más grande que su contenedor para poder
+   moverlo a saltos y que el grano "viva" como en el fílmico. */
+.grain {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: var(--grain-size) var(--grain-size);
+  animation: grain .8s steps(1) infinite;
+}
+/* Hero: grano más marcado, con textura de cine. En modo overlay el ruido
+   aclara y oscurece la imagen (como la emulsión) en lugar de velarla de gris,
+   y un parpadeo leve imita la variación de exposición entre fotogramas. */
+.hero__half .grain {
+  opacity: var(--hero-grain-opacity);
+  mix-blend-mode: overlay;
+  background-size: var(--hero-grain-size) var(--hero-grain-size);
+  animation: grain .5s steps(1) infinite, grain-flicker .25s steps(1) infinite;
+}
+@keyframes grain-flicker {
+  0%   { filter: contrast(1.6) brightness(1); }
+  33%  { filter: contrast(1.8) brightness(1.06); }
+  66%  { filter: contrast(1.5) brightness(.96); }
+}
+
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-6%, 4%); }
+  25%  { transform: translate(5%, -7%); }
+  37%  { transform: translate(-9%, -3%); }
+  50%  { transform: translate(7%, 8%); }
+  62%  { transform: translate(-3%, 9%); }
+  75%  { transform: translate(9%, -2%); }
+  87%  { transform: translate(-7%, -8%); }
+}
+
+/* ---------- Franja de premios: entrada escalonada al hacer scroll ----------
+   Cada premio sube y aparece con 90 ms de diferencia (--i lo fija script.js);
+   el laurel termina de abrirse con una escala leve. */
+.js .awards-strip .award {
+  opacity: 0;
+  translate: 0 18px;
+  transition: opacity .7s ease, translate .7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.js .awards-strip .award img {
+  scale: .7;
+  transition: scale .8s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms + 120ms);
+}
+.js .awards-strip.is-visible .award { opacity: 1; translate: 0 0; }
+.js .awards-strip.is-visible .award img { scale: 1; }
+
+/* ---------- Animación de entrada (solo con JS) ---------- */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* ---------- Responsive (provisorio: no hay diseño mobile medido) ---------- */
+@media (max-width: 1240px) {
+  .hero__name { font-size: 72px; letter-spacing: -3.6px; }
+  .hero__name--left, .hero__roles--left, .player { left: 64px; }
+  .hero__name--right, .hero__roles--right { right: 64px; }
+  .hero__identity { right: 64px; }
+  .row { padding: 0 32px; }
+  .about { padding: 80px 64px; }
+}
+
+@media (max-width: 900px) {
+  .nav__links { display: none; }
+  .hero { height: auto; min-height: 100svh; }
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 140px 16px 48px;
+  }
+  .hero__inner > * { position: static; width: auto; }
+  .hero__name { font-size: 56px; letter-spacing: -2.8px; }
+  .hero__name--right, .hero__roles--right, .hero__identity { text-align: right; }
+  .hero__identity { font-size: 18px; }
+  .player { max-width: 356px; }
+
+  .awards-strip { height: auto; flex-wrap: wrap; justify-content: center; gap: 24px; }
+
+  .my-story__statement { font-size: 28px; letter-spacing: -1.4px; }
+  .my-story__chapter-title { font-size: 28px; letter-spacing: -1.4px; }
+
+  .year { position: relative; top: auto !important; min-height: 0; }
+  .row { grid-template-columns: 1fr; min-height: 0; gap: 24px; padding: 24px 16px; }
+  .col, .col--left, .col--right { align-items: center; min-height: 0; }
+  .col--empty, .spine__line { display: none; }
+  .spine { order: -1; }
+  .awards { flex-wrap: wrap; justify-content: center; }
+
+  .about { flex-direction: column; padding: 64px 16px; }
+  .about__headshot { width: 100%; max-width: 380px; }
+  .about__name { font-size: 40px; }
+
+  .footer__top, .footer__bottom { flex-direction: column; align-items: flex-start; }
+  .footer__brand { width: auto; }
+  .footer__cols { flex-direction: column; gap: 32px; }
+  .footer__status { flex-wrap: wrap; gap: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .year { position: relative; top: auto !important; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .hero__bg, .playbox__img, .playbox__icon, .button img,
+  .hero__half, .hero__name-text, .hero__roles, .hero__identity, .player { transition: none; }
+  .grain, .hero__half .grain { animation: none; }
+  .js .awards-strip .award, .js .awards-strip .award img { opacity: 1; translate: none; scale: none; transition: none; }
+  .time-box, .js .time-box[data-reveal] { transition: none; }
+}
+
+/* =========================================================
+   Intro · Figma 345:5946 "Animacion 2"
+   Escenario de 1440×1024 escalado para cubrir la ventana (JS fija --intro-scale).
+   Tres tiras con 9 formas del logo funcionan como ventanas sobre fotos fijas:
+   la máscara se desplaza con --t; la foto queda quieta.
+   Valores de tiempo y curvas: get_motion_context (timeline de 7.131846 s).
+   En Figma la línea de tiempo hace loop; acá se reproduce una sola vez.
+   ========================================================= */
+@property --t {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+.intro {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: #000;
+  transition: opacity .6s var(--ease);
+}
+.intro.is-leaving { opacity: 0; pointer-events: none; }
+html.has-intro .intro { display: block; }
+html.has-intro:not(.intro-done) { overflow: hidden; }
+
+.intro__stage {
+  --intro-dur: 7.131846s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1440px;
+  height: 1024px;
+  transform: translate(-50%, -50%) scale(var(--intro-scale, 1));
+}
+.intro__strip { position: absolute; inset: 0; }
+.intro__still { position: absolute; max-width: none; object-fit: cover; }
+
+/* Tira horizontal: cada foto lleva la máscara, desplazada en x */
+.intro__strip--h .intro__still {
+  left: var(--ix);
+  top: var(--iy);
+  width: var(--iw);
+  height: var(--ih);
+  -webkit-mask: url("assets/intro/strip-h1.svg") no-repeat;
+  mask: url("assets/intro/strip-h1.svg") no-repeat;
+  -webkit-mask-size: 1314.037px 253.953px;
+  mask-size: 1314.037px 253.953px;
+  -webkit-mask-position: calc(var(--ox) - var(--ix) + var(--t)) calc(var(--oy) - var(--iy));
+  mask-position: calc(var(--ox) - var(--ix) + var(--t)) calc(var(--oy) - var(--iy));
+}
+
+/* Tiras verticales: en Figma son la tira horizontal rotada 90°. La ventana
+   rota 90° desde el origen de la tira y la foto se contra-rota para quedar
+   en su lugar; la máscara avanza sobre el eje rotado (= y del escenario). */
+.intro__window {
+  position: absolute;
+  top: 0;
+  left: var(--ox);
+  width: 1024px;
+  height: 253.953px;
+  transform-origin: 0 0;
+  transform: rotate(90deg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 1314.037px 253.953px;
+  mask-size: 1314.037px 253.953px;
+  -webkit-mask-position: calc(var(--oy) + var(--t)) 0;
+  mask-position: calc(var(--oy) + var(--t)) 0;
+}
+.intro__strip--3 .intro__window { -webkit-mask-image: url("assets/intro/strip-v3.svg"); mask-image: url("assets/intro/strip-v3.svg"); }
+.intro__strip--2 .intro__window { -webkit-mask-image: url("assets/intro/strip-v2.svg"); mask-image: url("assets/intro/strip-v2.svg"); }
+.intro__window .intro__still {
+  left: var(--iy);
+  top: calc(var(--ox) - var(--ix));
+  width: var(--iw);
+  height: var(--ih);
+  transform-origin: 0 0;
+  transform: rotate(-90deg);
+}
+
+.intro__strip--1 { animation: kf_345_6019_translate_0 var(--intro-dur) linear both; }
+.intro__strip--3 { animation: kf_345_5996_translate_0 var(--intro-dur) linear both; }
+.intro__strip--2 { animation: kf_345_6043_translate_0 var(--intro-dur) linear both; }
+
+@keyframes kf_345_6019_translate_0 { 0% { --t: -232.76px; } 19.777% { --t: 2573.564px; } 100% { --t: 2573.564px; } }
+@keyframes kf_345_5996_translate_0 { 0% { --t: -44.275px; } 16.777% { --t: -44.275px; } 34.978% { --t: 2375.877px; } 100% { --t: 2375.877px; } }
+@keyframes kf_345_6043_translate_0 { 0% { --t: 0px; } 33.518% { --t: 0px; } 51.273% { --t: -2376.83px; } 100% { --t: -2376.83px; } }
+
+/* Isotipo (345:5986) y palabras (345:6668): snippets de Figma tal cual,
+   una sola iteración. Ambos terminan en opacidad 0: la intro cierra en negro. */
+.intro__mark {
+  position: absolute;
+  left: 530.95px;
+  top: 413.82px;
+  width: 141.273px;
+  height: 141.922px;
+  animation:
+    kf_345_5986_opacity_0 var(--intro-dur) linear both,
+    kf_345_5986_translate_0 var(--intro-dur) linear both;
+}
+/* Marcos con los insets del Figma; el SVG llena su marco */
+.intro__mark span { position: absolute; }
+.intro__mark img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro__mark-b { inset: 0 44.97% 0.28% 0; }
+.intro__mark-a { inset: 1.39% 0 0.28% 46.65%; }
+.intro__words {
+  position: absolute;
+  left: 701.32px;
+  top: 416.12px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  width: 237px;
+  height: 139px;
+  animation:
+    kf_345_6668_opacity_0 var(--intro-dur) linear both,
+    kf_345_6668_translate_0 var(--intro-dur) linear both;
+}
+
+@keyframes kf_345_5986_opacity_0 { 0% { opacity: 0; } 58.148% { animation-timing-function: ease-out; opacity: 0; } 65.158% { opacity: 1; } 95.568% { animation-timing-function: ease-out; opacity: 1; } 100% { opacity: 0; } }
+@keyframes kf_345_5986_translate_0 { 0% { translate: 200px 200px; } 58.148% { animation-timing-function: ease-out; translate: 200px 200px; } 65.158% { translate: 200px 0px; } 69.611% { animation-timing-function: ease-out; translate: 200px 0px; } 76.622% { translate: 0px 0px; } 100% { translate: 0px 0px; } }
+@keyframes kf_345_6668_opacity_0 { 0% { opacity: 0; } 69.611% { animation-timing-function: ease-out; opacity: 0; } 76.622% { opacity: 1; } 95.916% { animation-timing-function: ease-out; opacity: 1; } 100% { opacity: 0; } }
+@keyframes kf_345_6668_translate_0 { 0% { translate: 200px 0px; } 69.611% { animation-timing-function: ease-out; translate: 200px 0px; } 76.622% { translate: 0px 0px; } 100% { translate: 0px 0px; } }
+
+/* No arranca hasta que las fotos están listas (JS agrega .is-playing) */
+.intro:not(.is-playing) :is(.intro__strip, .intro__mark, .intro__words) { animation-play-state: paused; }
