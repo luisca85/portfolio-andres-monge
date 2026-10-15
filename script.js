@@ -27,7 +27,7 @@
     menu.inert = !open;
     document.documentElement.classList.toggle('is-menu-open', open);
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    toggle.setAttribute('aria-label', open ? toggle.dataset.labelClose : toggle.dataset.labelOpen);
   }
 
   if (toggle && menu) {
@@ -43,19 +43,8 @@
     matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
   }
 
-  // ---------- Selector de idioma (Figma 421:2560) ----------
-  // Solo marca el idioma elegido y actualiza <html lang>: todavía no hay
-  // traducciones del contenido.
-  document.querySelectorAll('.lang__option').forEach((btn, _, all) => {
-    btn.addEventListener('click', () => {
-      all.forEach((b) => {
-        const active = b === btn;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-pressed', String(active));
-      });
-      document.documentElement.lang = btn.dataset.lang;
-    });
-  });
+  // Selector de idioma (Figma 421:2560): son links entre index.html (EN) y
+  // es/index.html (ES); no necesita JS.
 
   // ---------- Intro (Figma 345:5946) ----------
   // Se reproduce una vez; al terminar (o si el usuario la saltea) se funde y

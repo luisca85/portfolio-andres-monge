@@ -14,6 +14,18 @@ npx serve .
 
 o cualquier servidor estático. Para volver a ver la intro (se muestra una vez por sesión), agregar `?intro` a la URL.
 
+## Idiomas
+
+- `index.html` es la versión en **inglés** y la fuente de verdad.
+- `es/index.html` es la versión en **español**. Se genera, no se edita a mano:
+
+  ```bash
+  node tools/build-es.mjs
+  ```
+
+  Correrlo después de cada cambio en `index.html`. Las traducciones están en `tools/es.mjs`. Si aparece un texto nuevo sin traducir, el script lo lista y no genera el archivo.
+- El selector EN / ES lleva de una página a la otra.
+
 ## Archivos
 
 - `index.html`: estructura de la home. Cada bloque indica su nodo de Figma en un comentario.
@@ -23,6 +35,7 @@ o cualquier servidor estático. Para volver a ver la intro (se muestra una vez p
 - [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md): colores, tipografía, espaciado, efectos, estados, componentes y assets.
 - [animaciones.md](animaciones.md): cada animación, sus tiempos y cómo está hecha.
 - [CONTENIDO.md](CONTENIDO.md): textos, premios y links de la home, con su origen y lo que falta pedir.
+- [CHANGELOG.md](CHANGELOG.md): registro de cambios por versión y qué versión está publicada en cada canal.
 
 ## Secuencia de la home
 

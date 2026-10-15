@@ -149,7 +149,7 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | Componente | Figma | Clases | Notas |
 |---|---|---|---|
 | Nav desktop | `Nav=desktop` 83:452 | `.nav`, `.nav__links`, `.nav__right` | Fijo arriba, 97px. Links con gap 16: The Book, Film & video, Writing, About, Contact |
-| Selector de idioma | `lang-selector` 421:2560 | `.lang`, `.lang__option` | EN / ES. Activo: fondo naranja, texto `#0A0806`. Por ahora no traduce el contenido |
+| Selector de idioma | `lang-selector` 421:2560 | `.lang`, `.lang__option` | EN / ES. Activo: fondo naranja, texto `#0A0806`. Son links entre `index.html` (EN) y `es/index.html` (ES). En mobile va dentro del menú abierto **(propuesta)** |
 | Nav mobile | `Nav=mobile` 180:5047 | `.nav` (≤ 900px), `.logotype--small`, `.nav__toggle` | 66px, padding 16, logotype small, ícono de menú 24px |
 | Menú mobile | `Menú mobile abierto` 420:2685 | `.mobile-menu`, `.mobile-menu__item` | Pantalla negra bajo la cabecera; accesos de 100px con línea superior, Lexend 40 crema y flecha 28px; ícono de cerrar |
 | Logotype | `logotype` 178:2687 | `.logotype` | Isotipo (2 SVG superpuestos) + ANDRES / MONGE / PROJECTS en SVG |

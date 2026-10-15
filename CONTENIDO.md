@@ -6,6 +6,15 @@ Orígenes usados:
 - **Capturas (vía Figma):** hitos que, según `CONTEXT.md`, vienen de las capturas de Andrés.
 - **Figma, origen sin confirmar:** textos que están en el Figma pero que `CONTEXT.md` lista como no recibidos. Pueden ser borradores de diseño.
 
+## Versiones en inglés y español
+
+El sitio tiene dos versiones: `index.html` (inglés) y `es/index.html` (español). Los textos de abajo están en su idioma original. Las traducciones al otro idioma están en `tools/es.mjs` y **no están aprobadas por Andrés**:
+
+- Los cuadros estaban en español: se tradujeron al inglés para la versión EN.
+- Hero, My Story, About y footer estaban en inglés: se tradujeron al español para la versión ES.
+- En la versión ES los roles de los cuadros quedan en inglés, como en el contenido original (por ejemplo "Película · Writer, Director & Producer").
+- No se traducen títulos de películas y ensayos, premios ("Award Winner …") ni festivales, The Book ni nombres de redes.
+
 ---
 
 ## 1. Hitos de la timeline
@@ -65,7 +74,7 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 
 > Una maqueta anterior usaba otra descripción: "…documentado en un process book y presentado en un fashion film." No coincide con el Figma. Confirmar cuál es la de las capturas.
 
-### 2025 · Neurodivergent Students Aren't Broken — the System Is
+### 2025 · Neurodivergent Students Aren’t Broken — the System Is
 *Origen: capturas (vía Figma)*
 
 - **Tipo:** Escrito

@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400;500&family=Lexend:wght@200;300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="es" href="es/index.html">
   <!-- Marca JS antes del primer pintado para que el hero arranque oculto y no parpadee -->
   <script>document.documentElement.classList.add('js');</script>
   <!-- Siempre arrancar en el hero: sin restaurar el scroll anterior ni saltar a un #ancla -->
@@ -67,7 +69,7 @@
 
   <!-- Figma 321:2410 · Nav=desktop (83:452) · Nav=mobile (180:5047) -->
   <header class="nav">
-    <a class="logotype logotype--desktop" href="#top" aria-label="Andrés Monge Projects, inicio">
+    <a class="logotype logotype--desktop" href="#top" aria-label="Andrés Monge Projects, home">
       <span class="logotype__mark" aria-hidden="true">
         <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
         <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
@@ -79,7 +81,7 @@
       </span>
     </a>
     <!-- Logotype "small" (180:4984), solo en mobile -->
-    <a class="logotype logotype--small" href="#top" aria-label="Andrés Monge Projects, inicio">
+    <a class="logotype logotype--small" href="#top" aria-label="Andrés Monge Projects, home">
       <span class="logotype__mark" aria-hidden="true">
         <img class="logotype__mark-b" src="assets/nav-mobile/logo-mark-b.svg" width="16.7363" height="30.1763" alt="">
         <img class="logotype__mark-a" src="assets/nav-mobile/logo-mark-a.svg" width="16.2254" height="29.6716" alt="">
@@ -92,21 +94,21 @@
     </a>
 
     <div class="nav__right">
-      <nav class="nav__links" aria-label="Principal">
+      <nav class="nav__links" aria-label="Main">
         <a href="#">The Book</a>
         <a href="#">Film &amp; video</a>
         <a href="#">Writing</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
-      <!-- lang-selector (421:2560). Por ahora solo cambia el estado: no hay traducciones -->
-      <div class="lang" role="group" aria-label="Idioma">
-        <button class="lang__option is-active" type="button" lang="en" aria-pressed="true" data-lang="en">EN</button>
-        <button class="lang__option" type="button" lang="es" aria-pressed="false" data-lang="es">ES</button>
+      <!-- lang-selector (421:2560): lleva a la otra versión (index.html = EN, es/index.html = ES) -->
+      <div class="lang" role="group" aria-label="Language">
+        <a class="lang__option is-active" href="index.html" hreflang="en" lang="en" aria-current="page">EN</a>
+        <a class="lang__option" href="es/index.html" hreflang="es" lang="es">ES</a>
       </div>
     </div>
 
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-label-open="Open menu" data-label-close="Close menu">
       <img class="nav__toggle-open" src="assets/icon-menu.svg" width="24" height="24" alt="">
       <img class="nav__toggle-close" src="assets/icon-close.svg" width="24" height="24" alt="">
     </button>
@@ -114,13 +116,18 @@
 
   <!-- Figma 420:2685 · Menú mobile abierto -->
   <div class="mobile-menu" id="mobile-menu" inert>
-    <nav class="mobile-menu__list" aria-label="Principal">
+    <nav class="mobile-menu__list" aria-label="Main">
       <a class="mobile-menu__item" href="#">The Book <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
       <a class="mobile-menu__item" href="#">Film &amp; video <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
       <a class="mobile-menu__item" href="#">writing <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
       <a class="mobile-menu__item" href="#about">About <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
       <a class="mobile-menu__item" href="#contact">Contact <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
     </nav>
+    <!-- Selector de idioma en mobile: no está en Figma (propuesta) -->
+    <div class="lang lang--menu" role="group" aria-label="Language">
+      <a class="lang__option is-active" href="index.html" hreflang="en" lang="en" aria-current="page">EN</a>
+      <a class="lang__option" href="es/index.html" hreflang="es" lang="es">ES</a>
+    </div>
   </div>
 
   <main id="top">
@@ -172,7 +179,7 @@
           Bilingual writer and filmmaker — concept-driven, story-led content, from branded films to award-winning shorts. Alternate: Bilingual storyteller who writes and produces — branded content and screen.
         </p>
 
-        <div class="player" role="group" aria-label="Película de fondo">
+        <div class="player" role="group" aria-label="Background film">
           <p class="player__count"><span data-player-index>1</span>/4</p>
           <img class="player__divider" src="assets/player-divider.svg" width="356" height="1" alt="">
           <div class="player__list">
@@ -186,7 +193,7 @@
     </section>
 
     <!-- Figma 321:2323 · awards-strip -->
-    <section class="awards-strip" aria-label="Premios">
+    <section class="awards-strip" aria-label="Awards">
       <div class="award" style="--award-w:126.198px"><img src="assets/wreath.png" alt=""><p>Award Winner Berlin Shorts Festival</p></div>
       <div class="award" style="--award-w:96px"><img src="assets/wreath.png" alt=""><p>Award Winner Las Vegas Shorts Film Festival</p></div>
       <div class="award" style="--award-w:126.198px"><img src="assets/wreath.png" alt=""><p>WorldFest-Houston International Film Festival</p></div>
@@ -225,7 +232,7 @@
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end">
           <div class="col col--left" data-work="1" data-part="media" style="--col-h:272px">
-            <a class="playbox" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener" aria-label="Ver Romano Honorario en YouTube" style="--box-w:372px; --box-h:268px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener" aria-label="Watch Romano Honorario on YouTube" style="--box-w:372px; --box-h:268px">
               <img class="playbox__img playbox__img--bottom" src="assets/year-2020.png" alt="" style="--img-w:655.853px; --img-h:350.3px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
             </a>
@@ -242,11 +249,11 @@
             </div>
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <p class="time-box__eyebrow">Film · Writer, Director &amp; Producer</p>
                 <h3 class="time-box__title">Romano Honorario</h3>
-                <p class="time-box__desc">Cortometraje dramático sobre un huérfano criado por una familia criminal que debe enfrentarse a la culpa, la lealtad y la herencia que recibe después de la muerte de su padre adoptivo.</p>
+                <p class="time-box__desc">A dramatic short film about an orphan raised by a criminal family who must confront guilt, loyalty and the inheritance he receives after the death of his adoptive father.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener">Ver el corto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener">Watch the short <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -266,11 +273,11 @@
             </div>
             <article class="time-box time-box--film" style="--box-w:404px; min-height:261px" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <p class="time-box__eyebrow">Film · Writer, Director &amp; Producer</p>
                 <h3 class="time-box__title">5 Sentidos</h3>
-                <p class="time-box__desc">Cortometraje de thriller psicológico sobre un hombre que comienza a perder progresivamente cada uno de sus cinco sentidos y el deterioro emocional que eso provoca tanto en él como en su esposa.</p>
+                <p class="time-box__desc">A psychological thriller short about a man who gradually loses each of his five senses, and the emotional toll it takes on both him and his wife.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener">Ver el corto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener">Watch the short <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine">
@@ -279,7 +286,7 @@
             <div class="spine__line"><img src="assets/spine-2022.svg" width="423.333" height="5.33333" alt=""></div>
           </div>
           <div class="col col--right col--center" data-work="1" data-part="media" style="--col-h:261px">
-            <a class="playbox" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener" aria-label="Ver 5 Sentidos en YouTube" style="--box-w:372px; --box-h:261px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener" aria-label="Watch 5 Sentidos on YouTube" style="--box-w:372px; --box-h:261px">
               <img class="playbox__img" src="assets/year-2022.png" alt="" style="--img-w:640.88px; --img-h:261px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
             </a>
@@ -293,7 +300,7 @@
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end" style="--row-h:337px">
           <div class="col col--left" data-work="1" data-part="media" style="--col-h:260px">
-            <a class="playbox" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener" aria-label="Ver Silent Pain / Mime en YouTube" style="--box-w:370px; --box-h:260px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener" aria-label="Watch Silent Pain / Mime on YouTube" style="--box-w:370px; --box-h:260px">
               <img class="playbox__img" src="assets/year-2023.png" alt="" style="--img-w:638.425px; --img-h:260px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
             </a>
@@ -306,11 +313,11 @@
           <div class="col col--right col--center" data-work="1" data-part="card">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <p class="time-box__eyebrow">Film · Writer, Director &amp; Producer</p>
                 <h3 class="time-box__title">Silent Pain / Mime</h3>
-                <p class="time-box__desc">Cortometraje experimental mudo, filmado en blanco y negro y con influencia del film noir, sobre un mimo persiguiendo su sueño.</p>
+                <p class="time-box__desc">A silent experimental short, shot in black and white and influenced by film noir, about a mime chasing his dream.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener">Ver el corto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener">Watch the short <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -318,18 +325,18 @@
           <div class="col col--left col--center" data-work="2" data-part="card">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <p class="time-box__eyebrow">Film · Writer, Director &amp; Producer</p>
                 <h3 class="time-box__title">Nahuel</h3>
-                <p class="time-box__desc">Cortometraje dramático sobre un joven afro-indígena latino que navega los prejuicios de la sociedad que lo rodea.</p>
+                <p class="time-box__desc">A dramatic short about a young Afro-Indigenous Latino navigating the prejudices of the society around him.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener">Ver el corto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener">Watch the short <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
             <div class="spine__line"><img src="assets/spine-2023b.svg" width="384.333" height="5.33333" alt=""></div>
           </div>
           <div class="col col--right col--center" data-work="2" data-part="media">
-            <a class="playbox" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener" aria-label="Ver Nahuel en YouTube" style="--box-w:370px; --box-h:260px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener" aria-label="Watch Nahuel on YouTube" style="--box-w:370px; --box-h:260px">
               <img class="playbox__img" src="assets/nahuel.png" alt="" style="--img-w:479.904px; --img-h:259.658px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
             </a>
@@ -346,11 +353,11 @@
           <div class="col col--left col--center" data-work="1" data-part="solo">
             <article class="time-box time-box--campaign" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Campaña · Fashion Designer / Creative Director / Director</p>
+                <p class="time-box__eyebrow">Campaign · Fashion Designer / Creative Director / Director</p>
                 <h3 class="time-box__title">Fashion Design and Campaign</h3>
-                <p class="time-box__desc">Proyecto final de FASH 110: Introduction to Fashion Design. Diseñé una colección que incluía una falda, un safari jacket, un pantalón y dos camisas con broches y rhinestones.</p>
+                <p class="time-box__desc">Final project for FASH 110: Introduction to Fashion Design. I designed a collection that included a skirt, a safari jacket, a pair of trousers and two shirts with snaps and rhinestones.</p>
               </div>
-              <a class="button" href="#">Ver el proyecto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">View the project <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
@@ -361,14 +368,14 @@
           <div class="col col--right col--center" data-work="2" data-part="solo">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Escrito · Writer &amp; Researcher</p>
+                <p class="time-box__eyebrow">Writing · Writer &amp; Researcher</p>
                 <h3 class="time-box__title">Neurodivergent Students Aren’t Broken — the System Is</h3>
                 <div class="time-box__desc">
-                  <p>Ensayo persuasivo y de investigación sobre las limitaciones del sistema educativo tradicional para estudiantes neurodivergentes.</p>
-                  <p>Recibió mucha atención en LinkedIn de otros especialistas en educación para gente neurodivergente. Por mucho mi ensayo más reconocido.</p>
+                  <p>A persuasive research essay on the limitations of the traditional education system for neurodivergent students.</p>
+                  <p>It drew a lot of attention on LinkedIn from other specialists in education for neurodivergent people. By far my most recognized essay.</p>
                 </div>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">Read the essay <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -383,11 +390,11 @@
           <div class="col col--left" data-work="1" data-part="solo" style="--col-h:280px">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Escrito · Writer</p>
+                <p class="time-box__eyebrow">Writing · Writer</p>
                 <h3 class="time-box__title">Us vs. Them</h3>
-                <p class="time-box__desc">Ensayo personal de creative nonfiction sobre identidad costarricense-nicaragüense, migración, xenofobia y clase social.</p>
+                <p class="time-box__desc">A personal creative nonfiction essay on Costa Rican-Nicaraguan identity, migration, xenophobia and social class.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">Read the essay <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine">
@@ -398,11 +405,11 @@
           <div class="col col--right" data-work="2" data-part="solo" style="--col-h:280px">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Escrito · Writer</p>
+                <p class="time-box__eyebrow">Writing · Writer</p>
                 <h3 class="time-box__title">Outside the Wake</h3>
-                <p class="time-box__desc">Ensayo personal de creative nonfiction sobre mortalidad, duelo y la diferencia entre una muerte repentina y una muerte que llega después de una vida larga.</p>
+                <p class="time-box__desc">A personal creative nonfiction essay on mortality, grief and the difference between a sudden death and a death that comes after a long life.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">Read the essay <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -410,11 +417,11 @@
           <div class="col col--left col--center" data-work="3" data-part="solo">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Escrito · Writer / Researcher</p>
+                <p class="time-box__eyebrow">Writing · Writer / Researcher</p>
                 <h3 class="time-box__title">When Nationalism Becomes a Trend</h3>
-                <p class="time-box__desc">Ensayo de creative nonfiction que analiza el auge de movimientos populistas y nacionalistas en Europa y su relación con una tendencia global hacia la soberanía, la expansión territorial y una política cada vez más construida como marca.</p>
+                <p class="time-box__desc">A creative nonfiction essay that analyzes the rise of populist and nationalist movements in Europe and their link to a global trend toward sovereignty, territorial expansion and politics increasingly built as a brand.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">Read the essay <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
@@ -430,14 +437,14 @@
           <div class="col col--right col--center" data-work="4" data-part="solo">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
-                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer · En postproducción</p>
+                <p class="time-box__eyebrow">Film · Writer, Director &amp; Producer · In post-production</p>
                 <h3 class="time-box__title">El Guardaparques</h3>
                 <div class="time-box__desc">
-                  <p>Cortometraje dramático rodado en Limón, Costa Rica, sobre un guardaparques que continúa protegiendo nidos de tortugas marinas incluso después de perder su trabajo por recortes presupuestarios.</p>
-                  <p>Filmado durante verano de 2026. Campaña de fundraising en desarrollo, con lanzamiento planteado para finales de 2026.</p>
+                  <p>A dramatic short shot in Limón, Costa Rica, about a park ranger who keeps protecting sea turtle nests even after losing his job to budget cuts.</p>
+                  <p>Shot in summer 2026. Fundraising campaign in development, with release planned for late 2026.</p>
                 </div>
               </div>
-              <a class="button" href="#">Ver el proyecto <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="#">View the project <img src="assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -475,7 +482,7 @@
   <footer class="footer">
     <div class="footer__top">
       <div class="footer__brand">
-        <a class="logotype" href="#top" aria-label="Andrés Monge Projects, inicio">
+        <a class="logotype" href="#top" aria-label="Andrés Monge Projects, home">
           <span class="logotype__mark" aria-hidden="true">
             <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
             <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
@@ -486,7 +493,7 @@
             <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
           </span>
         </a>
-        <p class="footer__tagline">Concept-driven, story-led content from branded films to award-winning shorts. Escritor y realizador bilingüe.</p>
+        <p class="footer__tagline">Concept-driven, story-led content from branded films to award-winning shorts. Bilingual writer and filmmaker.</p>
       </div>
       <div class="footer__cols">
         <div class="footer__col footer__col--inquiries">

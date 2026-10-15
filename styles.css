@@ -164,6 +164,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .lang__option:hover { color: var(--color-text); }
 .lang__option.is-active { background: var(--color-orange); color: var(--color-text-inverse); }
+/* Selector dentro del menú mobile (propuesta: no está en Figma) */
+.lang--menu { display: flex; width: 100%; margin-top: 32px; }
+.lang--menu .lang__option { flex: 1; padding-block: 12px; text-align: center; }
 
 /* Botón de menú mobile (icons / menu-outline · icons / close) */
 .nav__toggle { display: none; width: 24px; height: 24px; position: relative; }

@@ -1,0 +1,530 @@
+<!doctype html>
+<!-- Archivo generado por tools/build-es.mjs a partir de index.html: no editar a mano -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andrés Monge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400;500&family=Lexend:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="alternate" hreflang="en" href="../index.html">
+  <link rel="alternate" hreflang="es" href="index.html">
+  <!-- Marca JS antes del primer pintado para que el hero arranque oculto y no parpadee -->
+  <script>document.documentElement.classList.add('js');</script>
+  <!-- Siempre arrancar en el hero: sin restaurar el scroll anterior ni saltar a un #ancla -->
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  </script>
+  <!-- Intro: una vez por sesión (con ?intro en la URL se fuerza). Sin intro si se pide menos movimiento. -->
+  <script>
+    (function () {
+      var seen = false;
+      try { seen = sessionStorage.getItem('intro-seen') === '1'; } catch (e) {}
+      var force = /[?&]intro\b/.test(location.search);
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if ((force || !seen) && !calm) document.documentElement.classList.add('has-intro');
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Intro · Figma 345:5946 "Animacion 2" (escenario 1440×1024, escalado en JS) -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__stage">
+      <!-- Tira "3" (345:5996), vertical: baja. Muestra "image 4" (345:6015) -->
+      <div class="intro__strip intro__strip--v intro__strip--3">
+        <div class="intro__window" style="--ox:397.691px; --oy:-1314.037px">
+          <img class="intro__still" src="../assets/intro/still-a.png" alt="" style="--ix:-1039.197px; --iy:0px; --iw:2478.883px; --ih:1024px">
+        </div>
+      </div>
+      <!-- Tira "1" (345:6019), horizontal: cruza a la derecha. Muestra "image 3" ×2 (345:6038, 345:6039) -->
+      <div class="intro__strip intro__strip--h intro__strip--1" style="--ox:-1114.037px; --oy:357.805px">
+        <img class="intro__still" src="../assets/intro/still-b.png" alt="" style="--ix:-582.038px; --iy:0.181px; --iw:2515.556px; --ih:1024px">
+        <img class="intro__still" src="../assets/intro/still-b.png" alt="" style="--ix:-1696.038px; --iy:358.181px; --iw:2515.556px; --ih:1024px">
+      </div>
+      <!-- Tira "2" (345:6043), vertical: sube. Muestra "image 7" (345:6062) -->
+      <div class="intro__strip intro__strip--v intro__strip--2">
+        <div class="intro__window" style="--ox:1251.954px; --oy:1062.793px">
+          <img class="intro__still" src="../assets/hero.png" alt="" style="--ix:-261.565px; --iy:-2.679px; --iw:2011.988px; --ih:1067.759px">
+        </div>
+      </div>
+
+      <!-- Isotipo (345:5986): sube y se corre a la izquierda; al final se desvanece -->
+      <!-- Las piezas del isotipo se muestran escaladas (141×142) dentro de sus marcos, como en Figma -->
+      <div class="intro__mark">
+        <span class="intro__mark-b"><img src="../assets/intro/logo-mark-b.svg" width="94.3157" height="171.682" alt=""></span>
+        <span class="intro__mark-a"><img src="../assets/intro/logo-mark-a.svg" width="91.4365" height="169.283" alt=""></span>
+      </div>
+      <!-- Palabras (345:6668): entran desde la derecha; al final se desvanecen.
+           Orden tal cual el Figma: ANDRES / PROJECTS / MONGE -->
+      <div class="intro__words">
+        <img src="../assets/intro/logo-andres.svg" width="181.948" height="32.6563" alt="">
+        <img src="../assets/intro/logo-projects.svg" width="231.757" height="33.1796" alt="">
+        <img src="../assets/intro/logo-monge.svg" width="162.47" height="32.6563" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Figma 321:2410 · Nav=desktop (83:452) · Nav=mobile (180:5047) -->
+  <header class="nav">
+    <a class="logotype logotype--desktop" href="#top" aria-label="Andrés Monge Projects, inicio">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="../assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+        <img class="logotype__mark-a" src="../assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="../assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+        <img src="../assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+        <img src="../assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+      </span>
+    </a>
+    <!-- Logotype "small" (180:4984), solo en mobile -->
+    <a class="logotype logotype--small" href="#top" aria-label="Andrés Monge Projects, inicio">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="../assets/nav-mobile/logo-mark-b.svg" width="16.7363" height="30.1763" alt="">
+        <img class="logotype__mark-a" src="../assets/nav-mobile/logo-mark-a.svg" width="16.2254" height="29.6716" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="../assets/nav-mobile/logo-andres.svg" width="44.8495" height="8.04966" alt="">
+        <img src="../assets/nav-mobile/logo-monge.svg" width="40.0484" height="8.04969" alt="">
+        <img src="../assets/nav-mobile/logo-projects.svg" width="58.0875" height="8.31608" alt="">
+      </span>
+    </a>
+
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#">The Book</a>
+        <a href="#">Cine y video</a>
+        <a href="#">Escritos</a>
+        <a href="#about">Sobre mí</a>
+        <a href="#contact">Contacto</a>
+      </nav>
+      <!-- lang-selector (421:2560): lleva a la otra versión (index.html = EN, es/index.html = ES) -->
+      <div class="lang" role="group" aria-label="Idioma">
+        <a class="lang__option" href="../index.html" hreflang="en" lang="en">EN</a>
+        <a class="lang__option is-active" href="index.html" hreflang="es" lang="es" aria-current="page">ES</a>
+      </div>
+    </div>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú" data-label-open="Abrir menú" data-label-close="Cerrar menú">
+      <img class="nav__toggle-open" src="../assets/icon-menu.svg" width="24" height="24" alt="">
+      <img class="nav__toggle-close" src="../assets/icon-close.svg" width="24" height="24" alt="">
+    </button>
+  </header>
+
+  <!-- Figma 420:2685 · Menú mobile abierto -->
+  <div class="mobile-menu" id="mobile-menu" inert>
+    <nav class="mobile-menu__list" aria-label="Principal">
+      <a class="mobile-menu__item" href="#">The Book <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#">Cine y video <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#">escritos <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#about">Sobre mí <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#contact">Contacto <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+    </nav>
+    <!-- Selector de idioma en mobile: no está en Figma (propuesta) -->
+    <div class="lang lang--menu" role="group" aria-label="Idioma">
+      <a class="lang__option" href="../index.html" hreflang="en" lang="en">EN</a>
+      <a class="lang__option is-active" href="index.html" hreflang="es" lang="es" aria-current="page">ES</a>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- Hero · Figma 321:2317 a 321:2409 -->
+    <section class="hero" aria-label="Andrés Monge">
+      <!-- Dos mitades con la misma imagen: la izquierda entra desde abajo y
+           la derecha desde arriba. Una capa por película del player; JS alterna .is-active -->
+      <div class="hero__half hero__half--left" aria-hidden="true">
+        <div class="hero__media">
+          <img class="hero__bg is-active" data-film="0" src="../assets/hero.png" alt="">
+          <img class="hero__bg" data-film="1" src="../assets/nahuel.png" alt="" loading="lazy">
+          <img class="hero__bg" data-film="2" src="../assets/year-2020.png" alt="" loading="lazy">
+          <img class="hero__bg" data-film="3" src="../assets/year-2023.png" alt="" loading="lazy">
+          <div class="hero__video" data-video-slot></div>
+        </div>
+        <div class="hero__difference"></div>
+        <div class="grain" aria-hidden="true"></div>
+      </div>
+      <div class="hero__half hero__half--right" aria-hidden="true">
+        <div class="hero__media">
+          <img class="hero__bg is-active" data-film="0" src="../assets/hero.png" alt="">
+          <img class="hero__bg" data-film="1" src="../assets/nahuel.png" alt="" loading="lazy">
+          <img class="hero__bg" data-film="2" src="../assets/year-2020.png" alt="" loading="lazy">
+          <img class="hero__bg" data-film="3" src="../assets/year-2023.png" alt="" loading="lazy">
+          <div class="hero__video" data-video-slot></div>
+        </div>
+        <div class="grain" aria-hidden="true"></div>
+      </div>
+
+      <!-- Los oficios se escriben y desescriben intercambiando lados (script.js).
+           Los lectores de pantalla leen esta lista fija. -->
+      <p class="visually-hidden">Escritor, Contenido de marca, Cineasta, Cine y TV</p>
+
+      <div class="hero__inner">
+        <h1 class="hero__name hero__name--left"><span class="hero__name-text">ANDRES</span></h1>
+        <p class="hero__name hero__name--right" aria-hidden="true"><span class="hero__name-text">MONGE</span></p>
+
+        <ul class="hero__roles hero__roles--left" aria-hidden="true">
+          <li data-role-pair="0">Escritor</li>
+          <li data-role-pair="1">Contenido de marca</li>
+        </ul>
+        <ul class="hero__roles hero__roles--right" aria-hidden="true">
+          <li data-role-pair="0">Cineasta</li>
+          <li data-role-pair="1">Cine y TV</li>
+        </ul>
+
+        <p class="hero__identity">
+          Escritor y cineasta bilingüe: contenido guiado por el concepto y la historia, desde films de marca hasta cortometrajes premiados. Alternativa: narrador bilingüe que escribe y produce para marcas y pantalla.
+        </p>
+
+        <div class="player" role="group" aria-label="Película de fondo">
+          <p class="player__count"><span data-player-index>1</span>/4</p>
+          <img class="player__divider" src="../assets/player-divider.svg" width="356" height="1" alt="">
+          <div class="player__list">
+            <button class="player__item is-active" type="button" data-film="0" aria-pressed="true">5 SENTIDOS</button>
+            <button class="player__item" type="button" data-film="1" aria-pressed="false">NAHUEL</button>
+            <button class="player__item player__item--narrow" type="button" data-film="2" aria-pressed="false">ROMANO HONORARIO</button>
+            <button class="player__item" type="button" data-film="3" aria-pressed="false">SILENT</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Figma 321:2323 · awards-strip -->
+    <section class="awards-strip" aria-label="Premios">
+      <div class="award" style="--award-w:126.198px"><img src="../assets/wreath.png" alt=""><p>Award Winner Berlin Shorts Festival</p></div>
+      <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Award Winner Las Vegas Shorts Film Festival</p></div>
+      <div class="award" style="--award-w:126.198px"><img src="../assets/wreath.png" alt=""><p>WorldFest-Houston International Film Festival</p></div>
+      <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Reality Bytes Independent Student Film Festival</p></div>
+      <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Phoenix Shorts Film Festival</p></div>
+      <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Las Vegas Short Film Festival</p></div>
+    </section>
+
+    <!-- Figma 321:2324 · My Story -->
+    <section class="my-story" aria-labelledby="my-story-title">
+      <header class="my-story__block" data-reveal>
+        <p class="eyebrow" id="my-story-title">Mi historia</p>
+        <h2 class="my-story__statement">
+          <span class="w-extralight">Soy Andrés Monge y creo</span>
+          <span class="w-regular"> desde films de marca hasta cortometrajes premiados.</span>
+        </h2>
+      </header>
+
+      <div class="dot-line my-story__connector" aria-hidden="true" data-reveal></div>
+
+      <article class="my-story__block" data-reveal>
+        <p class="eyebrow">Capítulo 01 · La fuente compartida</p>
+        <h3 class="my-story__chapter-title">Bilingüe de nacimiento</h3>
+        <p class="my-story__body">
+          Antes de que existiera cualquiera de los dos mundos, había una voz latina nativa de Estados Unidos: dos idiomas, dos culturas, la identidad como materia prima. Todo lo que vino después, de ambos lados, nace de aquí.
+        </p>
+      </article>
+    </section>
+
+    <!-- Timeline · un <section> por año; se superponen al hacer scroll -->
+    <div class="timeline">
+
+      <!-- Figma 321:2533 · Year 2020 -->
+      <section class="year" aria-label="2020">
+        <img class="year__bg" src="../assets/year-2020.png" alt="" aria-hidden="true">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="row row--end">
+          <div class="col col--left" data-work="1" data-part="media" style="--col-h:272px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener" aria-label="Ver Romano Honorario en YouTube" style="--box-w:372px; --box-h:268px">
+              <img class="playbox__img playbox__img--bottom" src="../assets/year-2020.png" alt="" style="--img-w:655.853px; --img-h:350.3px">
+              <img class="playbox__icon" src="../assets/icon-play.svg" width="71" height="72" alt="">
+            </a>
+          </div>
+          <div class="spine">
+            <p class="spine__year">2020</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
+            <div class="spine__line"><img src="../assets/spine-2020.svg" width="365.333" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--stack" data-work="1" data-part="card">
+            <div class="awards" style="--awards-gap:12px">
+              <div class="award" style="--award-w:101px"><img src="../assets/wreath.png" alt=""><p>Award Winner Berlin Shorts Festival</p></div>
+              <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Award Winner Las Vegas Shorts Film Festival</p></div>
+            </div>
+            <article class="time-box time-box--film" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <h3 class="time-box__title">Romano Honorario</h3>
+                <p class="time-box__desc">Cortometraje dramático sobre un huérfano criado por una familia criminal que debe enfrentarse a la culpa, la lealtad y la herencia que recibe después de la muerte de su padre adoptivo.</p>
+              </div>
+              <a class="button" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Figma 321:2560 · Year 2022 -->
+      <section class="year" aria-label="2022" style="--year-h:528px">
+        <img class="year__bg" src="../assets/year-2022.png" alt="" aria-hidden="true">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="row row--end row--grow">
+          <div class="col col--left col--stack col--center" data-work="1" data-part="card">
+            <div class="awards" style="--awards-gap:8px">
+              <div class="award" style="--award-w:100px"><img src="../assets/wreath.png" alt=""><p>WorldFest-Houston International Film Festival</p></div>
+              <div class="award" style="--award-w:88px"><img src="../assets/wreath.png" alt=""><p>Reality Bytes Independent Student Film Festival</p></div>
+              <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Phoenix Shorts Film Festival</p></div>
+              <div class="award" style="--award-w:96px"><img src="../assets/wreath.png" alt=""><p>Las Vegas Short Film Festival</p></div>
+            </div>
+            <article class="time-box time-box--film" style="--box-w:404px; min-height:261px" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <h3 class="time-box__title">5 Sentidos</h3>
+                <p class="time-box__desc">Cortometraje de thriller psicológico sobre un hombre que comienza a perder progresivamente cada uno de sus cinco sentidos y el deterioro emocional que eso provoca tanto en él como en su esposa.</p>
+              </div>
+              <a class="button" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+          <div class="spine">
+            <p class="spine__year">2022</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
+            <div class="spine__line"><img src="../assets/spine-2022.svg" width="423.333" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--center" data-work="1" data-part="media" style="--col-h:261px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener" aria-label="Ver 5 Sentidos en YouTube" style="--box-w:372px; --box-h:261px">
+              <img class="playbox__img" src="../assets/year-2022.png" alt="" style="--img-w:640.88px; --img-h:261px">
+              <img class="playbox__icon" src="../assets/icon-play.svg" width="71" height="72" alt="">
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Figma 321:2587 · Year 2023 -->
+      <section class="year" aria-label="2023">
+        <img class="year__bg" src="../assets/year-2023.png" alt="" aria-hidden="true">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="row row--end" style="--row-h:337px">
+          <div class="col col--left" data-work="1" data-part="media" style="--col-h:260px">
+            <a class="playbox" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener" aria-label="Ver Silent Pain / Mime en YouTube" style="--box-w:370px; --box-h:260px">
+              <img class="playbox__img" src="../assets/year-2023.png" alt="" style="--img-w:638.425px; --img-h:260px">
+              <img class="playbox__icon" src="../assets/icon-play.svg" width="71" height="72" alt="">
+            </a>
+          </div>
+          <div class="spine">
+            <p class="spine__year">2023</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
+            <div class="spine__line"><img src="../assets/spine-2023a.svg" width="296.333" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--center" data-work="1" data-part="card">
+            <article class="time-box time-box--film" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <h3 class="time-box__title">Silent Pain / Mime</h3>
+                <p class="time-box__desc">Cortometraje experimental mudo, filmado en blanco y negro y con influencia del film noir, sobre un mimo persiguiendo su sueño.</p>
+              </div>
+              <a class="button" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+        </div>
+        <div class="row row--center" style="--row-h:379px">
+          <div class="col col--left col--center" data-work="2" data-part="card">
+            <article class="time-box time-box--film" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
+                <h3 class="time-box__title">Nahuel</h3>
+                <p class="time-box__desc">Cortometraje dramático sobre un joven afro-indígena latino que navega los prejuicios de la sociedad que lo rodea.</p>
+              </div>
+              <a class="button" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+          <div class="spine spine--stretch">
+            <div class="spine__line"><img src="../assets/spine-2023b.svg" width="384.333" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--center" data-work="2" data-part="media">
+            <a class="playbox" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener" aria-label="Ver Nahuel en YouTube" style="--box-w:370px; --box-h:260px">
+              <img class="playbox__img" src="../assets/nahuel.png" alt="" style="--img-w:479.904px; --img-h:259.658px">
+              <img class="playbox__icon" src="../assets/icon-play.svg" width="71" height="72" alt="">
+            </a>
+          </div>
+        </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
+      </section>
+
+      <!-- Figma 321:2633 · Year 2025 -->
+      <section class="year year--gradient" aria-label="2025" style="--year-h:680px; --grad-angle:154.72deg">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="row row--center row--grow">
+          <div class="col col--left col--center" data-work="1" data-part="solo">
+            <article class="time-box time-box--campaign" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Campaña · Fashion Designer / Creative Director / Director</p>
+                <h3 class="time-box__title">Fashion Design and Campaign</h3>
+                <p class="time-box__desc">Proyecto final de FASH 110: Introduction to Fashion Design. Diseñé una colección que incluía una falda, un safari jacket, un pantalón y dos camisas con broches y rhinestones.</p>
+              </div>
+              <a class="button" href="#">Ver el proyecto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+          <div class="spine spine--stretch">
+            <p class="spine__year">2025</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
+            <div class="spine__line spine__line--fixed"><img src="../assets/spine-2025.svg" width="509.111" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--center" data-work="2" data-part="solo">
+            <article class="time-box time-box--writing" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Escrito · Writer &amp; Researcher</p>
+                <h3 class="time-box__title">Neurodivergent Students Aren’t Broken — the System Is</h3>
+                <div class="time-box__desc">
+                  <p>Ensayo persuasivo y de investigación sobre las limitaciones del sistema educativo tradicional para estudiantes neurodivergentes.</p>
+                  <p>Recibió mucha atención en LinkedIn de otros especialistas en educación para gente neurodivergente. Por mucho mi ensayo más reconocido.</p>
+                </div>
+              </div>
+              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+        </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
+      </section>
+
+      <!-- Figma 321:2674 · Year 2026 -->
+      <section class="year year--gradient" aria-label="2026" style="--grad-angle:138.14deg">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="row row--end" style="--row-h:411px">
+          <div class="col col--left" data-work="1" data-part="solo" style="--col-h:280px">
+            <article class="time-box time-box--writing" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Escrito · Writer</p>
+                <h3 class="time-box__title">Us vs. Them</h3>
+                <p class="time-box__desc">Ensayo personal de creative nonfiction sobre identidad costarricense-nicaragüense, migración, xenofobia y clase social.</p>
+              </div>
+              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+          <div class="spine">
+            <p class="spine__year">2026</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
+            <div class="spine__line" style="--cap:2.887px"><img src="../assets/spine-2026a.svg" width="370.553" height="5.7735" alt=""></div>
+          </div>
+          <div class="col col--right" data-work="2" data-part="solo" style="--col-h:280px">
+            <article class="time-box time-box--writing" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Escrito · Writer</p>
+                <h3 class="time-box__title">Outside the Wake</h3>
+                <p class="time-box__desc">Ensayo personal de creative nonfiction sobre mortalidad, duelo y la diferencia entre una muerte repentina y una muerte que llega después de una vida larga.</p>
+              </div>
+              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+        </div>
+        <div class="row row--center" style="--row-h:399px">
+          <div class="col col--left col--center" data-work="3" data-part="solo">
+            <article class="time-box time-box--writing" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Escrito · Writer / Researcher</p>
+                <h3 class="time-box__title">When Nationalism Becomes a Trend</h3>
+                <p class="time-box__desc">Ensayo de creative nonfiction que analiza el auge de movimientos populistas y nacionalistas en Europa y su relación con una tendencia global hacia la soberanía, la expansión territorial y una política cada vez más construida como marca.</p>
+              </div>
+              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+          <div class="spine spine--stretch">
+            <div class="spine__line"><img src="../assets/spine-2026b.svg" width="404.333" height="5.33333" alt=""></div>
+          </div>
+          <div class="col col--right col--empty" aria-hidden="true"></div>
+        </div>
+        <div class="row row--center" style="--row-h:416px">
+          <div class="col col--left col--empty" aria-hidden="true"></div>
+          <div class="spine spine--stretch">
+            <div class="spine__line" style="--cap:2.887px"><img src="../assets/spine-2026c.svg" width="413.396" height="5.7735" alt=""></div>
+          </div>
+          <div class="col col--right col--center" data-work="4" data-part="solo">
+            <article class="time-box time-box--film" data-reveal>
+              <div class="time-box__text">
+                <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer · En postproducción</p>
+                <h3 class="time-box__title">El Guardaparques</h3>
+                <div class="time-box__desc">
+                  <p>Cortometraje dramático rodado en Limón, Costa Rica, sobre un guardaparques que continúa protegiendo nidos de tortugas marinas incluso después de perder su trabajo por recortes presupuestarios.</p>
+                  <p>Filmado durante verano de 2026. Campaña de fundraising en desarrollo, con lanzamiento planteado para finales de 2026.</p>
+                </div>
+              </div>
+              <a class="button" href="#">Ver el proyecto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+            </article>
+          </div>
+        </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
+        <div class="dot-line work-divider" data-after="2" aria-hidden="true"></div>
+        <div class="dot-line work-divider" data-after="3" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <!-- Figma 321:2379 · about-contact-section -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about__headshot">
+        <div class="about__headshot-label">
+          <p class="about__headshot-name">Andrés Monge</p>
+          <p class="about__headshot-role">Director y guionista</p>
+        </div>
+      </div>
+      <div class="about__info" id="contact">
+        <p class="about__overline">SOBRE MÍ / CONTACTO</p>
+        <h2 class="about__name" id="about-title">Andrés Monge</h2>
+        <div class="about__bio">
+          <p class="about__lead">Escritor y cineasta bilingüe: un narrador que escribe y produce obras premiadas en distintos géneros.</p>
+          <p class="about__detail">Pensamiento centrado en el concepto, combinado con una dirección práctica, desde una perspectiva bilingüe nativa. Cursa un BFA en Dramatic Writing (minor en Film &amp; TV) en SCAD, con egreso previsto en 2028. Habilitado para trabajar en Estados Unidos.</p>
+        </div>
+        <div class="about__actions">
+          <a class="button" href="#">Currículum (PDF) <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+          <a class="button button--secondary" href="#">LinkedIn <img src="../assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Figma 321:2411 · footer-andres-monge -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logotype" href="#top" aria-label="Andrés Monge Projects, inicio">
+          <span class="logotype__mark" aria-hidden="true">
+            <img class="logotype__mark-b" src="../assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+            <img class="logotype__mark-a" src="../assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+          </span>
+          <span class="logotype__words" aria-hidden="true">
+            <img src="../assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+            <img src="../assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+            <img src="../assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+          </span>
+        </a>
+        <p class="footer__tagline">Contenido guiado por el concepto y la historia, desde films de marca hasta cortometrajes premiados. Escritor y realizador bilingüe.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col footer__col--inquiries">
+          <p class="footer__label">Consultas</p>
+          <div class="footer__email">
+            <a href="mailto:hello@andresmonge.com">hello@andresmonge.com</a>
+            <p>Representación en EE. UU. y LATAM</p>
+          </div>
+        </div>
+        <div class="footer__col footer__col--directory">
+          <p class="footer__label">Redes</p>
+          <div class="footer__social">
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="footer__line" src="../assets/footer-line.svg" width="1042" height="1" alt="">
+    <div class="footer__bottom">
+      <p>© 2026 Andrés Monge. Todos los derechos reservados.</p>
+      <div class="footer__status">
+        <p>Con base en San José y Los Ángeles</p>
+        <img src="../assets/footer-dot.svg" width="4" height="4" alt="">
+        <p>Disponible en todo el mundo</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
