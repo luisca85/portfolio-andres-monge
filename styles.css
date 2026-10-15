@@ -10,6 +10,18 @@
   --color-strip: #121212;
   --color-footer: #050505;
   --color-headshot: #2c2c2c;
+  --color-cream: #e8dac8;                       /* logotipo y menú mobile */
+  --color-text-inverse: #0a0806;                /* texto sobre naranja (Figma color-text-inverse) */
+  --color-text-secondary: rgba(255, 255, 255, .5);
+  --color-border-subtle: rgba(255, 255, 255, .12);
+  --color-bg-overlay-light: rgba(0, 0, 0, .5);
+  --nav-h-mobile: 66px;
+
+  /* Timeline en mobile (≤ 900px) */
+  --m-pad-year: 32px;      /* padding arriba y abajo de cada año */
+  --m-gap-obra: 16px;      /* título del año → contenido, video ↔ su cuadro */
+  --m-gap-entre: 24px;     /* entre una obra y el separador, y del separador a la siguiente */
+  --m-divider-h: 50px;     /* largo de las líneas entre año y obra y entre obras */
 
   /* Estados hover */
   --button-hover-bg: rgba(51, 51, 51, .3);     /* Figma: button, state=hover */
@@ -100,6 +112,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   height: 100%;
 }
 
+/* Logotype "small" (180:4984): versión del nav mobile */
+.logotype--small { display: none; gap: 8px; height: 30px; }
+.logotype--small .logotype__mark-a { margin: 0.42px 0 0 14.19px; }
+.logotype--small .logotype__words { width: 56px; height: 31px; }
+
 /* ---------- Nav (83:452) ---------- */
 .nav {
   position: fixed;
@@ -113,16 +130,95 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   backdrop-filter: blur(11.35px);
   -webkit-backdrop-filter: blur(11.35px);
 }
+.nav__right { display: flex; align-items: center; gap: 16px; }
+/* UI/Nav: Lexend ExtraLight 20, tracking 5% */
 .nav__links {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   font-weight: 200;
   font-size: 20px;
-  line-height: .943;
+  line-height: normal;
+  letter-spacing: 1px;
   white-space: nowrap;
 }
 .nav__links a { transition: color .2s; }
 .nav__links a:hover { color: var(--color-orange); }
+
+/* lang-selector (421:2560) · UI/Label: Inter Medium 12 */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  background: var(--color-bg-overlay-light);
+  border: 1px solid var(--color-border-subtle);
+}
+.lang__option {
+  padding: 6px 12px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: normal;
+  color: var(--color-text-secondary);
+  transition: color .2s, background-color .2s;
+}
+.lang__option:hover { color: var(--color-text); }
+.lang__option.is-active { background: var(--color-orange); color: var(--color-text-inverse); }
+
+/* Botón de menú mobile (icons / menu-outline · icons / close) */
+.nav__toggle { display: none; width: 24px; height: 24px; position: relative; }
+.nav__toggle img { position: absolute; inset: 0; }
+.nav__toggle-close { opacity: 0; }
+.nav.is-menu-open { background: var(--color-bg); }   /* en Figma la cabecera va sobre negro */
+.nav.is-menu-open .nav__toggle-open { opacity: 0; }
+.nav.is-menu-open .nav__toggle-close { opacity: 1; }
+
+/* ---------- Menú mobile abierto (420:2685) ----------
+   Ocupa la pantalla bajo la cabecera. Apertura: fundido de 0.3 s y los accesos
+   suben escalonados (propuesta, no está animado en Figma). */
+.mobile-menu {
+  position: fixed;
+  inset: var(--nav-h-mobile) 0 0 0;
+  z-index: 49;
+  overflow-y: auto;
+  padding: 48px 16px 186px;
+  background: var(--color-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility 0s linear .3s;
+}
+.mobile-menu.is-open { opacity: 1; visibility: visible; transition: opacity .3s ease; }
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+/* Display/L: Lexend Regular 40, tracking -5% */
+.mobile-menu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100px;
+  border-top: 1px solid var(--color-border-subtle);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.245;
+  letter-spacing: -2px;
+  color: var(--color-cream);
+  translate: 0 12px;
+  opacity: 0;
+  transition: translate .45s var(--ease), opacity .45s ease;
+}
+.mobile-menu__item img { flex: none; transition: translate .25s var(--ease); }
+.mobile-menu__item:hover img,
+.mobile-menu__item:focus-visible img { translate: 4px 0; }
+.mobile-menu.is-open .mobile-menu__item { translate: 0 0; opacity: 1; }
+.mobile-menu.is-open .mobile-menu__item:nth-child(2) { transition-delay: .04s; }
+.mobile-menu.is-open .mobile-menu__item:nth-child(3) { transition-delay: .08s; }
+.mobile-menu.is-open .mobile-menu__item:nth-child(4) { transition-delay: .12s; }
+.mobile-menu.is-open .mobile-menu__item:nth-child(5) { transition-delay: .16s; }
+html.is-menu-open { overflow: hidden; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -411,27 +507,33 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   line-height: 1.245;
 }
 
-/* Línea con flecha: vector horizontal de 70px rotado 90° */
-.my-story__connector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 0;
-  height: 70px;
-}
-.my-story__connector-line {
+/* Línea de My Story: 70px (largo de Figma), con bullets redondos */
+.my-story__connector { --dot-line-h: 70px; }
+
+/* ---------- Línea con bullets ----------
+   Trazo de 1px con un bullet redondo de 5.33px en cada punta (mismo bullet que
+   las líneas de la timeline). En Figma la línea de My Story termina en rombo:
+   se cambió a pedido. Largo: --dot-line-h. */
+.dot-line {
   position: relative;
   flex: none;
-  width: 70px;
-  height: 0;
-  transform: rotate(90deg);
+  width: 6px;
+  height: var(--dot-line-h, 50px);
+  background: linear-gradient(var(--color-text), var(--color-text)) center / 1px calc(100% - 5.333px) no-repeat;
 }
-.my-story__connector-line img {
+.dot-line::before,
+.dot-line::after {
+  content: "";
   position: absolute;
-  top: -2.887px;
-  left: 0;
-  max-width: none;
+  left: 50%;
+  width: 5.333px;
+  height: 5.333px;
+  border-radius: 50%;
+  background: var(--color-text);
+  translate: -50% 0;
 }
+.dot-line::before { top: 0; }
+.dot-line::after { bottom: 0; }
 
 /* ---------- Timeline ---------- */
 .year {
@@ -722,6 +824,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .footer__status { display: flex; align-items: center; gap: 24px; color: rgba(255, 255, 255, .5); }
 
+/* Líneas de la timeline mobile: solo existen en mobile */
+.work-divider, .spine__dot { display: none; }
+
 /* ---------- Grano de película ----------
    Ruido SVG en escala de grises, más grande que su contenedor para poder
    moverlo a saltos y que el grano "viva" como en el fílmico. */
@@ -796,7 +901,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 @media (max-width: 900px) {
-  .nav__links { display: none; }
+  /* Nav=mobile (180:5047): 66 px, logotype small y botón de menú */
+  .nav { height: var(--nav-h-mobile); padding: 0 16px; }
+  .nav__right, .logotype--desktop { display: none; }
+  .logotype--small, .nav__toggle { display: flex; }
   .hero { height: auto; min-height: 100svh; }
   .hero__inner {
     display: flex;
@@ -815,12 +923,55 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .my-story__statement { font-size: 28px; letter-spacing: -1.4px; }
   .my-story__chapter-title { font-size: 28px; letter-spacing: -1.4px; }
 
-  .year { position: relative; top: auto !important; min-height: 0; }
-  .row { grid-template-columns: 1fr; min-height: 0; gap: 24px; padding: 24px 16px; }
+  /* Timeline mobile: las filas de escritorio se disuelven (display: contents)
+     y cada año es una sola columna ordenada por obra (data-work) y parte
+     (data-part: media = video, card = su cuadro, solo = obra sin video).
+     Orden: año → obra 1 (video, cuadro) → obra 2 → …
+     Distancias: --m-gap-obra dentro de una obra, --m-gap-entre entre obras. */
+  /* Conserva el slide por scroll (sticky; script.js calcula el top). */
+  .year {
+    min-height: 0;
+    justify-content: flex-start;
+    padding: var(--m-pad-year) 16px;
+  }
+  .row { display: contents; }
+  /* position: relative para que año, premios y cuadros se pinten por encima
+     de la imagen de fondo (absoluta) al quedar sin el contenedor .row */
+  .spine, .col { position: relative; }
   .col, .col--left, .col--right { align-items: center; min-height: 0; }
-  .col--empty, .spine__line { display: none; }
-  .spine { order: -1; }
+  .col--empty, .spine__line, .spine:not(:has(.spine__year)) { display: none; }
+  .spine { order: 0; }
+  .col { margin-top: var(--m-gap-obra); }
+  /* Orden dentro de cada película: premios → video → cuadro.
+     La columna premios + cuadro se disuelve para poder intercalar el video. */
+  .col--stack { display: contents; }
+  .col--stack > .awards { position: relative; order: 9; align-self: center; margin-top: var(--m-gap-obra); }
+  .col--stack > .time-box { order: 11; align-self: center; margin-top: var(--m-gap-obra); }
+  .col[data-work="1"][data-part="card"] { order: 11; }
+  .col[data-work="1"]:not([data-part="card"]) { order: 10; }
+  .col[data-work="2"][data-part="card"] { order: 21; }
+  .col[data-work="2"]:not([data-part="card"]) { order: 20; }
+  .col[data-work="3"] { order: 30; }
+  .col[data-work="4"] { order: 40; }
   .awards { flex-wrap: wrap; justify-content: center; }
+
+  /* Línea entre obras y entre el año y la primera obra (mismo patrón):
+     --m-divider-h de largo y --m-gap-entre de aire arriba y abajo */
+  .work-divider,
+  .spine__dot { display: block; --dot-line-h: var(--m-divider-h); }
+  .work-divider {
+    align-self: center;
+    margin-top: var(--m-gap-entre);
+    margin-bottom: calc(var(--m-gap-entre) - var(--m-gap-obra));
+  }
+  /* La spine ya separa año y línea con 16px: se suma la diferencia */
+  .spine__dot {
+    margin-top: calc(var(--m-gap-entre) - 16px);
+    margin-bottom: calc(var(--m-gap-entre) - var(--m-gap-obra));
+  }
+  .work-divider[data-after="1"] { order: 15; }
+  .work-divider[data-after="2"] { order: 25; }
+  .work-divider[data-after="3"] { order: 35; }
 
   .about { flex-direction: column; padding: 64px 16px; }
   .about__headshot { width: 100%; max-width: 380px; }
@@ -839,6 +990,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .hero__bg, .playbox__img, .playbox__icon, .button img,
   .hero__half, .hero__name-text, .hero__roles, .hero__identity, .player { transition: none; }
   .grain, .hero__half .grain { animation: none; }
+  .mobile-menu, .mobile-menu__item { transition: none; }
   .js .awards-strip .award, .js .awards-strip .award img { opacity: 1; translate: none; scale: none; transition: none; }
   .time-box, .js .time-box[data-reveal] { transition: none; }
 }

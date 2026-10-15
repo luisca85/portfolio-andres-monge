@@ -15,6 +15,48 @@
   const ENTRANCE_MS = reduceMotion ? 0 : 2300;
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
+  // ---------- Menú mobile (Figma 420:2685) ----------
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  function setMenu(open) {
+    if (!nav || !toggle || !menu) return;
+    nav.classList.toggle('is-menu-open', open);
+    menu.classList.toggle('is-open', open);
+    menu.inert = !open;
+    document.documentElement.classList.toggle('is-menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+    // Si se agranda la ventana a escritorio con el menú abierto, se cierra.
+    matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+  }
+
+  // ---------- Selector de idioma (Figma 421:2560) ----------
+  // Solo marca el idioma elegido y actualiza <html lang>: todavía no hay
+  // traducciones del contenido.
+  document.querySelectorAll('.lang__option').forEach((btn, _, all) => {
+    btn.addEventListener('click', () => {
+      all.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      document.documentElement.lang = btn.dataset.lang;
+    });
+  });
+
   // ---------- Intro (Figma 345:5946) ----------
   // Se reproduce una vez; al terminar (o si el usuario la saltea) se funde y
   // arranca la entrada del hero.
@@ -280,15 +322,35 @@
   // borde inferior de la ventana, así se ve completo antes de que lo tape el siguiente.
   const years = document.querySelectorAll('.year');
 
+  // Un año más bajo que la ventana se fija justo debajo del nav (no detrás,
+  // donde quedaría tapado el título del año).
+  const navBar = document.querySelector('.nav');
+
+  // Un año alto sigue subiendo hasta que su final queda a STICKY_RELEASE de la
+  // pantalla por encima del borde inferior, y recién ahí se fija. Así su último
+  // contenido (el botón del cuadro) no queda tapado apenas aparece.
+  const STICKY_RELEASE = 0.33;
+
   function updateStickyTops() {
+    const navH = navBar ? navBar.offsetHeight : 0;
+    const release = window.innerHeight * STICKY_RELEASE;
     years.forEach((year) => {
-      year.style.top = `${Math.min(0, window.innerHeight - year.offsetHeight)}px`;
+      year.style.top = `${Math.min(navH, window.innerHeight - release - year.offsetHeight)}px`;
     });
   }
 
   if (!reduceMotion) {
     updateStickyTops();
     window.addEventListener('resize', updateStickyTops);
+    // Se recalcula cada vez que cambia el alto de un año o del nav
+    // (fuentes, imágenes, cambio a mobile).
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(updateStickyTops);
+      years.forEach((year) => ro.observe(year));
+      if (navBar) ro.observe(navBar);
+    } else {
+      window.addEventListener('load', updateStickyTops);
+    }
   }
 
   // ---------- Franja de premios: entrada escalonada ----------

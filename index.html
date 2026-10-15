@@ -6,7 +6,7 @@
   <title>Andrés Monge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400&family=Lexend:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400;500&family=Lexend:wght@200;300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <!-- Marca JS antes del primer pintado para que el hero arranque oculto y no parpadee -->
   <script>document.documentElement.classList.add('js');</script>
@@ -65,9 +65,9 @@
     </div>
   </div>
 
-  <!-- Figma 321:2410 · Nav=desktop -->
+  <!-- Figma 321:2410 · Nav=desktop (83:452) · Nav=mobile (180:5047) -->
   <header class="nav">
-    <a class="logotype" href="#top" aria-label="Andrés Monge Projects, inicio">
+    <a class="logotype logotype--desktop" href="#top" aria-label="Andrés Monge Projects, inicio">
       <span class="logotype__mark" aria-hidden="true">
         <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
         <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
@@ -78,14 +78,50 @@
         <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
       </span>
     </a>
-    <nav class="nav__links" aria-label="Principal">
-      <a href="#">The Book</a>
-      <a href="#">Film &amp; video</a>
-      <a href="#">Writing</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <!-- Logotype "small" (180:4984), solo en mobile -->
+    <a class="logotype logotype--small" href="#top" aria-label="Andrés Monge Projects, inicio">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="assets/nav-mobile/logo-mark-b.svg" width="16.7363" height="30.1763" alt="">
+        <img class="logotype__mark-a" src="assets/nav-mobile/logo-mark-a.svg" width="16.2254" height="29.6716" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="assets/nav-mobile/logo-andres.svg" width="44.8495" height="8.04966" alt="">
+        <img src="assets/nav-mobile/logo-monge.svg" width="40.0484" height="8.04969" alt="">
+        <img src="assets/nav-mobile/logo-projects.svg" width="58.0875" height="8.31608" alt="">
+      </span>
+    </a>
+
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#">The Book</a>
+        <a href="#">Film &amp; video</a>
+        <a href="#">Writing</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <!-- lang-selector (421:2560). Por ahora solo cambia el estado: no hay traducciones -->
+      <div class="lang" role="group" aria-label="Idioma">
+        <button class="lang__option is-active" type="button" lang="en" aria-pressed="true" data-lang="en">EN</button>
+        <button class="lang__option" type="button" lang="es" aria-pressed="false" data-lang="es">ES</button>
+      </div>
+    </div>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menú">
+      <img class="nav__toggle-open" src="assets/icon-menu.svg" width="24" height="24" alt="">
+      <img class="nav__toggle-close" src="assets/icon-close.svg" width="24" height="24" alt="">
+    </button>
   </header>
+
+  <!-- Figma 420:2685 · Menú mobile abierto -->
+  <div class="mobile-menu" id="mobile-menu" inert>
+    <nav class="mobile-menu__list" aria-label="Principal">
+      <a class="mobile-menu__item" href="#">The Book <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#">Film &amp; video <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#">writing <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#about">About <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="#contact">Contact <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+    </nav>
+  </div>
 
   <main id="top">
 
@@ -169,11 +205,7 @@
         </h2>
       </header>
 
-      <div class="my-story__connector" aria-hidden="true" data-reveal>
-        <div class="my-story__connector-line">
-          <img src="assets/my-story-line.svg" width="72.8867" height="5.7735" alt="">
-        </div>
-      </div>
+      <div class="dot-line my-story__connector" aria-hidden="true" data-reveal></div>
 
       <article class="my-story__block" data-reveal>
         <p class="eyebrow">Chapter 01 · The shared source</p>
@@ -192,7 +224,7 @@
         <img class="year__bg" src="assets/year-2020.png" alt="" aria-hidden="true">
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end">
-          <div class="col col--left" style="--col-h:272px">
+          <div class="col col--left" data-work="1" data-part="media" style="--col-h:272px">
             <a class="playbox" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener" aria-label="Ver Romano Honorario en YouTube" style="--box-w:372px; --box-h:268px">
               <img class="playbox__img playbox__img--bottom" src="assets/year-2020.png" alt="" style="--img-w:655.853px; --img-h:350.3px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
@@ -200,9 +232,10 @@
           </div>
           <div class="spine">
             <p class="spine__year">2020</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
             <div class="spine__line"><img src="assets/spine-2020.svg" width="365.333" height="5.33333" alt=""></div>
           </div>
-          <div class="col col--right col--stack">
+          <div class="col col--right col--stack" data-work="1" data-part="card">
             <div class="awards" style="--awards-gap:12px">
               <div class="award" style="--award-w:101px"><img src="assets/wreath.png" alt=""><p>Award Winner Berlin Shorts Festival</p></div>
               <div class="award" style="--award-w:96px"><img src="assets/wreath.png" alt=""><p>Award Winner Las Vegas Shorts Film Festival</p></div>
@@ -224,7 +257,7 @@
         <img class="year__bg" src="assets/year-2022.png" alt="" aria-hidden="true">
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end row--grow">
-          <div class="col col--left col--stack col--center">
+          <div class="col col--left col--stack col--center" data-work="1" data-part="card">
             <div class="awards" style="--awards-gap:8px">
               <div class="award" style="--award-w:100px"><img src="assets/wreath.png" alt=""><p>WorldFest-Houston International Film Festival</p></div>
               <div class="award" style="--award-w:88px"><img src="assets/wreath.png" alt=""><p>Reality Bytes Independent Student Film Festival</p></div>
@@ -242,9 +275,10 @@
           </div>
           <div class="spine">
             <p class="spine__year">2022</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
             <div class="spine__line"><img src="assets/spine-2022.svg" width="423.333" height="5.33333" alt=""></div>
           </div>
-          <div class="col col--right col--center" style="--col-h:261px">
+          <div class="col col--right col--center" data-work="1" data-part="media" style="--col-h:261px">
             <a class="playbox" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener" aria-label="Ver 5 Sentidos en YouTube" style="--box-w:372px; --box-h:261px">
               <img class="playbox__img" src="assets/year-2022.png" alt="" style="--img-w:640.88px; --img-h:261px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
@@ -258,7 +292,7 @@
         <img class="year__bg" src="assets/year-2023.png" alt="" aria-hidden="true">
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end" style="--row-h:337px">
-          <div class="col col--left" style="--col-h:260px">
+          <div class="col col--left" data-work="1" data-part="media" style="--col-h:260px">
             <a class="playbox" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener" aria-label="Ver Silent Pain / Mime en YouTube" style="--box-w:370px; --box-h:260px">
               <img class="playbox__img" src="assets/year-2023.png" alt="" style="--img-w:638.425px; --img-h:260px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
@@ -266,9 +300,10 @@
           </div>
           <div class="spine">
             <p class="spine__year">2023</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
             <div class="spine__line"><img src="assets/spine-2023a.svg" width="296.333" height="5.33333" alt=""></div>
           </div>
-          <div class="col col--right col--center">
+          <div class="col col--right col--center" data-work="1" data-part="card">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
@@ -280,7 +315,7 @@
           </div>
         </div>
         <div class="row row--center" style="--row-h:379px">
-          <div class="col col--left col--center">
+          <div class="col col--left col--center" data-work="2" data-part="card">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer</p>
@@ -293,20 +328,22 @@
           <div class="spine spine--stretch">
             <div class="spine__line"><img src="assets/spine-2023b.svg" width="384.333" height="5.33333" alt=""></div>
           </div>
-          <div class="col col--right col--center">
+          <div class="col col--right col--center" data-work="2" data-part="media">
             <a class="playbox" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener" aria-label="Ver Nahuel en YouTube" style="--box-w:370px; --box-h:260px">
               <img class="playbox__img" src="assets/nahuel.png" alt="" style="--img-w:479.904px; --img-h:259.658px">
               <img class="playbox__icon" src="assets/icon-play.svg" width="71" height="72" alt="">
             </a>
           </div>
         </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
       </section>
 
       <!-- Figma 321:2633 · Year 2025 -->
       <section class="year year--gradient" aria-label="2025" style="--year-h:680px; --grad-angle:154.72deg">
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--center row--grow">
-          <div class="col col--left col--center">
+          <div class="col col--left col--center" data-work="1" data-part="solo">
             <article class="time-box time-box--campaign" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Campaña · Fashion Designer / Creative Director / Director</p>
@@ -318,9 +355,10 @@
           </div>
           <div class="spine spine--stretch">
             <p class="spine__year">2025</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
             <div class="spine__line spine__line--fixed"><img src="assets/spine-2025.svg" width="509.111" height="5.33333" alt=""></div>
           </div>
-          <div class="col col--right col--center">
+          <div class="col col--right col--center" data-work="2" data-part="solo">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Escrito · Writer &amp; Researcher</p>
@@ -334,13 +372,15 @@
             </article>
           </div>
         </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
       </section>
 
       <!-- Figma 321:2674 · Year 2026 -->
       <section class="year year--gradient" aria-label="2026" style="--grad-angle:138.14deg">
         <div class="grain" aria-hidden="true"></div>
         <div class="row row--end" style="--row-h:411px">
-          <div class="col col--left" style="--col-h:280px">
+          <div class="col col--left" data-work="1" data-part="solo" style="--col-h:280px">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Escrito · Writer</p>
@@ -352,9 +392,10 @@
           </div>
           <div class="spine">
             <p class="spine__year">2026</p>
+            <div class="dot-line spine__dot" aria-hidden="true"></div>
             <div class="spine__line" style="--cap:2.887px"><img src="assets/spine-2026a.svg" width="370.553" height="5.7735" alt=""></div>
           </div>
-          <div class="col col--right" style="--col-h:280px">
+          <div class="col col--right" data-work="2" data-part="solo" style="--col-h:280px">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Escrito · Writer</p>
@@ -366,7 +407,7 @@
           </div>
         </div>
         <div class="row row--center" style="--row-h:399px">
-          <div class="col col--left col--center">
+          <div class="col col--left col--center" data-work="3" data-part="solo">
             <article class="time-box time-box--writing" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Escrito · Writer / Researcher</p>
@@ -386,7 +427,7 @@
           <div class="spine spine--stretch">
             <div class="spine__line" style="--cap:2.887px"><img src="assets/spine-2026c.svg" width="413.396" height="5.7735" alt=""></div>
           </div>
-          <div class="col col--right col--center">
+          <div class="col col--right col--center" data-work="4" data-part="solo">
             <article class="time-box time-box--film" data-reveal>
               <div class="time-box__text">
                 <p class="time-box__eyebrow">Película · Writer, Director &amp; Producer · En postproducción</p>
@@ -400,6 +441,10 @@
             </article>
           </div>
         </div>
+        <!-- Separadores entre obras (solo mobile) -->
+        <div class="dot-line work-divider" data-after="1" aria-hidden="true"></div>
+        <div class="dot-line work-divider" data-after="2" aria-hidden="true"></div>
+        <div class="dot-line work-divider" data-after="3" aria-hidden="true"></div>
       </section>
     </div>
 

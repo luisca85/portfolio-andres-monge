@@ -135,7 +135,7 @@ En el hero el grano va dentro de cada mitad (entra con ellas) y por encima del n
 
 **Qué se ve.** Al bajar, cada año queda fijo y el siguiente sube por encima, con una sombra en el borde. Al subir, se devuelve.
 
-**Cómo está hecho.** Cada `.year` tiene `position: sticky`. JS calcula su `top` como `min(0, alto de ventana − alto del año)`: un año más bajo que la ventana se fija arriba; uno más alto se fija recién cuando su borde inferior llega abajo, así se ve completo antes de que lo tape el siguiente. Se recalcula al cambiar el tamaño de la ventana. La sombra es `--year-shadow` proyectada hacia arriba. About usa la misma sombra porque sube sobre 2026. En pantallas de 900px o menos y con movimiento reducido, la superposición se desactiva.
+**Cómo está hecho.** Cada `.year` tiene `position: sticky`. JS calcula su `top` como `min(alto del nav, alto de ventana × 0.67 − alto del año)`: un año más bajo que la ventana se fija justo debajo del nav (no detrás, para no tapar el título del año); uno más alto sigue subiendo hasta que su final queda a un tercio de la pantalla desde abajo (`STICKY_RELEASE = 0.33`) y recién ahí se fija: así su último contenido, como el botón del cuadro, llega a la vista antes de que lo tape el siguiente. Se recalcula al cambiar el tamaño de la ventana. La sombra es `--year-shadow` proyectada hacia arriba. About usa la misma sombra porque sube sobre 2026. También funciona en mobile, con la timeline en una columna. Con movimiento reducido, la superposición se desactiva. Las posiciones se recalculan con un `ResizeObserver` cada vez que cambia el alto de un año o del nav.
 
 ## 8. Entradas al hacer scroll
 
@@ -158,6 +158,18 @@ En el hero el grano va dentro de cada mitad (entra con ellas) y por encima del n
 | Títulos del player | blanco | 0.3 s |
 
 La card es clickeable completa porque el botón se estira sobre ella con `::after { position: absolute; inset: 0 }`. El hover de la card usa la propiedad `translate` (no `transform`) para no chocar con la entrada por scroll, que usa `transform`.
+
+## 10. Menú mobile
+
+**Qué se ve.** Al tocar el ícono de menú, la pantalla bajo la cabecera pasa a negro y aparecen los cinco accesos; el ícono cambia a una cruz.
+
+| Elemento | Movimiento | Duración | Demora |
+|---|---|---|---|
+| Panel | opacidad 0 → 1 | 0.3 s | 0 |
+| Accesos | opacidad 0 → 1, `translate 12px` → 0 | 0.45 s, `--ease` | 0, 40, 80, 120 y 160 ms |
+| Flecha de cada acceso (hover) | se corre 4px | 0.25 s | 0 |
+
+**Cómo está hecho.** El botón alterna `.is-open` en el panel y `.is-menu-open` en el nav y en `<html>` (bloquea el scroll). El panel cerrado queda `inert` y con `visibility: hidden`. Se cierra con la cruz, con Escape (el foco vuelve al botón), al tocar un acceso o al agrandar la ventana a escritorio. La animación es una **propuesta**: el Figma muestra solo el estado abierto.
 
 ## Movimiento reducido
 

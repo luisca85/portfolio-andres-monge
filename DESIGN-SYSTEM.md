@@ -36,6 +36,11 @@
 | `--color-strip` | `#121212` | Franja de premios (al 95 %) | color suelto |
 | `--color-footer` | `#050505` | Fondo del footer | color suelto |
 | `--color-headshot` | `#2C2C2C` | Placeholder de la foto en About | color suelto |
+| `--color-cream` | `#E8DAC8` | Logotipo, íconos y accesos del menú mobile | color suelto |
+| `--color-text-inverse` | `#0A0806` | Texto sobre naranja (idioma activo) | `color-text-inverse` |
+| `--color-text-secondary` | `rgba(255,255,255,.5)` | Idioma inactivo | `color-text-secondary` |
+| `--color-border-subtle` | `rgba(255,255,255,.12)` | Borde del selector de idioma, líneas del menú mobile | `color-border-subtle-white` |
+| `--color-bg-overlay-light` | `rgba(0,0,0,.5)` | Fondo del selector de idioma | `color-bg-overlay-light` |
 
 ### Transparencias en uso
 
@@ -59,7 +64,7 @@ Familias (Google Fonts):
 | Rol | Familia | Pesos cargados | Token |
 |---|---|---|---|
 | Display, títulos, cuerpo | **Lexend** | 200, 300, 400, 600, 700 | `--font-display` |
-| Interfaz (footer) | **Inter** | 200, 400 | `--font-ui` |
+| Interfaz (footer, selector de idioma) | **Inter** | 200, 400, 500 | `--font-ui` |
 | Mono (contador del player) | **Courier Prime** | 400 | `--font-mono` |
 
 El logotipo es vectorial (SVG), no tipográfico.
@@ -76,7 +81,10 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | Heading/H2 | Lexend 400 | 32 | 0.945 | 0 | Títulos de card, años |
 | Heading/H3 ExtraLight | Lexend 200 | 24 | 1.245 | −5 % | Oficios del hero |
 | Heading/H3 ExtraLight Loose | Lexend 200 | 24 | 1.245 | 0 | Texto de identidad del hero |
-| Heading/H4 | Lexend 200 | 20 | 0.943 | 0 | Links del nav, eyebrows de My Story |
+| UI/Nav | Lexend 200 | 20 | normal | +5 % (1px) | Links del nav |
+| UI/Label | Inter 500 | 12 | normal | 0 | EN / ES del selector de idioma |
+| Display/L | Lexend 400 | 40 | 1.245 | −5 % | Accesos del menú mobile |
+| Heading/H4 | Lexend 200 | 20 | 0.943 | 0 | Eyebrows de My Story |
 | Heading/H4 Regular | Lexend 400 | 20 | normal | 0 | Bio principal en About |
 | Body/Lead | Lexend 400 | 18 | 1.245 | 0 | Botones |
 | Body/Large | Lexend 200 | 16 | 1.245 | 0 | Descripciones de card, cuerpo |
@@ -90,7 +98,7 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | UI/Body Medium | Inter 200 | 15 | normal | 0 | Links sociales del footer |
 | UI/Body Small | Inter 200 | 13 | normal | 0 | Copyright y ubicación |
 | UI/Caption | Inter 200 | 12 | normal | 0 | "US & LATAM representation" |
-| UI/Nav | Inter 400 | 14 | normal | +5 % | Labels del footer (mayúsculas) |
+| (labels del footer) | Inter 400 | 14 | normal | +5 % | Labels del footer (mayúsculas) |
 | UI/Mono | Courier Prime 400 | 16 | 1.245 | 0 | Contador "1/4" |
 | (sin estilo) | Lexend 300 | 10 | normal | 0 | Texto de premios (mayúsculas) |
 | (sin estilo) | Lexend 200 · 400 | 40 | 1.245 | −2px | Frase de My Story |
@@ -133,12 +141,17 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | Título del player | hover / activo | blanco; activo en peso 400 | **(propuesta)** |
 | Foco de teclado | `:focus-visible` | outline 1px naranja, offset 4px | **(propuesta)** |
 | Botón | foco, deshabilitado | DATO DESCONOCIDO | Pendiente en Figma |
+| Idioma inactivo | hover | blanco | **(propuesta)** |
+| Acceso del menú mobile | hover / foco | la flecha se corre 4px | **(propuesta)** |
 
 ## Componentes
 
 | Componente | Figma | Clases | Notas |
 |---|---|---|---|
-| Nav | `Nav=desktop` 83:452 | `.nav`, `.nav__links` | Fijo arriba. Links: The Book, Film & video, Writing, About, Contact |
+| Nav desktop | `Nav=desktop` 83:452 | `.nav`, `.nav__links`, `.nav__right` | Fijo arriba, 97px. Links con gap 16: The Book, Film & video, Writing, About, Contact |
+| Selector de idioma | `lang-selector` 421:2560 | `.lang`, `.lang__option` | EN / ES. Activo: fondo naranja, texto `#0A0806`. Por ahora no traduce el contenido |
+| Nav mobile | `Nav=mobile` 180:5047 | `.nav` (≤ 900px), `.logotype--small`, `.nav__toggle` | 66px, padding 16, logotype small, ícono de menú 24px |
+| Menú mobile | `Menú mobile abierto` 420:2685 | `.mobile-menu`, `.mobile-menu__item` | Pantalla negra bajo la cabecera; accesos de 100px con línea superior, Lexend 40 crema y flecha 28px; ícono de cerrar |
 | Logotype | `logotype` 178:2687 | `.logotype` | Isotipo (2 SVG superpuestos) + ANDRES / MONGE / PROJECTS en SVG |
 | Hero | `hero 2` 129:1886 | `.hero`, `.hero__half`, `.hero__name`, `.hero__roles`, `.hero__identity` | Dos mitades con la misma película |
 | Player | `Player` 90:901 | `.player`, `.player__item` | Contador mono, divisor, 4 títulos |
@@ -147,7 +160,8 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | Time-box (card) | `time-box` 83:702 | `.time-box`, `--writing`, `--campaign` | Variantes left/right en Figma; en código el lado lo da la columna |
 | Button | `button` 83:744 | `.button`, `.button--secondary` | Primario naranja, secundario blanco; flecha 24px |
 | Play box | `Play box` 83:618 | `.playbox` | Imagen recortada + ícono de play 71×72 centrado |
-| Spine | (dentro de Row) | `.spine`, `.spine__line` | Año + línea SVG rotada 90° con extremos redondos |
+| Spine | (dentro de Row) | `.spine`, `.spine__line` | Año + línea SVG rotada 90° con bullets redondos |
+| Línea con bullets | (código) | `.dot-line` | Trazo de 1px con bullet redondo de 5.33px en cada punta; largo `--dot-line-h`. My Story (70px) y timeline mobile (50px). Reemplaza la flecha con rombo del Figma |
 | About / Contact | 321:2379 | `.about` | Foto 380×480, radio 16 |
 | Footer | `footer` 83:513 | `.footer` | Marca + Inquiries + Directory + línea + fila inferior |
 
@@ -168,8 +182,8 @@ Problemas abiertos del componente time-box en Figma: las variantes left/right me
 | `icon-play.svg` | 71×72 | Ícono de play en play box |
 | `icon-play-small.svg` | 24×24 | Sin uso (en Figma queda tapado por la imagen) |
 | `icon-arrow-orange.svg`, `icon-arrow-white.svg` | 24×24 | Flecha de botones |
-| `my-story-line.svg` | 72.9×5.8 | Línea con flecha en My Story |
-| `spine-*.svg` | largo según año | Líneas de la timeline (se rotan 90°) |
+| `my-story-line.svg` | 72.9×5.8 | Sin uso: la línea de My Story ahora es `.dot-line` (bullets redondos) |
+| `spine-*.svg` | largo según año | Líneas de la timeline (se rotan 90°). En `spine-2026a` y `spine-2026c` el rombo de una punta se cambió por un bullet redondo, a pedido |
 | `player-divider.svg` | 356×1 | Divisor del player |
 | `footer-line.svg`, `footer-dot.svg` | 1042×1 · 4×4 | Línea y punto del footer |
 | `intro/logo-*.svg` | isotipo 94.3×171.7 y 91.4×169.3; palabras 181.9 · 231.8 · 162.5 | Logo de la intro (versión grande) |
@@ -182,7 +196,7 @@ La película a la que pertenece cada imagen fija se dedujo de su ubicación en l
 
 - **≥ 1241px:** diseño de Figma.
 - **≤ 1240px:** hero con márgenes de 64px y nombres a 72px; filas con padding 32px.
-- **≤ 900px (provisorio):** nav sin links, hero apilado, timeline en una columna con el año arriba y sin superposición por scroll, About apilado, footer apilado.
+- **≤ 900px (provisorio):** nav mobile con menú desplegable (Figma), hero apilado, timeline en una columna con la misma superposición por scroll que en escritorio (padding de cada año 32px; 16px entre el año y su contenido y entre las partes de una obra; en cada película el orden es premios → video → cuadro; entre el año y la primera obra y entre obras, línea de 50px con bullets redondos y 24px arriba y abajo: variables `--m-pad-year`, `--m-gap-obra`, `--m-gap-entre`, `--m-divider-h`), About apilado, footer apilado.
 - No hay diseño mobile medido: `home mobile` (310:2662) está pendiente.
 
 ## Accesibilidad
