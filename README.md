@@ -64,7 +64,6 @@ Todo respeta `prefers-reduced-motion`.
 
 - **Textos sin confirmar**: el texto de identidad del hero incluye dos opciones ("Alternate: …"); el mail y los links del footer son de ejemplo.
 - **Links**: The Book, Film & video, Writing, los ensayos, Fashion Design, El Guardaparques, Résumé y LinkedIn apuntan a `#`.
-- **Intro**: en Figma las palabras dicen ANDRES / PROJECTS / MONGE; el logo del nav dice ANDRES / MONGE / PROJECTS. Confirmar el orden.
 - **Videos**: el ID de YouTube de Silent Pain no está verificado (letras I/l ambiguas). Para el sitio final se recomiendan mp4 propios (loops de 10 a 20 s, H.264, sin audio).
 - **Fondos del player**: la película asociada a cada imagen fija del hero es una suposición.
 - **Mobile**: la versión mobile es provisoria; no hay diseño mobile medido.

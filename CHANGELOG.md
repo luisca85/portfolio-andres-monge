@@ -2,17 +2,27 @@
 
 Versiones de la home en orden inverso (la más reciente primero). Cada versión indica su commit en GitHub (https://github.com/luisca85/portfolio-andres-monge).
 
-**Dónde está publicada cada versión hoy (2026-10-15)**
+**Dónde está publicada cada versión hoy (2026-10-16)**
 
 | Canal | Versión que muestra |
 |---|---|
-| GitHub `main` (antes de este commit) | `3765fa5` · Nav con selector de idioma, menú mobile y timeline mobile |
+| GitHub `main` (antes de este commit) | `79f9ea3` · Versión bilingüe EN / ES |
 | Link de revisión en claude.ai (https://claude.ai/artifact/1Mjk1RFZ1nvUqRvDo1FjsW) | Equivale a `5c000ee` (primera versión). No incluye nada de lo que vino después |
 | Figma | Frame "Home mobile · EN (desde código)" (428:1651), generado desde esta versión |
 
 ---
 
-## 2026-10-15 · Versión bilingüe (EN / ES) — este commit
+## 2026-10-16 · Intro adaptada a mobile — este commit
+
+- **Recorrido en cruz en mobile y tablet (≤ 900px):** la cinta horizontal cruza por el centro vertical de la pantalla y las dos cintas verticales pasan por el centro horizontal (una baja y después la otra sube). Antes, en un celular las verticales pasaban fuera de la pantalla y la horizontal quedaba unos 27px por encima del centro.
+- **Logo centrado al final de la intro en mobile:** antes quedaba corrido unos 15px a la derecha y 27px hacia arriba.
+- **Orden de las palabras de la intro:** ANDRES / MONGE / PROJECTS, como en el Figma actualizado (antes ANDRES / PROJECTS / MONGE).
+- Escritorio sin cambios: sigue el Figma (345:5946). Tiempos y recorridos iguales en todos los tamaños.
+- Documentación: `animaciones.md` (tabla escritorio vs. mobile) y README (se quitó el pendiente del orden de las palabras).
+
+---
+
+## 2026-10-15 · `79f9ea3` · Versión bilingüe (EN / ES)
 
 **Cambios respecto de la versión publicada en GitHub (`3765fa5`).**
 

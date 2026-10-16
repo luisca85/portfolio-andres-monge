@@ -1126,3 +1126,18 @@ html.has-intro:not(.intro-done) { overflow: hidden; }
 
 /* No arranca hasta que las fotos están listas (JS agrega .is-playing) */
 .intro:not(.is-playing) :is(.intro__strip, .intro__mark, .intro__words) { animation-play-state: paused; }
+
+/* Intro en mobile y tablet (≤ 900px): recorrido en cruz por el centro.
+   En pantallas angostas solo se ve la franja central del escenario de
+   1440×1024 (centro en x 720, y 512), y las cintas verticales del Figma
+   pasaban fuera de esa franja. Mismos tiempos y recorridos; cambia la posición:
+   - cinta horizontal centrada en y = 512 (alto 254 → top 385)
+   - cintas verticales centradas en x = 720 (ancho 254 → origen rotado en 847)
+   - logo (407.4 × 141.9) centrado en (720, 512) */
+@media (max-width: 900px) {
+  .intro__strip--1 { --oy: 385.023px !important; }
+  .intro__strip--2 .intro__window,
+  .intro__strip--3 .intro__window { --ox: 846.977px !important; }
+  .intro__mark { left: 516.30px; top: 441.04px; }
+  .intro__words { left: 686.67px; top: 443.34px; }
+}

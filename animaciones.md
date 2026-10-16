@@ -23,7 +23,7 @@ La intro se ve una vez por sesión. Sin intro, la misma secuencia arranca al car
 
 ## 1. Intro (Figma 345:5946)
 
-**Qué se ve.** Pantalla negra. Tres tiras con nueve formas del logo funcionan como ventanas: por adentro de las formas se ven escenas de las películas. Una tira horizontal cruza de izquierda a derecha, una vertical baja y otra vertical sube. Después entra el isotipo, luego las palabras ANDRES / PROJECTS / MONGE, y todo se desvanece a negro.
+**Qué se ve.** Pantalla negra. Tres tiras con nueve formas del logo funcionan como ventanas: por adentro de las formas se ven escenas de las películas. Una tira horizontal cruza de izquierda a derecha, una vertical baja y otra vertical sube. Después entra el isotipo, luego las palabras ANDRES / MONGE / PROJECTS, y todo se desvanece a negro.
 
 **Tiempos (duración total 7.131846 s, una sola vez; en Figma hace loop):**
 
@@ -58,6 +58,16 @@ La intro se ve una vez por sesión. Sin intro, la misma secuencia arranca al car
 - **Una vez por sesión:** un script en `<head>` agrega `html.has-intro` si no hay marca en `sessionStorage`; con `?intro` en la URL se fuerza. Sin `has-intro`, la capa no se pinta.
 - **Saltear:** clic, tecla, rueda o toque terminan la intro en el acto.
 - **Compatibilidad:** `@property` funciona en Chrome 85+, Safari 16.4+ y Firefox 128+. En navegadores más viejos las tiras no se mueven, el logo sí.
+
+**Mobile y tablet (≤ 900px): recorrido en cruz.** En pantallas angostas solo se ve la franja central del escenario (centro en x 720, y 512), y en el Figma las cintas verticales pasan cerca de los bordes, fuera de esa franja. Se mantienen los tiempos y recorridos; solo cambia la posición:
+
+| Elemento | Escritorio (Figma) | Mobile |
+|---|---|---|
+| Cinta horizontal | y 357.8 a 611.8 | centrada en y 512 (`--oy: 385px`) |
+| Cintas verticales | x 143.7 a 397.7 (baja) · x 998 a 1252 (sube) | las dos centradas en x 720 (`--ox: 847px`): una baja y después la otra sube |
+| Logo al final | x 531 · y 414 | centrado en (720, 512) |
+
+Esta adaptación es una propuesta: no hay versión mobile de la intro en Figma.
 
 **Para emularlo en otro stack:** con GSAP o Motion se puede animar `maskPosition` directamente en lugar de `--t`. Los porcentajes de los keyframes multiplicados por 7131.846 ms dan los tiempos absolutos.
 
