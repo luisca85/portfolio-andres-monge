@@ -1,0 +1,252 @@
+<!doctype html>
+<!--
+  TEMPLATE · Detalle de campaña (Figma 590:2331 escritorio, 606:5741 mobile)
+  Ejemplo armado con este template: campaign-fashion.html
+
+  Para crear una página nueva:
+  1. Copiar este archivo a la raíz como campaign-[slug].html (slug en minúsculas, con guiones)
+     y reemplazar [slug] en todo el archivo. Las rutas ya están pensadas para la raíz.
+  2. Reemplazar cada [TEXTO EN MAYÚSCULAS]. Dato que no tengamos: "To confirm".
+  3. Borrar los bloques opcionales que no se usen (ver comentarios [3], [4], [6], [7]).
+  4. Agregar la página a PAGES en tools/build-es.mjs, sumar las traducciones nuevas
+     a tools/es.mjs y correr: node tools/build-es.mjs
+  5. Enlazar la página desde su cuadro en la home (botón "View the project").
+  Estilos: campaign.css (+ styles.css). Comportamiento de la galería: campaign.js.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[TÍTULO DEL PROYECTO] · Andrés Monge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400;500;700&family=Lexend:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="campaign.css">
+  <link rel="alternate" hreflang="en" href="campaign-[slug].html">
+  <link rel="alternate" hreflang="es" href="es/campaign-[slug].html">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-campaign">
+
+  <!-- Nav=desktop (83:452) · Nav=mobile (180:5047). Mismos textos que la home. -->
+  <header class="nav">
+    <a class="logotype logotype--desktop" href="index.html" aria-label="Andrés Monge Projects, home">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+        <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+        <img src="assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+        <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+      </span>
+    </a>
+    <a class="logotype logotype--small" href="index.html" aria-label="Andrés Monge Projects, home">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="assets/nav-mobile/logo-mark-b.svg" width="16.7363" height="30.1763" alt="">
+        <img class="logotype__mark-a" src="assets/nav-mobile/logo-mark-a.svg" width="16.2254" height="29.6716" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="assets/nav-mobile/logo-andres.svg" width="44.8495" height="8.04966" alt="">
+        <img src="assets/nav-mobile/logo-monge.svg" width="40.0484" height="8.04969" alt="">
+        <img src="assets/nav-mobile/logo-projects.svg" width="58.0875" height="8.31608" alt="">
+      </span>
+    </a>
+
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Main">
+        <a href="campaigns.html">The Campaigns</a>
+        <a href="films.html">The Films</a>
+        <a href="writing.html">The Writing</a>
+        <a href="index.html#about">About</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <a class="lang__option is-active" href="campaign-[slug].html" hreflang="en" lang="en" aria-current="page">EN</a>
+        <a class="lang__option" href="es/campaign-[slug].html" hreflang="es" lang="es">ES</a>
+      </div>
+    </div>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-label-open="Open menu" data-label-close="Close menu">
+      <img class="nav__toggle-open" src="assets/icon-menu.svg" width="24" height="24" alt="">
+      <img class="nav__toggle-close" src="assets/icon-close.svg" width="24" height="24" alt="">
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" inert>
+    <nav class="mobile-menu__list" aria-label="Main">
+      <a class="mobile-menu__item" href="campaigns.html">The Campaigns <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="films.html">The Films <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="writing.html">The Writing <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="index.html#about">About <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+    </nav>
+    <div class="lang lang--menu" role="group" aria-label="Language">
+      <a class="lang__option is-active" href="campaign-[slug].html" hreflang="en" lang="en" aria-current="page">EN</a>
+      <a class="lang__option" href="es/campaign-[slug].html" hreflang="es" lang="es">ES</a>
+    </div>
+  </div>
+
+  <!-- Figma 590:2331 "Detalle de campaña - con galeria" · mobile 606:5741. Bloques numerados [1] a [7]. -->
+  <main class="campaign">
+
+    <!-- [1] ENCABEZADO · obligatorio
+         Migas: Home / The Campaigns (campaigns.html). Eyebrow: "Tipo · Año" (Inter Bold 12, ámbar). -->
+    <header class="campaign__head">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="campaigns.html">The Campaigns</a>
+      </nav>
+      <div class="campaign__title">
+        <p class="campaign__eyebrow">[TIPO] · [AÑO]</p>
+        <h1>[TÍTULO DEL PROYECTO]</h1>
+      </div>
+    </header>
+
+    <!-- [2] FICHA · obligatoria. 5 datos (2 columnas en mobile, el último ocupa la fila).
+         Dato que falte: "To confirm". -->
+    <dl class="facts">
+      <div class="facts__item"><dt>Type</dt><dd>[TIPO]</dd></div>
+      <div class="facts__item"><dt>Category</dt><dd>[CATEGORÍA]</dd></div>
+      <div class="facts__item"><dt>Role</dt><dd>[ROL]</dd></div>
+      <div class="facts__item"><dt>Language</dt><dd>[IDIOMA]</dd></div>
+      <div class="facts__item"><dt>Year</dt><dd>[AÑO]</dd></div>
+    </dl>
+
+    <!-- [3] VIDEO PRINCIPAL · opcional
+         Sin video: dejar el placeholder (como está abajo) o borrar el bloque.
+         Con video: reemplazar .video__frame por el player o un embed 16:9. -->
+    <figure class="video">
+      <div class="video__frame" role="img" aria-label="Video placeholder">
+        <img class="video__play" src="assets/icon-play.svg" width="71" height="72" alt="">
+      </div>
+      <figcaption class="video__caption">[LEYENDA DEL VIDEO]</figcaption>
+    </figure>
+
+    <!-- [4] GALERÍA · opcional (borrar la sección entera si no hay imágenes)
+         Imágenes en assets/campaign/[slug]/: [slug]-01.jpg (lado largo 1600px)
+         y [slug]-01-thumb.jpg (420px). Un <li> por imagen, en orden.
+         campaign.js arma solo las páginas (5 en escritorio, 3 en mobile), el "+N" y el contador.
+         El último <li> ("+N more") va siempre al final. -->
+    <section class="gallery" aria-labelledby="gallery-title" data-gallery>
+      <div class="gallery__head">
+        <h2 class="label label--amber" id="gallery-title">Gallery</h2>
+        <p class="gallery__desc">[DESCRIPCIÓN DE LA GALERÍA]</p>
+      </div>
+
+      <figure class="gallery__main">
+        <img src="assets/campaign/[slug]/[slug]-01.jpg" alt="[ALT IMAGEN 1]" data-gallery-main>
+      </figure>
+
+      <div class="gallery__strip">
+        <ul class="gallery__thumbs" aria-label="Gallery images">
+          <li><button class="thumb" type="button" data-full="assets/campaign/[slug]/[slug]-01.jpg"><img src="assets/campaign/[slug]/[slug]-01-thumb.jpg" alt="[ALT IMAGEN 1]" loading="lazy"></button></li>
+          <li><button class="thumb" type="button" data-full="assets/campaign/[slug]/[slug]-02.jpg"><img src="assets/campaign/[slug]/[slug]-02-thumb.jpg" alt="[ALT IMAGEN 2]" loading="lazy"></button></li>
+          <li class="gallery__more-item"><button class="thumb thumb--more" type="button" data-gallery-more><span class="thumb__count" data-gallery-more-count></span><span class="thumb__more-label">more</span></button></li>
+        </ul>
+      </div>
+
+      <div class="gallery__pager">
+        <p class="gallery__range" data-gallery-range aria-live="polite"></p>
+        <div class="gallery__controls">
+          <button class="circle-btn" type="button" aria-label="Previous images" data-gallery-prev>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="circle-btn" type="button" aria-label="Next images" data-gallery-next>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- [5] SECCIONES NUMERADAS · al menos una. Repetir .step por sección (01, 02, 03…). -->
+    <section class="step">
+      <header class="step__head">
+        <p class="step__num">01</p>
+        <h2 class="label label--amber">[TÍTULO DE LA SECCIÓN]</h2>
+      </header>
+      <p class="step__text">[TEXTO DE LA SECCIÓN]</p>
+    </section>
+
+    <!-- [6] CRÉDITOS · opcional. Una fila por crédito; dato que falte: "To confirm". -->
+    <section class="step step--credits">
+      <header class="step__head">
+        <h2 class="label label--amber">Credits</h2>
+      </header>
+      <dl class="credits">
+        <div class="credits__row"><dt>[ROL]</dt><dd>[NOMBRE]</dd></div>
+      </dl>
+    </section>
+
+    <!-- [7] PROYECTO MÁS RECIENTE / ANTERIOR · opcional. Dejar solo el link que exista. -->
+    <nav class="pager" aria-label="More projects">
+      <a class="pager__link" href="campaign-[slug-mas-reciente].html">
+        <span class="circle-btn circle-btn--light" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.5 3.5 3 8l4.5 4.5M3.5 8h9.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="pager__text">
+          <span class="pager__label">Newer</span>
+          <span class="pager__title">[PROYECTO MÁS RECIENTE]</span>
+        </span>
+      </a>
+      <a class="pager__link pager__link--older" href="campaign-[slug-anterior].html">
+        <span class="circle-btn circle-btn--light" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8.5 3.5 13 8l-4.5 4.5M12.5 8H3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="pager__text">
+          <span class="pager__label">Older</span>
+          <span class="pager__title">[PROYECTO ANTERIOR]</span>
+        </span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logotype" href="index.html" aria-label="Andrés Monge Projects, home">
+          <span class="logotype__mark" aria-hidden="true">
+            <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+            <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+          </span>
+          <span class="logotype__words" aria-hidden="true">
+            <img src="assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+            <img src="assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+            <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+          </span>
+        </a>
+        <p class="footer__tagline">Concept-driven, story-led content from branded films to award-winning shorts. Bilingual writer and filmmaker.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col footer__col--inquiries">
+          <p class="footer__label">Inquiries</p>
+          <div class="footer__email">
+            <a href="mailto:hello@andresmonge.com">hello@andresmonge.com</a>
+            <p>US &amp; LATAM representation</p>
+          </div>
+        </div>
+        <div class="footer__col footer__col--directory">
+          <p class="footer__label">Directory</p>
+          <div class="footer__social">
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="footer__line" src="assets/footer-line.svg" width="1042" height="1" alt="">
+    <div class="footer__bottom">
+      <p>© 2026 Andrés Monge. All rights reserved.</p>
+      <div class="footer__status">
+        <p>Based in San José &amp; Los Angeles</p>
+        <img src="assets/footer-dot.svg" width="4" height="4" alt="">
+        <p>Available worldwide</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="campaign.js"></script>
+</body>
+</html>

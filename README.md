@@ -16,26 +16,34 @@ o cualquier servidor estático. Para volver a ver la intro (se muestra una vez p
 
 ## Idiomas
 
-- `index.html` es la versión en **inglés** y la fuente de verdad.
-- `es/index.html` es la versión en **español**. Se genera, no se edita a mano:
+- Las páginas de la raíz (`index.html`, `campaign-fashion.html`) son la versión en **inglés** y la fuente de verdad.
+- Las de `es/` son la versión en **español**. Se generan, no se editan a mano:
 
   ```bash
   node tools/build-es.mjs
   ```
 
-  Correrlo después de cada cambio en `index.html`. Las traducciones están en `tools/es.mjs`. Si aparece un texto nuevo sin traducir, el script lo lista y no genera el archivo.
+  Correrlo después de cada cambio en una página. Las páginas que procesa están en `PAGES`, al principio de `tools/build-es.mjs`. Las traducciones están en `tools/es.mjs`. Si aparece un texto nuevo sin traducir, el script lo lista y no genera el archivo.
 - El selector EN / ES lleva de una página a la otra.
 
 ## Archivos
 
 - `index.html`: estructura de la home. Cada bloque indica su nodo de Figma en un comentario.
 - `styles.css`: estilos. Los valores ajustables están como variables en `:root`, al principio.
+- `campaign-fashion.html`, `campaign.css`, `campaign.js`: detalle de campaña de Fashion Design and Campaign (Figma 590:2331 y 606:5741) con galería de fotos. Usa también `styles.css` y `script.js` (nav, menú mobile, footer).
+- `films.html`, `films.css`: galería Film & video (Figma 178:949) con las cards de las cuatro películas.
+- `writing.html`, `writing-*.html`, `writing.css`: listado The Writing (Figma 658:2599) y detalle de cada ensayo (Figma 655:3884). Neurodivergent y Us vs. Them tienen cita y cuerpo en lorem ipsum.
+- `campaigns.html`: galería The Campaigns con la misma plantilla (`films.css`); por ahora solo Fashion Design and Campaign.
+- `film-5-sentidos.html`, `film-nahuel.html`, `film-silent-pain.html`, `film-romano-honorario.html`: detalles de película (Figma 610:1344). Usa `campaign.css` y `campaign.js` (video con póster que carga YouTube al hacer clic).
+- `templates/campaign-detail.html`: template de la página de detalle de campaña, con placeholders y los pasos para crear una nueva. No se publica tal cual: se copia a la raíz como `campaign-[slug].html`.
+- `assets/campaign/fashion/`: fotos de la galería optimizadas (1600px y miniaturas de 420px) a partir de `images_campaña/`.
 - `script.js`: intro, entrada del hero, player y video de fondo, oficios que se escriben, superposición de años al hacer scroll, entradas al hacer scroll.
 - `assets/`: imágenes y SVG exportados de Figma. `assets/intro/` tiene los de la intro.
 - [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md): colores, tipografía, espaciado, efectos, estados, componentes y assets.
 - [animaciones.md](animaciones.md): cada animación, sus tiempos y cómo está hecha.
 - [CONTENIDO.md](CONTENIDO.md): textos, premios y links de la home, con su origen y lo que falta pedir.
 - [CHANGELOG.md](CHANGELOG.md): registro de cambios por versión y qué versión está publicada en cada canal.
+- [CAMBIOS-DESARROLLO-2026-10-22-23.md](CAMBIOS-DESARROLLO-2026-10-22-23.md): resumen para desarrollo de los cambios del 22 y 23 de octubre (contenido, fuentes e interfaz).
 
 ## Secuencia de la home
 
@@ -62,8 +70,12 @@ Todo respeta `prefers-reduced-motion`.
 
 ## Pendientes
 
-- **Textos sin confirmar**: el texto de identidad del hero incluye dos opciones ("Alternate: …"); el mail y los links del footer son de ejemplo.
-- **Links**: The Book, Film & video, Writing, los ensayos, Fashion Design, El Guardaparques, Résumé y LinkedIn apuntan a `#`.
+- **Textos sin confirmar**: el mail y los links del footer son de ejemplo; la traducción al español del hero y del About está pendiente de aprobación.
+- **Detalle de campaña (Fashion)**: categoría, idioma y crédito de fotografía sin dato ("To confirm"); video con placeholder; el link a Jogo y la miga "The Book" apuntan a `#`.
+- **Detalles de película**: sinopsis provisionales; fotografía y elenco sin dato; idioma sin dato en 5 Sentidos y Romano; sin diseño mobile.
+- **Galería Film & video**: sin diseño mobile.
+- **The Writing**: falta el texto completo de los cuatro ensayos; la cita y la apertura de Neurodivergent y Us vs. Them (hoy lorem ipsum); la extensión de tres de ellos.
+- **Links**: los ensayos, El Guardaparques, Résumé y LinkedIn apuntan a `#`.
 - **Videos**: el ID de YouTube de Silent Pain no está verificado (letras I/l ambiguas). Para el sitio final se recomiendan mp4 propios (loops de 10 a 20 s, H.264, sin audio).
 - **Fondos del player**: la película asociada a cada imagen fija del hero es una suposición.
 - **Mobile**: la versión mobile es provisoria; no hay diseño mobile medido.

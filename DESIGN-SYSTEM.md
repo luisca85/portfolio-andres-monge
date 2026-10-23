@@ -148,7 +148,7 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 
 | Componente | Figma | Clases | Notas |
 |---|---|---|---|
-| Nav desktop | `Nav=desktop` 83:452 | `.nav`, `.nav__links`, `.nav__right` | Fijo arriba, 97px. Links con gap 16: The Book, Film & video, Writing, About, Contact |
+| Nav desktop | `Nav=desktop` 83:452 | `.nav`, `.nav__links`, `.nav__right` | Fijo arriba, 97px. Links con gap 16: The Campaigns, The Films, The Writing, About (ES: Campañas, Películas, Escritos, Sobre mí); About ancla a la sección de la home. La página actual va en naranja (`aria-current="page"`) |
 | Selector de idioma | `lang-selector` 421:2560 | `.lang`, `.lang__option` | EN / ES. Activo: fondo naranja, texto `#0A0806`. Son links entre `index.html` (EN) y `es/index.html` (ES). En mobile va dentro del menú abierto **(propuesta)** |
 | Nav mobile | `Nav=mobile` 180:5047 | `.nav` (≤ 900px), `.logotype--small`, `.nav__toggle` | 66px, padding 16, logotype small, ícono de menú 24px |
 | Menú mobile | `Menú mobile abierto` 420:2685 | `.mobile-menu`, `.mobile-menu__item` | Pantalla negra bajo la cabecera; accesos de 100px con línea superior, Lexend 40 crema y flecha 28px; ícono de cerrar |
@@ -166,6 +166,35 @@ Interlineado expresado como múltiplo; tracking en % del tamaño (−5 % = −0.
 | Footer | `footer` 83:513 | `.footer` | Marca + Inquiries + Directory + línea + fila inferior |
 
 Problemas abiertos del componente time-box en Figma: las variantes left/right mezclan lado y tipo (anchos 363 y 356), la propiedad se llama "Property 1", el tipo "secundary" del botón está mal escrito, faltan variantes de campaña y de hover.
+
+## Templates
+
+### Detalle de campaña · `templates/campaign-detail.html`
+
+Figma 590:2331 (escritorio, 1440) y 606:5741 (mobile, 390). Ejemplo en uso: `campaign-fashion.html`. Estilos en `campaign.css` y galería en `campaign.js`. Las instrucciones para crear una página nueva están en el comentario del principio del template.
+
+| # | Bloque | Uso | Clases | Escritorio | Mobile |
+|---|---|---|---|---|---|
+| 1 | Encabezado | Obligatorio | `.campaign__head`, `.crumbs`, `.campaign__eyebrow` | Migas Lexend 200/14; eyebrow Inter 700/12 ámbar `#D9903F`; título Lexend 500/100, tracking -5, `#CADDEC` | Título Lexend 400/40, tracking -2 |
+| 2 | Ficha | Obligatoria | `.facts` | 5 columnas: label Inter 500/12 `#6F665B`, dato Lexend 200/16 `#F3EDE4` | 2 columnas; el último dato ocupa la fila |
+| 3 | Video principal | Opcional | `.video`, `.video__frame` | 16:9, fondo `#1a1a1a`, play 100px, leyenda Lexend 13 `#A49A8C`. Sin video: placeholder | Play 64px |
+| 4 | Galería | Opcional | `.gallery`, `.thumb`, `.circle-btn` | Imagen 420px de alto (`contain`); 5 miniaturas por página + "+N more"; activa con borde naranja de 2px | Imagen 220px; 3 por página; miniaturas 104×70 con scroll horizontal; botones 44px |
+| 5 | Secciones numeradas | Al menos una | `.step` | Número Inter 200/64 `#6F665B` + label ámbar (220px); texto Lexend 18 `#F3EDE4`; gap 80 | Apiladas, gap 24, texto 16 |
+| 6 | Créditos | Opcional | `.step--credits`, `.credits` | Filas Lexend 200/14: rol `#A49A8C`, nombre `#F3EDE4` | Igual, padding 40 |
+| 7 | Más reciente / anterior | Opcional | `.pager`, `.pager__link--older` | Círculo 40px con borde blanco y flecha 16 | Círculo 44px |
+
+Contenedor: `.campaign`, padding horizontal 208px (64px hasta 1240px y 16px en mobile). Contenido interno a 1004px. Nav, menú mobile y footer son los de la home; en mobile los links de Directory del footer van en fila.
+
+### Detalle de película · ejemplo `film-5-sentidos.html`
+
+Figma 610:1344 (solo escritorio). Mismos bloques 1, 2, 3 y 7 que el detalle de campaña, con estas diferencias:
+
+- Migas: la página actual en ámbar (`.crumbs__current`), sin link.
+- Video: póster con `object-fit: cover` y play de 100px (`assets/film/play-100.svg`); leyenda a 16px del video. Al hacer clic se reemplaza por el video de YouTube.
+- Filas en un bloque `.steps` (gap 16, sin línea superior): Logline (`.step--lead`, texto centrado en vertical), Festival recognition (`.step--awards`, laureles `.award` de la home: 100, 88, 96 y 96px) y créditos.
+- Sin galería ni secciones numeradas.
+
+Convenciones de contenido: un dato que no tengamos se muestra como "To confirm" / "A confirmar". Imágenes en `assets/campaign/[slug]/`: `[slug]-NN.jpg` (lado largo 1600px) y `[slug]-NN-thumb.jpg` (420px).
 
 ## Assets (`assets/`)
 

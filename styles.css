@@ -713,6 +713,23 @@ html.is-menu-open { overflow: hidden; }
 .button:hover,
 .button:focus-visible { background: var(--button-hover-bg); }
 .button--secondary { color: var(--color-text); }
+/* Etiqueta de estado destacada (propuesta, no está en Figma): obra todavía sin link, p. ej. El Guardaparques */
+.status-tag {
+  align-self: flex-end;   /* al borde derecho, donde iba el botón */
+  padding: 6px 12px;
+  background: var(--color-orange);
+  color: var(--color-text-inverse);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+@media (max-width: 900px) { .status-tag { white-space: normal; } }
+/* Botón relleno (About, Figma 655:3848): fondo naranja, texto oscuro */
+.button--filled { background: var(--color-orange); color: var(--color-text-inverse); }
+.button--filled:hover,
+.button--filled:focus-visible { background: #f5ad6c; }
 
 /* Play box (83:618) */
 .playbox {
@@ -747,6 +764,9 @@ html.is-menu-open { overflow: hidden; }
 .playbox:hover .playbox__icon { transform: translate(-50%, -50%) scale(1.1); }
 
 /* ---------- About / Contact (321:2379) ---------- */
+/* El link "About" del nav ancla acá: deja el espacio del nav fijo */
+.about { scroll-margin-top: var(--nav-h); }
+@media (max-width: 900px) { .about { scroll-margin-top: var(--nav-h-mobile); } }
 .about {
   position: relative;
   z-index: 1;
@@ -774,14 +794,16 @@ html.is-menu-open { overflow: hidden; }
 }
 .about__headshot-label { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
 .about__headshot-name { font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--color-campaign); }
-.about__headshot-role { font-size: 14px; }
+.about__headshot-role { font-size: 14px; line-height: 1.5; }
 
 .about__info { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; flex: 1; min-width: 0; }
 .about__overline { font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--color-campaign); }
 .about__name { font-weight: 600; font-size: 56px; line-height: normal; }
 .about__bio { display: flex; flex-direction: column; gap: 20px; }
 .about__lead { font-size: 20px; }
-.about__detail { font-size: 15px; line-height: 1.245; color: var(--color-muted); }
+/* Bio secundaria (Body/Medium Regular): dos párrafos separados por una línea en blanco */
+.about__details { display: flex; flex-direction: column; gap: 22.5px; }
+.about__detail { font-size: 15px; line-height: 1.5; color: var(--color-muted); }
 .about__actions { display: flex; flex-wrap: wrap; gap: 16px; }
 
 /* ---------- Footer (83:513) ---------- */
@@ -1141,3 +1163,7 @@ html.has-intro:not(.intro-done) { overflow: hidden; }
   .intro__mark { left: 516.30px; top: 441.04px; }
   .intro__words { left: 686.67px; top: 443.34px; }
 }
+
+/* Página actual en el nav y en el menú mobile */
+.nav__links a[aria-current="page"],
+.mobile-menu__item[aria-current="page"] { color: var(--color-orange); }

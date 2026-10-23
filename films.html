@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Film &amp; Video · Andrés Monge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@200;400;500;700&family=Lexend:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="campaign.css">
+  <link rel="stylesheet" href="films.css">
+  <link rel="alternate" hreflang="en" href="films.html">
+  <link rel="alternate" hreflang="es" href="es/films.html">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="page-campaign page-films">
+
+  <!-- Nav=desktop (83:452) · Nav=mobile (180:5047). Mismos textos que la home. -->
+  <header class="nav">
+    <a class="logotype logotype--desktop" href="index.html" aria-label="Andrés Monge Projects, home">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+        <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+        <img src="assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+        <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+      </span>
+    </a>
+    <a class="logotype logotype--small" href="index.html" aria-label="Andrés Monge Projects, home">
+      <span class="logotype__mark" aria-hidden="true">
+        <img class="logotype__mark-b" src="assets/nav-mobile/logo-mark-b.svg" width="16.7363" height="30.1763" alt="">
+        <img class="logotype__mark-a" src="assets/nav-mobile/logo-mark-a.svg" width="16.2254" height="29.6716" alt="">
+      </span>
+      <span class="logotype__words" aria-hidden="true">
+        <img src="assets/nav-mobile/logo-andres.svg" width="44.8495" height="8.04966" alt="">
+        <img src="assets/nav-mobile/logo-monge.svg" width="40.0484" height="8.04969" alt="">
+        <img src="assets/nav-mobile/logo-projects.svg" width="58.0875" height="8.31608" alt="">
+      </span>
+    </a>
+
+    <div class="nav__right">
+      <nav class="nav__links" aria-label="Main">
+        <a href="campaigns.html">The Campaigns</a>
+        <a href="films.html" aria-current="page">The Films</a>
+        <a href="writing.html">The Writing</a>
+        <a href="index.html#about">About</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <a class="lang__option is-active" href="films.html" hreflang="en" lang="en" aria-current="page">EN</a>
+        <a class="lang__option" href="es/films.html" hreflang="es" lang="es">ES</a>
+      </div>
+    </div>
+
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-label-open="Open menu" data-label-close="Close menu">
+      <img class="nav__toggle-open" src="assets/icon-menu.svg" width="24" height="24" alt="">
+      <img class="nav__toggle-close" src="assets/icon-close.svg" width="24" height="24" alt="">
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" inert>
+    <nav class="mobile-menu__list" aria-label="Main">
+      <a class="mobile-menu__item" href="campaigns.html">The Campaigns <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="films.html" aria-current="page">The Films <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="writing.html">The Writing <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="index.html#about">About <img src="assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+    </nav>
+    <div class="lang lang--menu" role="group" aria-label="Language">
+      <a class="lang__option is-active" href="films.html" hreflang="en" lang="en" aria-current="page">EN</a>
+      <a class="lang__option" href="es/films.html" hreflang="es" lang="es">ES</a>
+    </div>
+  </div>
+
+  <!-- Figma 178:949 "Film and video" (Mockups, escritorio). Sin diseño mobile: una columna. -->
+  <main class="films">
+    <img class="films__bg" src="assets/year-2020.png" width="1408" height="752" alt="" aria-hidden="true">
+
+    <div class="films__inner">
+      <h1 class="films__title">Film &amp; Video</h1>
+
+      <!-- Orden del Master Brief (D.3): empezar por 5 Sentidos, destacar Nahuel, Mime como pieza de rango -->
+      <ul class="films__grid">
+        <li>
+          <article class="film-card">
+            <a class="film-card__poster" href="film-5-sentidos.html" tabindex="-1" aria-hidden="true"><img src="assets/year-2022.png" width="1434" height="584" alt="" loading="lazy"></a>
+            <div class="film-card__body">
+              <div class="film-card__head">
+                <h2 class="film-card__title">5 Sentidos</h2>
+                <p class="film-card__meta"><span class="film-card__type">Short</span> <span class="film-card__year">2022</span></p>
+              </div>
+              <p class="film-card__desc">A psychological thriller short about a man who gradually loses each of his five senses, and the emotional toll it takes on both him and his wife.</p>
+              <a class="button button--secondary" href="film-5-sentidos.html">Full length view <img src="assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="film-card">
+            <a class="film-card__poster" href="film-nahuel.html" tabindex="-1" aria-hidden="true"><img src="assets/nahuel.png" width="1449" height="784" alt="" loading="lazy"></a>
+            <div class="film-card__body">
+              <div class="film-card__head">
+                <h2 class="film-card__title">Nahuel</h2>
+                <p class="film-card__meta"><span class="film-card__type">Short</span> <span class="film-card__year">2023</span></p>
+              </div>
+              <p class="film-card__desc">A dramatic short about a young Afro-Indigenous Latino navigating the prejudices of the society around him.</p>
+              <a class="button button--secondary" href="film-nahuel.html">Full length view <img src="assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="film-card">
+            <a class="film-card__poster" href="film-romano-honorario.html" tabindex="-1" aria-hidden="true"><img src="assets/year-2020.png" width="1408" height="752" alt="" loading="lazy"></a>
+            <div class="film-card__body">
+              <div class="film-card__head">
+                <h2 class="film-card__title">Romano Honorario</h2>
+                <p class="film-card__meta"><span class="film-card__type">Short</span> <span class="film-card__year">2020</span></p>
+              </div>
+              <p class="film-card__desc">A dramatic short film about an orphan raised by a criminal family who must confront guilt, loyalty and the inheritance he receives after the death of his adoptive father.</p>
+              <a class="button button--secondary" href="film-romano-honorario.html">Full length view <img src="assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="film-card">
+            <a class="film-card__poster" href="film-silent-pain.html" tabindex="-1" aria-hidden="true"><img src="assets/year-2023.png" width="1417" height="589" alt="" loading="lazy"></a>
+            <div class="film-card__body">
+              <div class="film-card__head">
+                <h2 class="film-card__title">Silent Pain / Mime</h2>
+                <p class="film-card__meta"><span class="film-card__type">Short</span> <span class="film-card__year">2023</span></p>
+              </div>
+              <p class="film-card__desc">A silent experimental short, shot in black and white and influenced by film noir, about a mime chasing his dream.</p>
+              <a class="button button--secondary" href="film-silent-pain.html">Full length view <img src="assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
+            </div>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="logotype" href="index.html" aria-label="Andrés Monge Projects, home">
+          <span class="logotype__mark" aria-hidden="true">
+            <img class="logotype__mark-b" src="assets/logo-mark-b.svg" width="27.137" height="48.9293" alt="">
+            <img class="logotype__mark-a" src="assets/logo-mark-a.svg" width="26.3086" height="48.111" alt="">
+          </span>
+          <span class="logotype__words" aria-hidden="true">
+            <img src="assets/logo-andres.svg" width="67.8229" height="12.173" alt="">
+            <img src="assets/logo-monge.svg" width="60.5625" height="12.173" alt="">
+            <img src="assets/logo-projects.svg" width="86.3896" height="12.368" alt="">
+          </span>
+        </a>
+        <p class="footer__tagline">Concept-driven, story-led content from branded films to award-winning shorts. Bilingual writer and filmmaker.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col footer__col--inquiries">
+          <p class="footer__label">Inquiries</p>
+          <div class="footer__email">
+            <a href="mailto:hello@andresmonge.com">hello@andresmonge.com</a>
+            <p>US &amp; LATAM representation</p>
+          </div>
+        </div>
+        <div class="footer__col footer__col--directory">
+          <p class="footer__label">Directory</p>
+          <div class="footer__social">
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://vimeo.com" target="_blank" rel="noopener">Vimeo</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="footer__line" src="assets/footer-line.svg" width="1042" height="1" alt="">
+    <div class="footer__bottom">
+      <p>© 2026 Andrés Monge. All rights reserved.</p>
+      <div class="footer__status">
+        <p>Based in San José &amp; Los Angeles</p>
+        <img src="assets/footer-dot.svg" width="4" height="4" alt="">
+        <p>Available worldwide</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

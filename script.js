@@ -3,7 +3,11 @@
   document.documentElement.classList.add('js');
 
   // Arranca arriba aunque el navegador intente restaurar la posición.
-  const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  // Con #about (link "About" desde otras páginas) arranca en esa sección.
+  const startAt = location.hash === '#about' ? document.getElementById('about') : null;
+  const toTop = () => (startAt
+    ? startAt.scrollIntoView({ block: 'start', behavior: 'instant' })
+    : window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
   toTop();
   window.addEventListener('load', toTop, { once: true });
 

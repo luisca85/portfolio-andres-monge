@@ -2,17 +2,128 @@
 
 Versiones de la home en orden inverso (la más reciente primero). Cada versión indica su commit en GitHub (https://github.com/luisca85/portfolio-andres-monge).
 
-**Dónde está publicada cada versión hoy (2026-10-16)**
+**Dónde está publicada cada versión hoy (2026-10-23)**
 
 | Canal | Versión que muestra |
 |---|---|
-| GitHub `main` (antes de este commit) | `79f9ea3` · Versión bilingüe EN / ES |
-| Link de revisión en claude.ai (https://claude.ai/artifact/1Mjk1RFZ1nvUqRvDo1FjsW) | Equivale a `5c000ee` (primera versión). No incluye nada de lo que vino después |
-| Figma | Frame "Home mobile · EN (desde código)" (428:1651), generado desde esta versión |
+| Demo en Netlify (https://quiet-travesseiro-97fa3a.netlify.app/) | La del 23 de octubre: todas las páginas, EN y ES. Es la demo de referencia |
+| GitHub `main` | Este commit (23 de octubre) |
+| Link en claude.ai (https://claude.ai/artifact/1Mjk1RFZ1nvUqRvDo1FjsW) | Versión del 23 de octubre sin The Writing, About ni Contact, sin The Campaigns |
+
+Resumen para desarrollo de los cambios del 22 y 23 de octubre: [CAMBIOS-DESARROLLO-2026-10-22-23.md](CAMBIOS-DESARROLLO-2026-10-22-23.md).
 
 ---
 
-## 2026-10-16 · Intro adaptada a mobile — este commit
+## 2026-10-23 · Los cuatro ensayos y El Guardaparques sin botón
+
+- **Páginas nuevas** (EN y ES), con la plantilla del detalle de escrito: `writing-neurodivergent.html`, `writing-us-vs-them.html`, `writing-outside-the-wake.html`.
+  - Outside the Wake: bajada, cita, apertura y "~700 words" del Master Brief (D.5). Cita y apertura quedan en inglés también en la versión en español.
+  - Neurodivergent y Us vs. Them: bajada = descripción de la home; cita y cuerpo en **lorem ipsum** (no hay texto del ensayo). Extensión y "Reads as" en "To confirm".
+- **Listado `writing.html`**: ahora con los 4 ensayos (01 Neurodivergent, 02 Us vs. Them, 03 Outside the Wake, 04 When Nationalism). En el listado no va lorem ipsum: los que no tienen texto muestran solo la descripción.
+- **Anterior / siguiente** en los detalles ("← Previous" / "Next →", como en el Figma), en el orden del listado.
+- **Home**: los cuatro botones "Read the essay" llevan a su ensayo.
+- **El Guardaparques**: sin el botón "View the project"; en su lugar, etiqueta naranja "Coming soon" / "Próximamente" (`.status-tag`, propuesta: no está en Figma).
+
+---
+
+## 2026-10-23 · Sección About según Figma (321:2379)
+
+- El botón "Résumé (PDF)" se reemplaza por un botón relleno naranja con el mail: **hello@andresmonge.com** (abre el correo) y flecha oscura (`assets/icon-arrow-dark.svg`). Nueva variante `.button--filled`; su hover (naranja más claro) es una propuesta, no está en Figma.
+- Bio secundaria: interlineado 1.5 y una línea en blanco entre los dos párrafos (`.about__details`). Rol de la foto con interlineado 1.5.
+- Overline: "ABOUT / CONTACT" / "SOBRE MÍ / CONTACTO", como en el Figma (se había cambiado a "ABOUT" un momento antes).
+
+---
+
+## 2026-10-23 · Nav sin Contact; About ancla a la home
+
+- **Contact / Contacto** sale del nav y del menú mobile en todas las páginas (y del template de campaña). El footer sigue mostrando el mail.
+- **About / Sobre mí** lleva siempre a la sección About de la home (`index.html#about`, también desde `es/`). Antes, desde otra página, la home limpiaba el ancla y arrancaba arriba.
+- Home: si la URL trae `#about`, no se muestra la intro y la página arranca en esa sección, debajo del nav (`scroll-margin-top`). Cualquier otro ancla se sigue limpiando y la home arranca en el hero.
+
+---
+
+## 2026-10-23 · The Writing y detalle de escrito
+
+- **`writing.html`** (Figma 658:2599) y **`writing-nationalism.html`** (Figma 655:3884), en inglés y en español. Estilos en `writing.css`.
+- Por ahora un solo escrito: **When Nationalism Becomes a Trend**.
+  - Listado: número, "Essay · December 2025", etiquetas Strategic / Brand & narrative, descripción de la home, cita, apertura y "Continue reading" al detalle.
+  - Detalle: migas The Writing / título, eyebrow "Essay · Voice & range", ficha (Format, Length, Reads as, Date), bajada, cita, apertura con la primera letra en ámbar y link de vuelta al listado.
+- **Fuente del texto**: cita y apertura textuales del Master Brief (D.5), no del sitio publicado ni del Figma (que dicen "territory." en vez de "territory or policy." y suman una frase que no está en el brief). La bajada es la del brief. Fecha: diciembre de 2025 (brief); CONTENIDO dice 2026.
+- **Length**: "To confirm" (el Figma dice ~1,200 words, sin fuente).
+- **Español**: interfaz, bajada y descripción traducidas (pendiente de aprobación). La cita y la apertura quedan en inglés (`lang="en"`): son del autor y no hay versión en español.
+- **Navegación**: "The Writing" / "Escritos" del nav y del menú mobile lleva a `writing.html` en todas las páginas. El botón "Read the essay" del cuadro de When Nationalism en la home lleva al detalle.
+- Interlineados de 0.943 del Figma en textos de varias líneas pasan a 1.25 (con Lexend se pisan las líneas).
+
+---
+
+## 2026-10-23 · Tagline nuevo en el hero y el About
+
+- **Hero** (Figma 321:2400): el texto de identidad pasa a ser "I’m a Costa Rican writer and creator working in English and Spanish. Writing is the foundation of my work…". Reemplaza al texto con las dos opciones ("Alternate: …").
+- **About** (Figma 321:2389 y 321:2390): bio principal con el mismo texto y bio secundaria en dos párrafos ("My work takes different forms…" y "Whether I’m developing an original story…"). Sale la mención al BFA en SCAD y a work-eligible.
+- Traducción al español nueva, pendiente de aprobación.
+
+---
+
+## 2026-10-23 · Galería The Campaigns
+
+- **Nueva página `campaigns.html`** (y `es/campaigns.html`) desde el Figma "The Campaings" (655:3679), sobre la plantilla de Film & video (`films.css`): eyebrow naranja "Branded Content & Advertising — the lead section", título "The Campaigns" de 100px y bajada de 24px, los tres en difference; degradé negro sobre el fondo; botón de la card en Lexend Regular 18. En Figma eyebrow y bajada usan Pacaembu: acá Lexend. Traducción al español de eyebrow y bajada pendiente de aprobación.
+- Por ahora un solo proyecto: **Fashion Design and Campaign** (Campaign, 2025), con su descripción de la home y el link "View the project" / "Ver el proyecto" a `campaign-fashion.html`.
+- **Navegación**: "The Campaigns" / "Campañas" del nav y del menú mobile lleva a `campaigns.html` en todas las páginas. La miga del detalle de Fashion y la del template de campaña también.
+- Fotos usadas: fondo `fashion-03.jpg`, póster `fashion-05.jpg` (recortadas con `object-position`).
+
+---
+
+## 2026-10-23 · Navegación superior con los nombres nuevos
+
+- Nav, menú mobile y migas en todas las páginas: **The Campaigns · The Films · The Writing · About · Contact** (antes The Book · Film & video · Writing). En español: **Campañas · Películas · Escritos · Sobre mí · Contacto**.
+- The Films lleva a `films.html`; The Campaigns y The Writing siguen en `#` (no hay páginas de listado).
+- Migas: Fashion pasa a Home / The Campaigns; los detalles de película a Home / The Films / película.
+- El menú mobile escribía "writing" en minúscula; ahora "The Writing".
+
+---
+
+## 2026-10-23 · Galería Film & video
+
+- **Nueva página `films.html`** (y `es/films.html`) desde el mockup "Film and video" (Figma 178:949): fondo con el still de 2020, título "Film & Video" de 128px en difference y grilla de 2 × 2 cards de 508px con borde naranja.
+- **Cards**: 5 Sentidos, Nahuel, Romano Honorario y Silent Pain / Mime (orden del Master Brief), con póster, título, "Short", año, logline y link "Full length view" / "Ver la película" a su página de detalle. Usan el botón secundario de la home. Hover (propuesta): sube, sombra y zoom leve del póster.
+- **Tipografía**: el mockup usa Pacaembu; se usa Lexend, la del proyecto. Interlineado de la descripción 1.245 (en el mockup 0.943, que con Lexend se superpone).
+- **Mobile**: no hay diseño; una columna y título de 56px.
+- **Navegación**: "Film & video" / "Cine y video" del nav y del menú mobile lleva a `films.html` en todas las páginas (antes `#`). La página actual se marca en naranja (`aria-current`). Las migas de los detalles de película pasan a ser Home / Film & video / película.
+
+---
+
+## 2026-10-22 · Detalle de película: Nahuel, Silent Pain / Mime y Romano Honorario
+
+- **Tres páginas nuevas** con la misma estructura que 5 Sentidos, en inglés y en español: `film-nahuel.html`, `film-silent-pain.html`, `film-romano-honorario.html` (y sus versiones en `es/`).
+- **Contenido**: rol, descripción (logline), premios y video de `CONTENIDO.md`; sinopsis **provisionales** redactadas con las escenas del Master Brief, sin revelar finales (detalle en `CONTENIDO.md`). Romano Honorario lleva sus 2 laureles; Nahuel y Silent Pain no tienen premios cargados, así que no tienen esa fila.
+- **Home**: los botones "Watch the short" / "Ver el corto" de las cuatro películas llevan a su página de detalle (antes iban a YouTube). Las imágenes con play de la timeline siguen yendo a YouTube.
+- **Navegación entre películas**: Nahuel → Silent Pain / Mime → 5 Sentidos → Romano Honorario.
+
+---
+
+## 2026-10-22 · Detalle de película: 5 Sentidos
+
+- **Nueva página `film-5-sentidos.html`** (y `es/film-5-sentidos.html`) desde el Figma "Detalle de pelicula" (610:1344, solo escritorio): migas con la página actual en ámbar, título, ficha, video, logline, reconocimientos en festivales (4 laureles), créditos y links a la película más reciente y a la anterior.
+- **Contenido**: solo datos de 5 Sentidos de `CONTENIDO.md` (rol, descripción, premios, video). El Figma tiene en la ficha, el logline, la sinopsis y el pie del video textos de Jogo; no se usaron. Idioma, fotografía y elenco quedan como "To confirm". Sinopsis **provisional** redactada con la descripción de la home y las escenas del Master Brief (detalle en `CONTENIDO.md`).
+- **Video**: póster (`assets/year-2022.png`) con el play del Figma (`assets/film/play-100.svg`); al hacer clic se carga el video de YouTube con sonido (`campaign.js`).
+- **Mobile**: no hay diseño; usa las reglas mobile del detalle de campaña (los laureles pasan a dos filas).
+- `campaign.css` y `campaign.js` pasan a ser los archivos de todas las páginas de detalle. Ficha ajustada al Figma (gap 7, interlineado 1.245) también en la campaña.
+
+---
+
+## 2026-10-22 · Detalle de campaña: Fashion Design and Campaign
+
+- **Nueva página `campaign-fashion.html`** (y `es/campaign-fashion.html`) desde el Figma "Detalle de campaña - con galeria" (590:2331) y su versión mobile (606:5741): migas, título, ficha, galería, sección numerada, créditos y link al proyecto siguiente.
+- **Contenido**: solo lo que ya teníamos de Fashion Design and Campaign (año, rol y descripción de la home). Categoría, idioma y fotografía quedan como "To confirm" / "A confirmar". El bloque de video es un placeholder (16:9, fondo #1a1a1a, ícono de play) con la leyenda "Video to confirm" / "Video a confirmar" hasta tener el video.
+- **Galería**: 14 imágenes de `images_campaña/` (8 fotos de campaña, 2 moodboards, 3 de muestras de tela y un retrato), optimizadas en `assets/campaign/fashion/`. Páginas de 5 miniaturas en escritorio y 3 en mobile, ficha "+N más", flechas de página y flechas del teclado. La imagen grande se muestra entera (las fotos son verticales); en el Figma el placeholder se recorta.
+- **Home**: el botón "View the project" de Fashion lleva a la nueva página.
+- **Versión en español**: `tools/build-es.mjs` ahora genera varias páginas (lista `PAGES`) y `tools/i18n.mjs` también traduce los `alt` de las imágenes. Nuevas entradas en `tools/es.mjs`. La home en español no cambió.
+- **Template reutilizable** `templates/campaign-detail.html`: la misma página con placeholders, 7 bloques numerados (obligatorios y opcionales) y los pasos para crear un detalle de campaña nuevo. Documentado en `DESIGN-SYSTEM.md` (sección Templates).
+- Nav y footer: los mismos de la home (el Figma del detalle muestra otros textos en el nav). En mobile, los links de Directory van en fila, como en el Figma.
+
+---
+
+## 2026-10-16 · `b9ca4ad` · Intro adaptada a mobile
 
 - **Recorrido en cruz en mobile y tablet (≤ 900px):** la cinta horizontal cruza por el centro vertical de la pantalla y las dos cintas verticales pasan por el centro horizontal (una baja y después la otra sube). Antes, en un celular las verticales pasaban fuera de la pantalla y la horizontal quedaba unos 27px por encima del centro.
 - **Logo centrado al final de la intro en mobile:** antes quedaba corrido unos 15px a la derecha y 27px hacia arriba.

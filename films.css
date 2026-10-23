@@ -1,0 +1,125 @@
+/* Galería Film & video · Figma 178:949 "Film and video" (Mockups, escritorio).
+   El mockup usa Pacaembu; acá va Lexend, la tipografía del proyecto.
+   Sin diseño mobile: en ≤ 900px las cards pasan a una columna. */
+.films {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+/* Fondo (image 6): still de 2020, 1537×821 corrido -48px, detrás del nav */
+.films__bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: max(1537px, 106.7%);
+  height: 821px;
+  translate: calc(-50% - 0.5px) 0;
+  object-fit: cover;
+  pointer-events: none;
+}
+.films__inner {
+  position: relative;
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: 228px 190px 280px;
+}
+/* Display/Hero XL: Lexend 128, interlineado 94.3%, blanco en difference */
+.films__title {
+  margin-bottom: 98px;
+  font-weight: 400;
+  font-size: 128px;
+  line-height: .943;
+  color: var(--color-text);
+  mix-blend-mode: difference;
+}
+
+.films__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 508px);
+  column-gap: 34px;
+  row-gap: 70px;
+}
+
+/* Card de película (en Figma: card del mockup; componente film-card 618:3466) */
+.film-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--color-orange);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .12);          /* shadow regular */
+  transition: translate .35s var(--ease), box-shadow .35s var(--ease);
+}
+.film-card__poster { display: block; aspect-ratio: 508 / 268; overflow: hidden; }
+.film-card__poster img { display: block; width: 100%; height: 100%; object-fit: cover; transition: scale .6s var(--ease); }
+.film-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 16px;
+}
+.film-card__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; }
+.film-card__title { font-weight: 700; font-size: 20px; line-height: .943; }
+.film-card__meta { display: flex; gap: 16px; font-size: 20px; line-height: .943; white-space: nowrap; }
+.film-card__type { font-weight: 200; color: var(--color-orange); }
+.film-card__year { font-weight: 700; }
+.film-card__desc { flex: 1; width: 100%; font-weight: 200; font-size: 16px; line-height: 1.245; }
+.film-card .button { font-weight: 200; font-size: 16px; }
+
+/* Hover (propuesta, como la card de la home): sube, sombra y zoom leve del póster */
+.film-card:hover,
+.film-card:focus-within { translate: 0 -6px; box-shadow: var(--card-hover-shadow); }
+.film-card:hover .film-card__poster img,
+.film-card:focus-within .film-card__poster img { scale: 1.03; }
+.film-card:hover .button { background: var(--button-hover-bg); }
+
+@media (max-width: 1240px) {
+  .films__inner { padding-inline: 64px; }
+  .films__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .films__bg { width: auto; height: 520px; left: 0; translate: none; aspect-ratio: auto; min-width: 100%; }
+  .films__inner { padding: calc(var(--nav-h-mobile) + 64px) 16px 80px; }
+  .films__title { margin-bottom: 48px; font-size: 56px; }
+  .films__grid { grid-template-columns: 1fr; row-gap: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-card, .film-card__poster img { transition: none; }
+}
+
+/* ---------- The Campaigns (campaigns.html) · Figma 655:3679 ----------
+   Encabezado con eyebrow y bajada, degradé sobre el fondo y botón de la card
+   en su estilo de componente (Lexend Regular 18). En Figma eyebrow y bajada
+   son Pacaembu; acá Lexend. */
+.films--campaigns .films__bg { object-position: 50% 42%; }
+/* Degradé (655:3681): negro .35 arriba, .55 al 55 %, negro abajo */
+.films__fade {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 821px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .35), rgba(0, 0, 0, .55) 55%, var(--color-bg));
+  pointer-events: none;
+}
+.films--campaigns .films__inner { padding-top: calc(var(--nav-h) + 115px); padding-left: 196px; padding-bottom: 120px; }
+.films__head { max-width: 1030px; margin-bottom: 56px; mix-blend-mode: difference; }
+.films__eyebrow { font-size: 20px; line-height: .943; color: var(--color-orange); text-transform: uppercase; }
+.films__title--page { margin: 0; font-weight: 500; font-size: 100px; line-height: 1.245; letter-spacing: -5px; mix-blend-mode: normal; }
+.films__lead { font-weight: 200; font-size: 24px; line-height: 1.25; }
+.films--campaigns .film-card .button { font-weight: 400; font-size: 18px; }
+
+@media (max-width: 1240px) {
+  .films--campaigns .films__inner { padding-left: 64px; }
+}
+@media (max-width: 900px) {
+  .films__fade { height: 520px; }
+  .films--campaigns .films__inner { padding: calc(var(--nav-h-mobile) + 64px) 16px 80px; }
+  .films__head { margin-bottom: 40px; }
+  .films__eyebrow { font-size: 14px; line-height: 1.3; }
+  .films__title--page { font-size: 48px; letter-spacing: -2.4px; }
+  .films__lead { font-size: 18px; }
+}

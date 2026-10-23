@@ -29,7 +29,14 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 - **Descripción:** Cortometraje dramático sobre un huérfano criado por una familia criminal que debe enfrentarse a la culpa, la lealtad y la herencia que recibe después de la muerte de su padre adoptivo.
 - **Premios:** Award Winner, Berlin Shorts Festival · Award Winner, Las Vegas Shorts Film Festival
 - **Video:** https://www.youtube.com/watch?v=-ETgsrVfcU4
-- **Botón:** Ver el corto
+- **Botón:** Ver el corto (lleva a `film-romano-honorario.html`)
+
+**Página de detalle (`film-romano-honorario.html`)**
+- **Categoría:** Drama (de la descripción). **Idioma:** DATO DESCONOCIDO.
+- **Sinopsis (PROVISIONAL):** con la descripción y las escenas del Master Brief (D.3): el confesionario con el padre Abel como marco, la mansión de la familia criminal y las escenas nocturnas (robo de auto, vigilancia).
+  - EN: "Told from a confessional, before Father Abel, the story moves between the opulence of a criminal family’s mansion and the nights of its business. Raised inside that world, an orphan must decide what to do with what his adoptive father left him."
+  - ES: "Contada desde un confesionario, ante el padre Abel, la historia se mueve entre la opulencia de la mansión de una familia criminal y las noches de sus negocios. Criado dentro de ese mundo, un huérfano debe decidir qué hacer con lo que le dejó su padre adoptivo."
+- No se nombra al protagonista: el brief menciona a Junior y a Mario, pero no dice cuál es el huérfano.
 
 ### 2022 · 5 Sentidos
 *Origen: capturas (vía Figma)*
@@ -39,10 +46,17 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 - **Descripción:** Cortometraje de thriller psicológico sobre un hombre que comienza a perder progresivamente cada uno de sus cinco sentidos y el deterioro emocional que eso provoca tanto en él como en su esposa.
 - **Premios (ganador de Best Student Short/Film):** WorldFest-Houston International Film Festival · Reality Bytes Independent Student Film Festival · Phoenix Shorts Film Festival · Las Vegas Short Film Festival
 - **Video:** https://www.youtube.com/watch?v=ZeUtnoE-9aY
-- **Botón:** Ver el corto
+- **Botón:** Ver el corto (lleva a `film-5-sentidos.html`)
 
 > "Las Vegas Shorts Film Festival" (Romano) y "Las Vegas Short Film Festival" (5 Sentidos) figuran con nombre distinto en las capturas. No asumir que son el mismo festival.
 > Si el laurel de 5 Sentidos debe incluir el nombre del premio ("Best Student Short/Film"): DATO DESCONOCIDO.
+
+**Página de detalle (`film-5-sentidos.html`)**
+- **Logline:** la descripción de arriba.
+- **Sinopsis (PROVISIONAL, redactada por nosotros, pendiente de Andrés):** armada con la descripción y las escenas que cita el Master Brief (D.3): la discusión doméstica, la frase "ahora no escucho de este oído", el aislamiento con la máquina de escribir y la esposa que intenta llegar a él (la máquina de escribir en braille del final no se menciona para no revelarlo). El protagonista se llama Felipe según el brief.
+  - EN: "It begins with a domestic argument and a simple line: Felipe can no longer hear out of one ear. From there, he loses his senses one by one. Shut in with the clatter of his typewriter, he drifts away from the world and from his wife, who searches for a new way to reach him."
+  - ES: "Todo empieza con una discusión doméstica y una frase simple: Felipe ya no escucha de un oído. A partir de ahí pierde sus sentidos uno por uno. Encerrado con el golpeteo de su máquina de escribir, se aleja del mundo y de su esposa, que busca una nueva forma de llegar a él."
+- **Créditos:** Writer / Director y Producer: Andrés Monge (rol "Writer, Director & Producer"). El brief menciona una colaboración con Atómica Films, pero no dice que haya producido 5 Sentidos: DATO DESCONOCIDO. Idioma, dirección de fotografía y elenco: DATO DESCONOCIDO.
 
 ### 2023 · Silent Pain / Mime
 *Origen: capturas (vía Figma)*
@@ -51,7 +65,13 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 - **Rol:** Writer, Director & Producer
 - **Descripción:** Cortometraje experimental mudo, filmado en blanco y negro y con influencia del film noir, sobre un mimo persiguiendo su sueño.
 - **Video:** https://www.youtube.com/watch?v=AoQZPk6PI6E · **verificar**: el ID tiene letras ambiguas (I mayúscula / l minúscula).
-- **Botón:** Ver el corto
+- **Botón:** Ver el corto (lleva a `film-silent-pain.html`)
+
+**Página de detalle (`film-silent-pain.html`)**
+- **Categoría:** Experimental · Film noir. **Idioma:** sin diálogos (es muda). Duración según el brief: 2:49.
+- **Sinopsis (PROVISIONAL):** con la descripción y las escenas del Master Brief (D.3): la actuación en el parque con la niña que lo imita, la alcancía rota y las monedas. No se cuenta la partida ni el final (boleto de ida, parada de bus).
+  - EN: "A mime performs in the park while a little girl copies his every move. When his piggy bank breaks and he counts the last coins, his life takes a turn, and chasing his dream means deciding what he is willing to leave behind."
+  - ES: "Un mimo actúa en el parque mientras una niña imita cada uno de sus movimientos. Cuando se rompe su alcancía y cuenta las últimas monedas, su vida da un giro, y perseguir su sueño significa decidir qué está dispuesto a dejar atrás."
 
 ### 2023 · Nahuel
 *Origen: capturas (vía Figma)*
@@ -60,7 +80,15 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 - **Rol:** Writer, Director & Producer
 - **Descripción:** Cortometraje dramático sobre un joven afro-indígena latino que navega los prejuicios de la sociedad que lo rodea.
 - **Video:** https://www.youtube.com/watch?v=uoE--jaxy3g
-- **Botón:** Ver el corto
+- **Botón:** Ver el corto (lleva a `film-nahuel.html`)
+
+**Página de detalle (`film-nahuel.html`)**
+- **Categoría:** Drama. **Idioma:** Bilingual / Bilingüe (el brief habla de su "voz bilingüe"; qué idiomas exactamente: DATO DESCONOCIDO).
+- **Sinopsis (PROVISIONAL):** con la descripción y las escenas del Master Brief (D.3): los comentarios de los chicos en la escuela, los auriculares y la bicicleta, la tensión en la cena. No se cuenta el final (la aceptación en el barrio).
+  - EN: "Nahuel puts on his headphones to tune out the boys at school and rides off through the city. At home, the tension follows him to the dinner table. Between both worlds, he looks for a place where he can simply belong."
+  - ES: "Nahuel se pone los auriculares para no escuchar a los chicos de la escuela y se va en bicicleta por la ciudad. En casa, la tensión lo sigue hasta la mesa. Entre esos dos mundos, busca un lugar al que simplemente pueda pertenecer."
+
+**Las cuatro páginas de película:** créditos Writer / Director y Producer: Andrés Monge; dirección de fotografía y elenco: DATO DESCONOCIDO. Orden de "Newer / Older": Nahuel → Silent Pain / Mime → 5 Sentidos → Romano Honorario (dentro de 2023 el orden es una suposición).
 
 ### 2025 · Fashion Design and Campaign (The Book)
 *Origen: capturas (vía Figma)*
@@ -133,13 +161,13 @@ Orden cronológico; dentro de un mismo año el orden es una suposición (DATO DE
 *Origen: Figma, sin confirmar que vengan de Andrés. `CONTEXT.md` los lista como pendientes.*
 
 ### Nav
-The Book · Film & video · Writing · About · Contact
+The Campaigns · The Films · The Writing · About (ES: Campañas · Películas · Escritos · Sobre mí; Contact se quitó el 2026-10-23; nombres del nav del Figma y del sitio actual, actualizados el 2026-10-23)
 
 ### Hero
 - **Nombre:** ANDRES · MONGE (sin tilde en el diseño)
 - **Oficios:** Writer · Branded Content (izquierda) · Filmmaker · Film & TV (derecha)
-- **Texto de identidad:** Bilingual writer and filmmaker — concept-driven, story-led content, from branded films to award-winning shorts. Alternate: Bilingual storyteller who writes and produces — branded content and screen.
-  > Son dos opciones en un mismo texto ("Alternate:"). Elegir una.
+- **Texto de identidad (Figma 321:2400, actualizado el 2026-10-23):** I’m a Costa Rican writer and creator working in English and Spanish. Writing is the foundation of my work: a way to explore ideas, build characters, and develop a point of view.
+  > ES (traducción pendiente de aprobación): Soy un escritor y creador costarricense que trabaja en inglés y en español. La escritura es la base de mi trabajo: una forma de explorar ideas, construir personajes y desarrollar un punto de vista.
 - **Player:** 5 SENTIDOS · NAHUEL · ROMANO HONORARIO · SILENT
 
 ### My Story
@@ -151,12 +179,13 @@ The Book · Film & video · Writing · About · Contact
 - **Dato de nacimiento:** DATO DESCONOCIDO
 
 ### About / Contact
-- **Overline:** ABOUT / CONTACT
+- **Overline:** ABOUT / CONTACT (ES: SOBRE MÍ / CONTACTO)
 - **Nombre:** Andrés Monge
 - **Rol (sobre la foto):** Director & Screenwriter
-- **Bio principal:** Bilingual writer and filmmaker — a storyteller who writes and produces award-winning work across genres.
-- **Bio secundaria:** Concept-first thinking paired with hands-on direction, drawn from a native bilingual perspective. Completing a BFA in Dramatic Writing (Film & TV minor) at SCAD, expected 2028. Work-eligible in the United States.
-- **Botones:** Résumé (PDF) · LinkedIn (links: DATO DESCONOCIDO)
+- **Bio principal (Figma 321:2389, actualizada el 2026-10-23):** el mismo texto del hero.
+- **Bio secundaria (Figma 321:2390, dos párrafos):** My work takes different forms, from fiction and screenplays to films, campaigns, and design. I write, direct, and produce, bringing together storytelling and visual thinking to shape a project from its first concept through its execution. / Whether I’m developing an original story or collaborating on a creative brief, I care about finding the right voice—and giving people something worth paying attention to.
+  > Reemplaza a la bio anterior (BFA en SCAD 2028, work-eligible en Estados Unidos), que ya no está en la home.
+- **Botones (Figma 321:2391):** hello@andresmonge.com (mail, botón relleno) · LinkedIn (link: DATO DESCONOCIDO). El botón Résumé (PDF) salió.
 - **Foto:** DATO DESCONOCIDO (hoy es un placeholder gris)
 
 ### Footer

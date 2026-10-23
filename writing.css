@@ -1,0 +1,128 @@
+/* The Writing · Figma 658:2599 (listado) y 655:3884 (detalle de escrito).
+   Usa los tokens de campaign.css (.page-campaign). Sin diseño mobile. */
+
+/* ---------- Listado (writing.html) ---------- */
+.writing {
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 65px) 208px 75px;
+}
+.writing__head { display: flex; flex-direction: column; gap: 42px; padding-bottom: 17px; }
+.writing__title { display: flex; flex-direction: column; gap: 10px; }
+.writing__title h1 {
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.245;
+  letter-spacing: -5px;
+  color: var(--c-info-soft);
+}
+/* Heading/H4: Lexend ExtraLight 20 (interlineado 1.25; el 0.943 del Figma pisa las líneas) */
+.writing__lead { font-weight: 200; font-size: 20px; line-height: 1.25; color: var(--c-warm); }
+
+/* essay-row (657:1296) */
+.essays { list-style: none; margin: 0; padding: 0; }
+.essay-row { display: flex; gap: 20px; padding: 64px 0; }
+.essay-row__meta { display: flex; flex-direction: column; gap: 8px; flex: none; width: 220px; padding-left: 10px; }
+.essay-row__num { font-weight: 200; font-size: 64px; line-height: 1.2; color: var(--c-subtle); }
+.essay-row__type { font-weight: 500; font-size: 12px; text-transform: uppercase; color: var(--c-subtle); }
+.essay-row__tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+/* tag (657:1294) */
+.tag {
+  padding: 8px 16px;
+  border: 1px solid rgba(243, 237, 228, .12);   /* color/border/subtle */
+  border-radius: 4px;
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--c-warm);
+}
+.essay-row__text { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; padding: 0 10px; }
+.essay-row__title { font-weight: 400; font-size: 24px; line-height: 1.25; }
+.essay-row__title a { transition: color .2s; }
+.essay-row__title a:hover { color: var(--color-orange); }
+.essay-row__desc,
+.essay-row__opening { font-weight: 200; font-size: 20px; line-height: 1.25; color: var(--c-warm); }
+.essay-row__opening { display: flex; flex-direction: column; gap: 20px; }
+.essay-row__quote {
+  margin: 0;
+  padding-left: 30px;
+  border-left: 3px solid var(--c-amber);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--c-warm);
+}
+
+/* ---------- Detalle de escrito (writing-*.html) ---------- */
+.essay {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 80px) 180px 120px;
+}
+.essay__crumbs { display: flex; align-items: center; gap: 8px; }
+.essay__crumbs a { font-weight: 500; font-size: 12px; color: var(--c-muted); transition: color .2s; }
+.essay__crumbs a:hover { color: var(--color-orange); }
+.essay__crumbs span[aria-hidden] { font-weight: 500; font-size: 12px; color: var(--c-subtle); }
+.essay__crumbs-current { font-size: 16px; line-height: 1.5; color: var(--c-amber); }
+.essay__title { display: flex; flex-direction: column; gap: 16px; }
+/* SectionEyebrow: línea de 24px + Lexend Medium 12 ámbar */
+.essay__eyebrow { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 12px; color: var(--c-amber); }
+.essay__eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--c-amber); }
+.essay__title h1 {
+  max-width: 860px;
+  font-weight: 500;
+  font-size: 100px;
+  line-height: 1.245;
+  letter-spacing: -5px;
+  color: var(--c-info-soft);
+  text-wrap: balance;
+}
+/* MetaRow: líneas arriba y abajo, 4 campos */
+.essay__meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  margin: 0;
+  padding: 32px 0;
+  border-block: 1px solid rgba(243, 237, 228, .12);
+}
+.essay__meta div { display: flex; flex-direction: column; gap: 8px; }
+.essay__meta dt { font-weight: 500; font-size: 12px; color: var(--c-subtle); }
+.essay__meta dd { margin: 0; font-size: 16px; line-height: 1.5; color: var(--c-warm); }
+.essay__dek { font-size: 16px; line-height: 1.5; color: var(--c-muted); }
+.essay__quote {
+  margin: 0;
+  padding: 12px 0 12px 24px;
+  border-left: 3px solid var(--c-amber);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--c-info-soft);
+}
+.essay__body { display: flex; flex-direction: column; gap: 32px; font-weight: 200; font-size: 16px; line-height: 1.5; color: var(--c-warm); }
+/* Primera letra del cuerpo en ámbar */
+.essay__body p:first-child::first-letter { color: var(--c-amber); }
+.essay__pager { display: flex; justify-content: space-between; padding-top: 16px; }
+.essay__pager a { font-weight: 500; font-size: 12px; color: var(--c-muted); transition: color .2s; }
+.essay__pager a:hover { color: var(--color-orange); }
+
+/* ---------- Tablet / mobile ---------- */
+@media (max-width: 1240px) {
+  .writing, .essay { padding-inline: 64px; }
+  .writing__title h1, .essay__title h1 { font-size: 72px; letter-spacing: -3.6px; }
+}
+@media (max-width: 900px) {
+  .writing { padding: calc(var(--nav-h-mobile) + 32px) 16px 48px; }
+  .writing__head { gap: 24px; }
+  .writing__title h1, .essay__title h1 { font-weight: 400; font-size: 40px; letter-spacing: -2px; }
+  .writing__lead { font-size: 18px; }
+  .essay-row { flex-direction: column; gap: 24px; padding: 40px 0; }
+  .essay-row__meta { width: auto; padding-left: 0; }
+  .essay-row__num { font-size: 48px; }
+  .essay-row__text { padding: 0; }
+  .essay-row__desc, .essay-row__opening, .essay-row__quote { font-size: 18px; }
+  .essay { gap: 32px; padding: calc(var(--nav-h-mobile) + 32px) 16px 64px; }
+  .essay__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 24px 0; }
+}

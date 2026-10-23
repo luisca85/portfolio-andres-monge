@@ -13,10 +13,11 @@
   <link rel="alternate" hreflang="es" href="index.html">
   <!-- Marca JS antes del primer pintado para que el hero arranque oculto y no parpadee -->
   <script>document.documentElement.classList.add('js');</script>
-  <!-- Siempre arrancar en el hero: sin restaurar el scroll anterior ni saltar a un #ancla -->
+  <!-- Arrancar en el hero sin restaurar el scroll anterior. Única excepción: #about (link "About" del nav
+       desde otras páginas), que lleva a esa sección. Cualquier otro #ancla se limpia. -->
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    if (location.hash && location.hash !== '#about') history.replaceState(null, '', location.pathname + location.search);
   </script>
   <!-- Intro: una vez por sesión (con ?intro en la URL se fuerza). Sin intro si se pide menos movimiento. -->
   <script>
@@ -25,7 +26,8 @@
       try { seen = sessionStorage.getItem('intro-seen') === '1'; } catch (e) {}
       var force = /[?&]intro\b/.test(location.search);
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if ((force || !seen) && !calm) document.documentElement.classList.add('has-intro');
+      var toAbout = location.hash === '#about';   // se llega a About: sin intro
+      if ((force || !seen) && !calm && !toAbout) document.documentElement.classList.add('has-intro');
     })();
   </script>
 </head>
@@ -96,11 +98,10 @@
 
     <div class="nav__right">
       <nav class="nav__links" aria-label="Principal">
-        <a href="#">The Book</a>
-        <a href="#">Cine y video</a>
-        <a href="#">Escritos</a>
+        <a href="campaigns.html">Campañas</a>
+        <a href="films.html">Películas</a>
+        <a href="writing.html">Escritos</a>
         <a href="#about">Sobre mí</a>
-        <a href="#contact">Contacto</a>
       </nav>
       <!-- lang-selector (421:2560): lleva a la otra versión (index.html = EN, es/index.html = ES) -->
       <div class="lang" role="group" aria-label="Idioma">
@@ -118,11 +119,10 @@
   <!-- Figma 420:2685 · Menú mobile abierto -->
   <div class="mobile-menu" id="mobile-menu" inert>
     <nav class="mobile-menu__list" aria-label="Principal">
-      <a class="mobile-menu__item" href="#">The Book <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
-      <a class="mobile-menu__item" href="#">Cine y video <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
-      <a class="mobile-menu__item" href="#">escritos <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="campaigns.html">Campañas <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="films.html">Películas <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
+      <a class="mobile-menu__item" href="writing.html">Escritos <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
       <a class="mobile-menu__item" href="#about">Sobre mí <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
-      <a class="mobile-menu__item" href="#contact">Contacto <img src="../assets/icon-arrow-right-28.svg" width="28" height="28" alt=""></a>
     </nav>
     <!-- Selector de idioma en mobile: no está en Figma (propuesta) -->
     <div class="lang lang--menu" role="group" aria-label="Idioma">
@@ -177,7 +177,7 @@
         </ul>
 
         <p class="hero__identity">
-          Escritor y cineasta bilingüe: contenido guiado por el concepto y la historia, desde films de marca hasta cortometrajes premiados. Alternativa: narrador bilingüe que escribe y produce para marcas y pantalla.
+          Soy un escritor y creador costarricense que trabaja en inglés y en español. La escritura es la base de mi trabajo: una forma de explorar ideas, construir personajes y desarrollar un punto de vista.
         </p>
 
         <div class="player" role="group" aria-label="Película de fondo">
@@ -254,7 +254,7 @@
                 <h3 class="time-box__title">Romano Honorario</h3>
                 <p class="time-box__desc">Cortometraje dramático sobre un huérfano criado por una familia criminal que debe enfrentarse a la culpa, la lealtad y la herencia que recibe después de la muerte de su padre adoptivo.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=-ETgsrVfcU4" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="film-romano-honorario.html">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -278,7 +278,7 @@
                 <h3 class="time-box__title">5 Sentidos</h3>
                 <p class="time-box__desc">Cortometraje de thriller psicológico sobre un hombre que comienza a perder progresivamente cada uno de sus cinco sentidos y el deterioro emocional que eso provoca tanto en él como en su esposa.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=ZeUtnoE-9aY" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="film-5-sentidos.html">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine">
@@ -318,7 +318,7 @@
                 <h3 class="time-box__title">Silent Pain / Mime</h3>
                 <p class="time-box__desc">Cortometraje experimental mudo, filmado en blanco y negro y con influencia del film noir, sobre un mimo persiguiendo su sueño.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=AoQZPk6PI6E" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="film-silent-pain.html">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -330,7 +330,7 @@
                 <h3 class="time-box__title">Nahuel</h3>
                 <p class="time-box__desc">Cortometraje dramático sobre un joven afro-indígena latino que navega los prejuicios de la sociedad que lo rodea.</p>
               </div>
-              <a class="button" href="https://www.youtube.com/watch?v=uoE--jaxy3g" target="_blank" rel="noopener">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="film-nahuel.html">Ver el corto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
@@ -358,7 +358,7 @@
                 <h3 class="time-box__title">Fashion Design and Campaign</h3>
                 <p class="time-box__desc">Proyecto final de FASH 110: Introduction to Fashion Design. Diseñé una colección que incluía una falda, un safari jacket, un pantalón y dos camisas con broches y rhinestones.</p>
               </div>
-              <a class="button" href="#">Ver el proyecto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="campaign-fashion.html">Ver el proyecto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
@@ -376,7 +376,7 @@
                   <p>Recibió mucha atención en LinkedIn de otros especialistas en educación para gente neurodivergente. Por mucho mi ensayo más reconocido.</p>
                 </div>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="writing-neurodivergent.html">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -395,7 +395,7 @@
                 <h3 class="time-box__title">Us vs. Them</h3>
                 <p class="time-box__desc">Ensayo personal de creative nonfiction sobre identidad costarricense-nicaragüense, migración, xenofobia y clase social.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="writing-us-vs-them.html">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine">
@@ -410,7 +410,7 @@
                 <h3 class="time-box__title">Outside the Wake</h3>
                 <p class="time-box__desc">Ensayo personal de creative nonfiction sobre mortalidad, duelo y la diferencia entre una muerte repentina y una muerte que llega después de una vida larga.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="writing-outside-the-wake.html">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
         </div>
@@ -422,7 +422,7 @@
                 <h3 class="time-box__title">When Nationalism Becomes a Trend</h3>
                 <p class="time-box__desc">Ensayo de creative nonfiction que analiza el auge de movimientos populistas y nacionalistas en Europa y su relación con una tendencia global hacia la soberanía, la expansión territorial y una política cada vez más construida como marca.</p>
               </div>
-              <a class="button" href="#">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <a class="button" href="writing-nationalism.html">Leer el ensayo <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
             </article>
           </div>
           <div class="spine spine--stretch">
@@ -445,7 +445,7 @@
                   <p>Filmado durante verano de 2026. Campaña de fundraising en desarrollo, con lanzamiento planteado para finales de 2026.</p>
                 </div>
               </div>
-              <a class="button" href="#">Ver el proyecto <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+              <p class="status-tag">Próximamente</p>
             </article>
           </div>
         </div>
@@ -468,11 +468,14 @@
         <p class="about__overline">SOBRE MÍ / CONTACTO</p>
         <h2 class="about__name" id="about-title">Andrés Monge</h2>
         <div class="about__bio">
-          <p class="about__lead">Escritor y cineasta bilingüe: un narrador que escribe y produce obras premiadas en distintos géneros.</p>
-          <p class="about__detail">Pensamiento centrado en el concepto, combinado con una dirección práctica, desde una perspectiva bilingüe nativa. Cursa un BFA en Dramatic Writing (minor en Film &amp; TV) en SCAD, con egreso previsto en 2028. Habilitado para trabajar en Estados Unidos.</p>
+          <p class="about__lead">Soy un escritor y creador costarricense que trabaja en inglés y en español. La escritura es la base de mi trabajo: una forma de explorar ideas, construir personajes y desarrollar un punto de vista.</p>
+          <div class="about__details">
+            <p class="about__detail">Mi trabajo toma distintas formas, desde la ficción y los guiones hasta películas, campañas y diseño. Escribo, dirijo y produzco, y combino la narración con el pensamiento visual para dar forma a un proyecto desde su primer concepto hasta su ejecución.</p>
+            <p class="about__detail">Ya sea que esté desarrollando una historia original o colaborando en un brief creativo, me importa encontrar la voz justa y darle a la gente algo a lo que valga la pena prestar atención.</p>
+          </div>
         </div>
         <div class="about__actions">
-          <a class="button" href="#">Currículum (PDF) <img src="../assets/icon-arrow-orange.svg" width="24" height="24" alt=""></a>
+          <a class="button button--filled" href="mailto:hello@andresmonge.com">hello@andresmonge.com <img src="../assets/icon-arrow-dark.svg" width="24" height="24" alt=""></a>
           <a class="button button--secondary" href="#">LinkedIn <img src="../assets/icon-arrow-white.svg" width="24" height="24" alt=""></a>
         </div>
       </div>
