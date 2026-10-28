@@ -204,6 +204,23 @@ export const es = {
   'Personal': 'Personal',
   'On the way to a friend’s wake, a stranger’s sudden death reframes how the writer sees mortality — and his grandfather’s slow decline.':
     'Camino al velorio de un amigo, la muerte repentina de un desconocido cambia la forma en que el autor ve la mortalidad y el lento deterioro de su abuelo.',
+  // Galería de detrás de escena (5 Sentidos y Romano Honorario) · pendiente de aprobación
+  'Behind the scenes: photos &amp; videos': 'Galería y videos de detrás de escena',
+  'Photos and videos from the set.': 'Fotos y videos del rodaje.',
+  'Video · Behind the scenes': 'Video · Detrás de escena',
+  'Photo · Behind the scenes': 'Foto · Detrás de escena',
+  'Video': 'Video',
+  'Photo': 'Foto',
+  'Play video': 'Reproducir video',
+  'Behind the scenes video 1': 'Video de detrás de escena 1',
+  'Behind the scenes video 2': 'Video de detrás de escena 2',
+  'Clapperboard on set': 'Claqueta en el rodaje',
+  'Shooting a scene in the living room': 'Rodaje de una escena en el living',
+  'Andrés Monge at the monitor': 'Andrés Monge frente al monitor',
+  'Crew shooting an exterior scene': 'Equipo filmando una escena en exteriores',
+  'Rehearsing a scene by the sofa': 'Ensayo de una escena junto al sofá',
+  'Cast and crew group photo': 'Foto grupal del elenco y el equipo',
+
   // Home: etiqueta de El Guardaparques
   'Coming soon': 'Próximamente',
 

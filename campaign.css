@@ -199,6 +199,56 @@ button.circle-btn:hover:not(:disabled) { background: var(--button-hover-bg); bor
 .circle-btn:disabled { opacity: .35; cursor: default; }
 .circle-btn--light { border-color: var(--color-text); }
 
+/* ---------- Galería con videos (detalle de película · Figma 679:2063) ---------- */
+.gallery--media { padding: 32px 10px 0; }
+.gallery--media .gallery__head { gap: 12px; }
+.gallery__main { position: relative; }
+.gallery__main [hidden] { display: none; }
+.gallery__video { display: block; width: 100%; height: 100%; background: var(--color-bg); object-fit: contain; }
+/* Etiqueta Video / Foto: píldora oscura con borde sutil */
+.media-badge {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .7);
+  font-weight: 200;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text);
+  pointer-events: none;
+}
+.media-badge--lg { top: 15px; left: 15px; gap: 8px; padding: 6px 10px; }
+.media-badge img { width: 12px; height: 12px; }
+.media-badge--lg img { width: 14px; height: 14px; }
+.gallery__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: transform .25s ease;
+}
+.gallery__play:hover,
+.gallery__play:focus-visible { transform: scale(1.08); }
+.thumb--media { position: relative; }
+/* Miniaturas fijas de 180×120 como en el Figma (679:2071) */
+.gallery--media .gallery__thumbs { display: flex; gap: 12px; }
+.gallery--media .thumb { width: 180px; height: 120px; aspect-ratio: auto; }
+@media (max-width: 900px) {
+  .gallery--media { padding: 32px 0 0; }
+  .gallery--media .thumb--media .media-badge { top: 4px; left: 4px; padding: 2px 6px; font-size: 10px; }
+}
+
 /* ---------- Secciones numeradas ---------- */
 .step {
   display: flex;

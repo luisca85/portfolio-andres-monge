@@ -192,7 +192,8 @@ Figma 610:1344 (solo escritorio). Mismos bloques 1, 2, 3 y 7 que el detalle de c
 - Migas: la página actual en ámbar (`.crumbs__current`), sin link.
 - Video: póster con `object-fit: cover` y play de 100px (`assets/film/play-100.svg`); leyenda a 16px del video. Al hacer clic se reemplaza por el video de YouTube.
 - Filas en un bloque `.steps` (gap 16, sin línea superior): Logline (`.step--lead`, texto centrado en vertical), Festival recognition (`.step--awards`, laureles `.award` de la home: 100, 88, 96 y 96px) y créditos.
-- Sin galería ni secciones numeradas.
+- Sin secciones numeradas.
+- **Variante con detrás de escena** (5 Sentidos, Romano Honorario · Figma 679:2063): sección `.gallery--media` después de los créditos. Imagen principal 420px con etiqueta `.media-badge--lg` (Video / Foto) y play de 72px (`.gallery__play`); miniaturas de 180×120 con `.media-badge`. Una miniatura con `data-video` muestra el póster y reproduce el MP4 en el mismo lugar.
 
 Convenciones de contenido: un dato que no tengamos se muestra como "To confirm" / "A confirmar". Imágenes en `assets/campaign/[slug]/`: `[slug]-NN.jpg` (lado largo 1600px) y `[slug]-NN-thumb.jpg` (420px).
 

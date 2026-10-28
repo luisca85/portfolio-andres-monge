@@ -14,7 +14,7 @@
   <link rel="alternate" hreflang="es" href="film-5-sentidos.html">
   <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="page-campaign page-film">
+<body class="page-campaign page-film page-film--bts">
 
   <!-- Nav=desktop (83:452) · Nav=mobile (180:5047). Mismos textos que la home. -->
   <header class="nav">
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <!-- Figma 610:1344 "Detalle de pelicula" (escritorio). Sin diseño mobile: usa las reglas mobile del detalle de campaña. -->
+  <!-- Figma 610:1344 "Detalle de pelicula" (escritorio), variante con galería de detrás de escena (679:2063). Sin diseño mobile: usa las reglas mobile del detalle de campaña. -->
   <main class="campaign">
 
     <header class="campaign__head">
@@ -148,6 +148,47 @@
         </dl>
       </section>
     </div>
+
+    <!-- Galería y videos de detrás de escena · Figma 679:2063 (dentro de 610:1344).
+         Fotos y videos de "Portafolio_Monge/Detras de escenas", optimizados en assets/film/bts/.
+         Videos: MP4 H.264 960×540, se cargan recién al darles play. -->
+    <section class="gallery gallery--media" aria-labelledby="gallery-title" data-gallery>
+      <div class="gallery__head">
+        <h2 class="label label--amber" id="gallery-title">Galería y videos de detrás de escena</h2>
+        <p class="gallery__desc">Fotos y videos del rodaje.</p>
+      </div>
+
+      <figure class="gallery__main">
+        <img src="../assets/film/bts/5-sentidos-bts-1-poster.jpg" width="960" height="540" alt="Video de detrás de escena 1" data-gallery-main>
+        <video class="gallery__video" controls playsinline preload="none" hidden data-gallery-video></video>
+        <p class="media-badge media-badge--lg" data-gallery-badge="video"><img src="../assets/film/icon-video-14.svg" width="14" height="14" alt="">Video · Detrás de escena</p>
+        <p class="media-badge media-badge--lg" data-gallery-badge="photo" hidden><img src="../assets/film/icon-image-12.svg" width="14" height="14" alt="">Foto · Detrás de escena</p>
+        <button class="gallery__play" type="button" aria-label="Reproducir video" data-gallery-play><img src="../assets/film/play-72.svg" width="72" height="72" alt=""></button>
+      </figure>
+
+      <div class="gallery__strip">
+        <ul class="gallery__thumbs" aria-label="Imágenes de la galería">
+          <li><button class="thumb thumb--media" type="button" data-full="../assets/film/bts/5-sentidos-bts-1-poster.jpg" data-video="../assets/film/bts/5-sentidos-bts-1.mp4"><img src="../assets/film/bts/5-sentidos-bts-1-thumb.jpg" alt="Video de detrás de escena 1" loading="lazy"><span class="media-badge" aria-hidden="true"><img src="../assets/film/icon-video-12.svg" width="12" height="12" alt="">Video</span></button></li>
+          <li><button class="thumb thumb--media" type="button" data-full="../assets/film/bts/5-sentidos-bts-2-poster.jpg" data-video="../assets/film/bts/5-sentidos-bts-2.mp4"><img src="../assets/film/bts/5-sentidos-bts-2-thumb.jpg" alt="Video de detrás de escena 2" loading="lazy"><span class="media-badge" aria-hidden="true"><img src="../assets/film/icon-video-12.svg" width="12" height="12" alt="">Video</span></button></li>
+          <li><button class="thumb thumb--media" type="button" data-full="../assets/film/bts/5-sentidos-bts-3.jpg"><img src="../assets/film/bts/5-sentidos-bts-3-thumb.jpg" alt="Claqueta en el rodaje" loading="lazy"><span class="media-badge" aria-hidden="true"><img src="../assets/film/icon-image-12.svg" width="12" height="12" alt="">Foto</span></button></li>
+          <li><button class="thumb thumb--media" type="button" data-full="../assets/film/bts/5-sentidos-bts-4.jpg"><img src="../assets/film/bts/5-sentidos-bts-4-thumb.jpg" alt="Rodaje de una escena en el living" loading="lazy"><span class="media-badge" aria-hidden="true"><img src="../assets/film/icon-image-12.svg" width="12" height="12" alt="">Foto</span></button></li>
+          <li><button class="thumb thumb--media" type="button" data-full="../assets/film/bts/5-sentidos-bts-5.jpg"><img src="../assets/film/bts/5-sentidos-bts-5-thumb.jpg" alt="Andrés Monge frente al monitor" loading="lazy"><span class="media-badge" aria-hidden="true"><img src="../assets/film/icon-image-12.svg" width="12" height="12" alt="">Foto</span></button></li>
+          <li class="gallery__more-item"><button class="thumb thumb--more" type="button" data-gallery-more><span class="thumb__count" data-gallery-more-count></span><span class="thumb__more-label">más</span></button></li>
+        </ul>
+      </div>
+
+      <div class="gallery__pager">
+        <p class="gallery__range" data-gallery-range aria-live="polite"></p>
+        <div class="gallery__controls">
+          <button class="circle-btn" type="button" aria-label="Imágenes anteriores" data-gallery-prev>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="circle-btn" type="button" aria-label="Imágenes siguientes" data-gallery-next>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
 
     <nav class="pager" aria-label="Más proyectos">
       <a class="pager__link" href="film-silent-pain.html">

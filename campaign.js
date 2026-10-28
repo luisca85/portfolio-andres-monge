@@ -35,6 +35,20 @@
   const prev = gallery.querySelector('[data-gallery-prev]');
   const next = gallery.querySelector('[data-gallery-next]');
   const strip = gallery.querySelector('.gallery__strip');
+  // Galería con videos (detalle de película con detrás de escena): una miniatura con
+  // data-video muestra su póster con play; al hacer clic se reproduce en el mismo lugar.
+  const video = gallery.querySelector('[data-gallery-video]');
+  const play = gallery.querySelector('[data-gallery-play]');
+  const badges = [...gallery.querySelectorAll('[data-gallery-badge]')];
+
+  function stopVideo() {
+    if (!video || video.hidden) return;
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    video.hidden = true;
+    main.hidden = false;
+  }
 
   const ofWord = document.documentElement.lang === 'es' ? 'de' : 'of';
   const mobile = matchMedia('(max-width: 900px)');
@@ -52,6 +66,10 @@
       b.classList.toggle('is-active', b === t);
       b.setAttribute('aria-pressed', String(b === t));
     });
+    stopVideo();
+    const isVideo = Boolean(t.dataset.video);
+    if (play) play.hidden = !isVideo;
+    badges.forEach((b) => { b.hidden = b.dataset.galleryBadge !== (isVideo ? 'video' : 'photo'); });
     if (main.getAttribute('src') !== t.dataset.full) {
       main.classList.add('is-loading');
       const pre = new Image();
@@ -83,11 +101,23 @@
   }
 
   thumbs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+  if (play && video) {
+    play.addEventListener('click', () => {
+      video.src = thumbs[active].dataset.video;
+      video.poster = thumbs[active].dataset.full;
+      main.hidden = true;
+      play.hidden = true;
+      video.hidden = false;
+      video.play().catch(() => {});
+      video.focus();
+    });
+  }
   moreBtn.addEventListener('click', () => setPage(page + 1));
   prev.addEventListener('click', () => setPage(page - 1));
   next.addEventListener('click', () => setPage(page + 1));
   gallery.addEventListener('keydown', (e) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (e.target === video) return;   // las flechas adelantan el video
     e.preventDefault();
     show(active + (e.key === 'ArrowRight' ? 1 : -1));
     thumbs[active].focus();

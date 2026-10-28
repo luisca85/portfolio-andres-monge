@@ -14,6 +14,20 @@ Resumen para desarrollo de los cambios del 22 y 23 de octubre: [CAMBIOS-DESARROL
 
 ---
 
+## 2026-10-28 · Detalle de película con detrás de escena (5 Sentidos y Romano Honorario)
+
+- **Nueva tipología de página**: el detalle de película (Figma 610:1344) suma la sección **"Galería y videos detrás de escena"** (Figma 679:2063), después de los créditos. Se usa en `film-5-sentidos.html` y `film-romano-honorario.html` (EN y ES); Nahuel y Silent Pain siguen sin galería.
+- **Galería con fotos y videos** (misma lógica de la galería de campaña, `campaign.js`): imagen principal con etiqueta "Video · Behind the scenes" / "Photo · Behind the scenes" y botón de play de 72px; miniaturas de 180×120 con etiqueta Video / Photo; paginación. Al hacer play, el video se reproduce en el mismo lugar (con controles); al elegir otra miniatura se detiene.
+- **Material**: carpeta `Portafolio_Monge/Detras de escenas`. Por película: 2 videos y 3 fotos (distribución de fotos confirmada por Luis). Optimizados en `assets/film/bts/`:
+  - Videos: de HEVC .mov a **MP4 H.264 960×540** (el HEVC no se reproduce en varios navegadores); 10 a 23 MB cada uno, ~72 MB en total. `preload="none"`: se descargan recién al darles play. Póster de cada video generado del primer fotograma.
+  - Fotos: JPG de hasta 1600px (sin agrandar las más chicas) y miniaturas de 420px.
+- Íconos del Figma: `assets/film/icon-video-14.svg`, `icon-video-12.svg`, `icon-image-12.svg`, `play-72.svg`.
+- Textos de la sección: el Figma tiene textos de ejemplo de campaña; se usó "Behind the scenes: photos & videos" / "Galería y videos de detrás de escena" y "Photos and videos from the set." / "Fotos y videos del rodaje." (pendiente de aprobación).
+- `tools/build-es.mjs`: corrige las rutas de `data-video` en la versión en español.
+- `.claude/serve.mjs` (vista previa local): usa el puerto que asigna la vista previa y sirve video con pedidos por rango.
+
+---
+
 ## 2026-10-23 · Los cuatro ensayos y El Guardaparques sin botón
 
 - **Páginas nuevas** (EN y ES), con la plantilla del detalle de escrito: `writing-neurodivergent.html`, `writing-us-vs-them.html`, `writing-outside-the-wake.html`.

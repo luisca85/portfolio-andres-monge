@@ -48,7 +48,7 @@ for (const { page, html: translated } of results) {
   swap(`<link rel="alternate" hreflang="es" href="es/${page}">`, `<link rel="alternate" hreflang="es" href="${page}">`);
   // Rutas relativas desde /es/ (los links entre páginas quedan dentro de /es/)
   html = html.replace(/(href|src)="([\w-]+\.(?:css|js))"/g, '$1="../$2"');
-  html = html.replace(/(src|data-full)="assets\//g, '$1="../assets/');
+  html = html.replace(/(src|data-full|data-video)="assets\//g, '$1="../assets/');
 
   html = html.replace('<!doctype html>', `<!doctype html>\n<!-- Archivo generado por tools/build-es.mjs a partir de ${page}: no editar a mano -->`);
   fs.mkdirSync(path.join(root, 'es'), { recursive: true });
